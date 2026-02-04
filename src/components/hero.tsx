@@ -4,12 +4,28 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { HeroParticles } from './ui/hero-particles';
+import { useState, useEffect } from 'react';
 
 export function Hero() {
   const t = useTranslations('Hero');
+  const roleText = t('role');
+  const [displayedText, setDisplayedText] = useState('');
+  
+  useEffect(() => {
+    setDisplayedText(''); // Reset on lang change
+    let index = 0;
+    const intervalId = setInterval(() => {
+      setDisplayedText((prev) => roleText.slice(0, index + 1));
+      index++;
+      if (index > roleText.length) {
+        clearInterval(intervalId);
+      }
+    }, 50); // Typing speed
+    return () => clearInterval(intervalId);
+  }, [roleText]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-white dark:bg-black transition-colors duration-300">
+    <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-slate-50 dark:bg-black transition-colors duration-300">
         {/* Interactive Background */}
         <HeroParticles />
         
@@ -30,19 +46,17 @@ export function Hero() {
         </motion.h1>
 
         <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl md:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400 tracking-tight"
+            className="text-2xl md:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400 tracking-tight min-h-[1.5em]"
         >
-          {t('role')}
+          {displayedText}
+          <span className="animate-pulse">|</span>
         </motion.h2>
 
         <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
+            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
         >
           {t('description')}
         </motion.p>

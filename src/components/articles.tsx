@@ -10,7 +10,6 @@ import {
   Maximize2,
   Minimize2,
   ExternalLink,
-  RefreshCw,
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -32,8 +31,7 @@ export function Articles() {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-
-      // 修正：電腦版應始終保持 Sidebar 開啟
+      // Ensure sidebar is open on desktop by default
       if (!mobile) {
         setIsSidebarOpen(true);
       }
@@ -52,10 +50,7 @@ export function Articles() {
   };
 
   const handleSidebarToggle = () => {
-    // Only allow toggling on mobile
-    if (isMobile) {
-      setIsSidebarOpen(!isSidebarOpen);
-    }
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   const articles = [
@@ -71,7 +66,6 @@ export function Articles() {
     { key: "docker", status: "wip" },
   ];
 
-  // 修正 activeArticle 的邏輯，確保正確渲染文章
   const activeArticle = articles.find((a) => a.key === activeKey);
 
   return (
@@ -89,11 +83,11 @@ export function Articles() {
           {t("title")}
         </motion.h2>
 
-        {/* 主視窗容器 */}
+        {/* Main Window Container */}
         <motion.div
           className={`
           relative bg-white dark:bg-gray-950 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row transition-all duration-300
-          ${isMaximized ? "fixed inset-0 z-50 h-full rounded-none" : "max-w-7xl mx-auto min-h-[800px]"}
+          ${isMaximized ? "fixed inset-0 z-50 h-full rounded-none" : "max-w-7xl mx-auto min-h-[800px] h-[800px]"}
         `}
         >
           {/* Mobile: Toggle Button (Floating when sidebar closed) */}
@@ -110,15 +104,16 @@ export function Articles() {
           <motion.div
             initial={false}
             animate={{
-              width: isSidebarOpen ? (isMobile ? "100%" : 320) : 0,
+              width: isSidebarOpen ? (isMobile ? "100%" : 280) : 0,
               opacity: isSidebarOpen ? 1 : 0,
             }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className={`
-                        ${isMobile ? "absolute inset-0 z-20" : "relative border-r"} 
-                        bg-gray-50/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col backdrop-blur-md
-                    `}
+                ${isMobile ? "absolute inset-0 z-20" : "relative border-r shrink-0"} 
+                bg-gray-50/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col backdrop-blur-md
+            `}
           >
-            <div className="p-4 flex flex-col h-full min-w-[300px]">
+            <div className="p-4 flex flex-col h-full min-w-[280px]">
               {/* Sidebar Header */}
               <div className="flex items-center justify-between mb-6 px-2">
                 <div className="text-xs font-mono text-gray-500 dark:text-gray-400 flex items-center gap-2">
@@ -185,7 +180,7 @@ export function Articles() {
           {/* Right Content: Viewport */}
           <div className="flex-1 min-w-0 bg-white dark:bg-black relative flex flex-col h-full z-10">
             {/* Toolbar */}
-            <div className="h-12 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 justify-between bg-gray-50 dark:bg-gray-900">
+            <div className="h-12 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 justify-between bg-gray-50 dark:bg-gray-900 shrink-0">
               <div className="flex items-center gap-4 pl-12 lg:pl-0">
                 {" "}
                 {/* Padding for mobile menu button */}
@@ -196,15 +191,17 @@ export function Articles() {
                     className={`
                                         w-3 h-3 rounded-full border flex items-center justify-center transition-colors
                                         ${
-                                          isMobile
-                                            ? "bg-red-400/80 border-red-500/50 hover:bg-red-500 cursor-pointer"
-                                            : "bg-red-300/50 border-red-400/30 cursor-default"
+                                          isSidebarOpen
+                                            ? "bg-red-300/50 border-red-400/30 hover:bg-red-500 cursor-pointer"
+                                            : "bg-green-400/80 border-green-500/50 hover:bg-green-500 cursor-pointer"
                                         }
                                     `}
-                    title={isMobile ? "Toggle Sidebar" : "Sidebar Locked"}
+                    title="Toggle Sidebar"
                   >
-                    {isMobile && (
-                      <Menu className="w-2 h-2 text-red-900 opacity-0 group-hover:opacity-100" />
+                    {isSidebarOpen ? (
+                        <X className="w-2 h-2 text-red-900 opacity-0 group-hover:opacity-100" />
+                    ) : (
+                        <Menu className="w-2 h-2 text-green-900 opacity-0 group-hover:opacity-100" />
                     )}
                   </button>
 
@@ -266,7 +263,7 @@ export function Articles() {
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 relative w-full h-full overflow-hidden bg-gray-100 dark:bg-gray-950">
+            <div className="flex-1 relative w-full h-full bg-gray-100 dark:bg-gray-950 overflow-y-auto">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeKey}
@@ -274,7 +271,7 @@ export function Articles() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute inset-0 w-full h-full"
+                  className="w-full h-full min-h-[600px]"
                 >
                   {activeArticle?.status === "published" ? (
                     <div className="w-full h-full relative group bg-white">
@@ -284,6 +281,7 @@ export function Articles() {
                         title={activeKey}
                         referrerPolicy="no-referrer"
                         loading="lazy"
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                       />
                     </div>
                   ) : (

@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FileText, Cpu, Network } from 'lucide-react';
+import { FileText, Cpu, ZoomIn } from 'lucide-react';
 import { useModalStore } from '@/store/modal-store';
 
 export function About() {
@@ -28,8 +28,25 @@ export function About() {
     );
   };
 
+  const handleZoomImage = (src: string, alt: string) => {
+    openModal(
+        <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="relative w-full h-full max-w-4xl max-h-[90vh]">
+                <Image 
+                    src={src} 
+                    alt={alt} 
+                    fill 
+                    className="object-contain"
+                />
+            </div>
+        </div>
+    );
+  }
+
+  const tags = ['TOEIC Gold', 'Cisco CCNA', 'FPGA Design', 'Hardware Security', 'Verilog', 'Post-Quantum Cryptography'];
+
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden bg-white dark:bg-black transition-colors duration-300">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 left-0 -z-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
@@ -44,14 +61,15 @@ export function About() {
           {t('title')}
         </motion.h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
             {/* Left Column: Image */}
             <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative group"
+                className="relative group cursor-zoom-in"
+                onClick={() => handleZoomImage("/image.png", "Ming")}
             >
                 <div className="relative w-full max-w-md mx-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
                     <Image 
@@ -62,7 +80,9 @@ export function About() {
                     />
                     
                     {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                        <span className="text-white flex items-center gap-2 text-sm font-medium"><ZoomIn className="w-4 h-4"/> Zoom</span>
+                    </div>
                 </div>
                 
                 {/* Decorative Frame */}
@@ -79,7 +99,7 @@ export function About() {
             >
                 {/* Intro */}
                 <div className="prose dark:prose-invert max-w-none">
-                    <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+                    <p className="text-lg leading-relaxed text-gray-800 dark:text-gray-200 font-medium">
                         {t('intro')}
                     </p>
                 </div>
@@ -95,18 +115,24 @@ export function About() {
                         </h3>
                     </div>
                     
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                         {t('researchDesc')}
                     </p>
 
                     {/* Research Architecture Diagram */}
-                    <div className="mb-8 relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 shadow-inner group/img">
+                    <div 
+                        className="mb-8 relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 shadow-inner group/img cursor-zoom-in"
+                        onClick={() => handleZoomImage("/research.png", "Research Architecture")}
+                    >
                         <Image 
                             src="/research.png"
                             alt="Research Architecture"
                             fill
-                            className="object-contain p-2 transition-transform duration-500 group-hover/img:scale-[1.02]"
+                            className="object-contain p-1 transition-transform duration-500 group-hover/img:scale-[1.02]"
                         />
+                        <div className="absolute top-2 right-2 bg-black/50 text-white p-1 rounded opacity-0 group-hover/img:opacity-100 transition-opacity">
+                            <ZoomIn className="w-4 h-4"/>
+                        </div>
                     </div>
 
                     <button
@@ -118,15 +144,18 @@ export function About() {
                     </button>
                 </div>
 
-                {/* Skills/Other Interests */}
-                <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
-                        <Network className="w-4 h-4" />
-                        TOEIC & Cisco Networking
-                    </div>
-                    <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
-                        <Cpu className="w-4 h-4" />
-                        FPGA & Hardware Security
+                {/* Skills/Other Interests - Improved Visuals */}
+                <div>
+                    <h4 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Focus & Certifications</h4>
+                    <div className="flex flex-wrap gap-3">
+                        {tags.map((tag) => (
+                            <span 
+                                key={tag} 
+                                className="px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-semibold border border-blue-100 dark:border-blue-800 shadow-sm hover:scale-105 transition-transform cursor-default"
+                            >
+                                {tag}
+                            </span>
+                        ))}
                     </div>
                 </div>
             </motion.div>

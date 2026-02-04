@@ -30,14 +30,16 @@ export function Navbar() {
   return (
     <motion.nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md' : 'bg-transparent'
+        scrolled 
+            ? 'bg-white/95 dark:bg-black/90 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800' 
+            : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="#" className="text-xl font-bold tracking-tighter">
+        <Link href="#" className="text-xl font-bold tracking-tighter text-gray-900 dark:text-white">
           Ming
         </Link>
 
@@ -46,7 +48,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:text-blue-500 transition-colors"
+              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {link.name}
             </Link>

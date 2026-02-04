@@ -15,26 +15,26 @@ export function Footer() {
       value: "@Ming874",
       icon: Github,
       url: "https://github.com/Ming874",
-      color: "hover:text-white",
+      color: "hover:text-white hover:bg-gray-800 hover:border-gray-700",
     },
     {
       name: "Email",
       value: "3526ming@gmail.com",
       icon: Mail,
       url: "mailto:3526ming@gmail.com",
-      color: "hover:text-red-400",
+      color: "hover:text-red-400 hover:bg-red-900/20 hover:border-red-800",
     },
     {
       name: "LINE",
       value: "Ming",
       icon: MessageCircle,
       url: "https://line.me/ti/p/aM_h9C0qjG",
-      color: "hover:text-green-400",
+      color: "hover:text-green-400 hover:bg-green-900/20 hover:border-green-800",
     },
   ];
 
   return (
-    <footer className="relative bg-black text-white pt-24 pb-12 overflow-hidden">
+    <footer id="contact" className="relative bg-black text-white pt-24 pb-12 overflow-hidden">
       {/* Subtle Background Grid */}
       <div
         className="absolute inset-0 opacity-10"
@@ -79,22 +79,23 @@ export function Footer() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`group flex items-center justify-between p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 ${contact.color}`}
+                whileHover={{ scale: 1.02, x: 10 }}
+                className={`group flex items-center justify-between p-6 rounded-2xl bg-white/5 border border-white/10 transition-all duration-300 shadow-lg hover:shadow-2xl ${contact.color}`}
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-white/5 rounded-xl text-gray-300 group-hover:scale-110 transition-transform">
                     <contact.icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-500 font-mono mb-1">
+                    <div className="text-sm text-gray-500 font-mono mb-1 group-hover:text-gray-400 transition-colors">
                       {contact.name}
                     </div>
-                    <div className="text-xl font-bold text-gray-200 group-hover:text-white transition-colors">
+                    <div className="text-xl font-bold text-gray-200 group-hover:text-current transition-colors">
                       {contact.value}
                     </div>
                   </div>
                 </div>
-                <ArrowUpRight className="w-6 h-6 text-gray-500 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                <ArrowUpRight className="w-6 h-6 text-gray-500 group-hover:text-current group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
               </motion.a>
             ))}
           </div>
