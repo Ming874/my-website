@@ -9,6 +9,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { GlobalModal } from "@/components/ui/modal";
 import ScrollToTop from "@/components/scroll-to-top";
 
+export const runtime = 'edge';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
