@@ -11,7 +11,7 @@ export function LanguageSwitcher() {
 
   const toggleLanguage = () => {
     const nextLocale = locale === 'en' ? 'zh' : 'en';
-    router.replace(pathname, { locale: nextLocale });
+    router.replace(pathname, { locale: nextLocale, scroll: false });
   };
 
   return (

@@ -18,7 +18,7 @@ export function About() {
         </div>
         <div className="relative w-full h-[80vh] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
              <iframe 
-                src="/研究計畫書.pdf" 
+                src="research.pdf" 
                 width="100%" 
                 height="100%" 
                 className="absolute inset-0 w-full h-full"
@@ -30,19 +30,21 @@ export function About() {
 
   const handleZoomImage = (src: string, alt: string) => {
     openModal(
-        <div className="w-full h-full flex items-center justify-center p-4">
-             <div className="relative w-auto h-auto max-w-full max-h-[90vh]">
+        <div className="w-full h-full flex items-center justify-center bg-black/95 cursor-zoom-out" onClick={() => useModalStore.getState().closeModal()}>
+             <div className="relative w-full h-full p-4 md:p-8">
                 <Image 
                     src={src} 
                     alt={alt} 
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '90vh' }}
-                    className="object-contain rounded-lg"
+                    fill
+                    className="object-contain"
+                    quality={100}
                 />
             </div>
-        </div>
+        </div>,
+        { 
+            className: "!max-w-none !max-h-none !w-screen !h-screen !m-0 !rounded-none !bg-transparent !border-0 !shadow-none !p-0 overflow-hidden",
+            hideCloseButton: false
+        }
     );
   }
 

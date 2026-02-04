@@ -21,6 +21,11 @@ export function Projects() {
       link: "https://election.ncuesa.org.tw",
       tags: ["Blockchain", "Web3", "Solidity"]
     },
+    {
+      key: "fin_agent",
+      github: "https://github.com/Ming874/FinAgent",
+      tags: ["Python", "Streamlit", "Gemini AI"]
+    },
      {
       key: "meal_voucher",
       tags: ["React", "System Design"]

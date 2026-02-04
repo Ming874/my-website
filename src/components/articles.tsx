@@ -23,9 +23,6 @@ export function Articles() {
   // Mobile: Sidebar state (default open)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  // Fullscreen state
-  const [isMaximized, setIsMaximized] = useState(false);
-
   // Detect Mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -85,10 +82,7 @@ export function Articles() {
 
         {/* Main Window Container */}
         <motion.div
-          className={`
-          relative bg-white dark:bg-gray-950 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row transition-all duration-300
-          ${isMaximized ? "fixed inset-0 z-50 h-full rounded-none" : "max-w-7xl mx-auto min-h-[800px] h-[800px]"}
-        `}
+          className="relative bg-white dark:bg-gray-950 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row transition-all duration-300 max-w-7xl mx-auto min-h-[800px] h-[800px]"
         >
           {/* Mobile: Toggle Button (Floating when sidebar closed) */}
           {isMobile && !isSidebarOpen && (
@@ -188,14 +182,7 @@ export function Articles() {
                 <div className="flex items-center gap-2 group">
                   <button
                     onClick={handleSidebarToggle}
-                    className={`
-                                        w-3 h-3 rounded-full border flex items-center justify-center transition-colors
-                                        ${
-                                          isSidebarOpen
-                                            ? "bg-red-300/50 border-red-400/30 hover:bg-red-500 cursor-pointer"
-                                            : "bg-green-400/80 border-green-500/50 hover:bg-green-500 cursor-pointer"
-                                        }
-                                    `}
+                    className="w-3 h-3 rounded-full border flex items-center justify-center transition-colors bg-red-400/80 border-red-500/50 hover:bg-red-500 cursor-pointer"
                     title="Toggle Sidebar"
                   >
                     {isSidebarOpen ? (
@@ -205,19 +192,9 @@ export function Articles() {
                     )}
                   </button>
 
-                  <div className="w-3 h-3 rounded-full bg-yellow-400/80 border border-yellow-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400/80 border border-yellow-500/50 cursor-default" />
 
-                  <button
-                    onClick={() => setIsMaximized(!isMaximized)}
-                    className="w-3 h-3 rounded-full bg-green-400/80 border border-green-500/50 hover:bg-green-500 flex items-center justify-center transition-colors cursor-pointer"
-                    title="Maximize"
-                  >
-                    {isMaximized ? (
-                      <Minimize2 className="w-2 h-2 text-green-900 opacity-0 group-hover:opacity-100" />
-                    ) : (
-                      <Maximize2 className="w-2 h-2 text-green-900 opacity-0 group-hover:opacity-100" />
-                    )}
-                  </button>
+                  <div className="w-3 h-3 rounded-full bg-green-400/80 border border-green-500/50 cursor-default" />
                 </div>
                 <div className="hidden sm:flex text-xs font-mono text-gray-500 dark:text-gray-400 items-center gap-2">
                   <span
@@ -246,19 +223,6 @@ export function Articles() {
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
-
-                {/* Maximize Button */}
-                <button
-                  onClick={() => setIsMaximized(!isMaximized)}
-                  className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg text-gray-500 transition-colors"
-                  title={isMaximized ? "Exit Fullscreen" : "Fullscreen"}
-                >
-                  {isMaximized ? (
-                    <Minimize2 className="w-4 h-4" />
-                  ) : (
-                    <Maximize2 className="w-4 h-4" />
-                  )}
-                </button>
               </div>
             </div>
 

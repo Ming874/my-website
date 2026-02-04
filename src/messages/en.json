@@ -1,7 +1,17 @@
 {
+  "Metadata": {
+    "title": "Tai Ming Chen - Portfolio",
+    "description": "Personal portfolio of Tai Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE, specializing in Full-stack Development, AI, and Cloud Technologies.",
+    "keywords": "Tai Ming Chen, Portfolio, NCUE, GDG, Full-stack, AI, Cloud, React, Next.js, Post-Quantum Cryptography, PQC, PUF, FPGA, RAG, Gemini AI"
+  },
   "Hero": {
     "greeting": "Hi, I'm Tai Ming Chen",
-    "role": "Google Developer Group On Campus NCUE Lead & CS Student",
+    "roles": [
+      "Google Developer Group On Campus NCUE Lead",
+      "SITCON 2026 Broadcasting Team Member",
+      "NCUE Student Association Engineering Section Member",
+      "CS Student at NCUE"
+    ],
     "description": "Building the future with code. Passionate about AI, Cloud, and Full-stack Development.",
     "cta": "Contact Me"
   },
@@ -140,6 +150,11 @@
             "desc": "A blockchain-based voting solution for the NCUE Student Association. Ensures fair and transparent elections via immutable ledger technology.",
             "features": ["Blockchain", "Web3", "Smart Contracts"]
         },
+        "fin_agent": {
+            "title": "FinAgent - AI Stock Analysis Platform",
+            "desc": "An intelligent financial analysis platform integrating real-time stock data, interactive technical charts, and detailed financial reports. Features an AI-driven analyst powered by Google Gemini for automated report generation and interactive Q&A. Includes real-time news integration via SerpAPI and a user-friendly Streamlit interface.",
+            "features": ["Google Gemini AI", "Streamlit", "Technical Analysis", "Real-time Data", "RAG Pipeline"]
+        },
         "meal_voucher": {
             "title": "Meal Voucher System",
             "desc": "Digital meal voucher application and management system, streamlining administrative processes.",
@@ -179,6 +194,7 @@
   },
   "Contact": {
     "title": "Contact Me",
-    "desc": "Feel free to reach out via:"
+    "desc": "Feel free to reach out via:",
+    "madeWith": "Made with Next.js, Tailwind CSS, TypeScript & Love."
   }
 }

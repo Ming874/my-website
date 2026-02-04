@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 import { useEffect } from "react";
 
 export function GlobalModal() {
-  const { isOpen, content, closeModal } = useModalStore();
+  const { isOpen, content, closeModal, options } = useModalStore();
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -48,18 +48,23 @@ export function GlobalModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
-            className="relative w-full max-w-5xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 flex flex-col"
+            className={`
+              relative w-full max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 flex flex-col
+              ${options?.className || "max-w-5xl"}
+            `}
           >
             {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-10 p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            >
-              <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-            </button>
+            {!options?.hideCloseButton && (
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 z-10 p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              </button>
+            )}
 
             {/* Content Area */}
-            <div className="flex-1 overflow-auto p-2 sm:p-6">
+            <div className={`flex-1 overflow-auto ${options?.className?.includes('p-0') ? '' : 'p-2 sm:p-6'}`}>
               {content}
             </div>
           </motion.div>

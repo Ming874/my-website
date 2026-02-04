@@ -1,7 +1,17 @@
 {
+  "Metadata": {
+    "title": "陳泰銘 - 個人作品集",
+    "description": "陳泰銘的個人作品集。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。專長領域包含全端開發、人工智慧 (AI) 與雲端技術。",
+    "keywords": "陳泰銘, 作品集, 彰化師範大學, NCUE, GDG, 全端開發, AI, 雲端, React, Next.js, 後量子密碼學, PQC, PUF, FPGA, RAG, Gemini AI"
+  },
   "Hero": {
     "greeting": "嗨，我是泰銘",
-    "role": "Google Developer Group On Campus NCUE Lead & 彰師資工學生",
+    "roles": [
+      "Google Developer Group On Campus NCUE Lead",
+      "SITCON 2026 製播組組員",
+      "彰師學生會資訊組組員",
+      "彰師資工系學生"
+    ],
     "description": "用程式碼構建未來。熱衷於 AI、雲端技術與全端開發。",
     "cta": "聯絡我"
   },
@@ -140,6 +150,11 @@
             "desc": "為國立彰化師範大學學生會開發的區塊鏈投票解決方案。利用區塊鏈技術的不可竄改性，確保校園選舉的公平與透明。",
             "features": ["Blockchain", "Web3", "Smart Contracts"]
         },
+        "fin_agent": {
+            "title": "FinAgent - AI 智慧股票分析平台",
+            "desc": "整合即時股價、互動式技術線圖與詳細財報的金融分析平台。內建 Google Gemini 驅動的 AI 分析師，可自動生成個股分析報告並提供互動式問答。整合 SerpAPI 獲取即時財經新聞，並透過 Streamlit 打造直觀友善的操作介面。",
+            "features": ["Google Gemini AI", "Streamlit", "技術分析", "即時數據", "RAG Pipeline"]
+        },
         "meal_voucher": {
             "title": "餐券申請系統",
             "desc": "數位化餐券申請與管理流程，簡化行政作業並提升審核效率。",
@@ -179,6 +194,7 @@
   },
   "Contact": {
     "title": "聯絡我",
-    "desc": "歡迎透過以下方式與我聯繫："
+    "desc": "歡迎透過以下方式與我聯繫：",
+    "madeWith": "Made with Next.js, Tailwind CSS, TypeScript & Love."
   }
 }

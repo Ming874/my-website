@@ -3,13 +3,11 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useModalStore } from '@/store/modal-store';
 import { Presentation, Award, Briefcase, GraduationCap, Mic, Projector } from 'lucide-react';
 import { useRef } from 'react';
 
 export function Experience() {
   const t = useTranslations('Experience');
-  const { openModal } = useModalStore();
   const containerRef = useRef<HTMLDivElement>(null);
   
   const itemsData = [
@@ -44,7 +42,7 @@ export function Experience() {
   };
 
   const certLinks: Record<string, string> = {
-    'gdgoc_core': '/GDG_cert.jpg'
+    'gdgoc_core': '/gdg_cert.jpg'
   };
 
   const getIcon = (type: string) => {
@@ -131,7 +129,7 @@ export function Experience() {
                             <motion.div 
                                 initial={{ height: 0, opacity: 0 }}
                                 whileInView={{ height: 'auto', opacity: 1 }}
-                                viewport={{ once: true, amount: 0.5 }}
+                                viewport={{ once: false, amount: 0.5 }}
                                 transition={{ duration: 0.5 }}
                                 className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 overflow-hidden"
                             >

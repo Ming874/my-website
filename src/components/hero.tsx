@@ -8,21 +8,45 @@ import { useState, useEffect } from 'react';
 
 export function Hero() {
   const t = useTranslations('Hero');
-  const roleText = t('role');
-  const [displayedText, setDisplayedText] = useState('');
+  // Use t.raw to get the array of roles. Type assertion might be needed depending on setup, 
+  // but usually t.raw returns `any`.
+  const roles = t.raw('roles') as string[]; 
   
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(100);
+
   useEffect(() => {
-    setDisplayedText(''); // Reset on lang change
-    let index = 0;
-    const intervalId = setInterval(() => {
-      setDisplayedText((prev) => roleText.slice(0, index + 1));
-      index++;
-      if (index > roleText.length) {
-        clearInterval(intervalId);
+    // Handle the typing animation
+    const handleTyping = () => {
+      const currentRole = roles[roleIndex];
+      
+      if (isDeleting) {
+        // Deleting text
+        setDisplayedText(prev => prev.substring(0, prev.length - 1));
+        setTypingSpeed(50); // Faster when deleting
+      } else {
+        // Typing text
+        setDisplayedText(currentRole.substring(0, displayedText.length + 1));
+        setTypingSpeed(100); // Normal typing speed
       }
-    }, 50); // Typing speed
-    return () => clearInterval(intervalId);
-  }, [roleText]);
+
+      // Check if finished typing current role
+      if (!isDeleting && displayedText === currentRole) {
+        // Pause before deleting
+        setTimeout(() => setIsDeleting(true), 2000);
+      } 
+      // Check if finished deleting
+      else if (isDeleting && displayedText === '') {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed]);
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-slate-50 dark:bg-black transition-colors duration-300">
@@ -40,16 +64,16 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-6xl md:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-300 dark:to-white drop-shadow-sm"
+            className="text-[clamp(2rem,5vw,6rem)] sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-300 dark:to-white drop-shadow-sm whitespace-nowrap"
         >
           {t('greeting')}
         </motion.h1>
 
         <motion.h2 
-            className="text-2xl md:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400 tracking-tight min-h-[1.5em]"
+            className="text-xl md:text-3xl lg:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400 tracking-tight min-h-[1.5em]"
         >
           {displayedText}
-          <span className="animate-pulse">|</span>
+          <span className="animate-pulse ml-1">|</span>
         </motion.h2>
 
         <motion.p 
