@@ -1,0 +1,179 @@
+{
+  "Hero": {
+    "greeting": "Hi, I'm Tai Ming Chen",
+    "role": "Google Developer Group On Campus NCUE Lead & CS Student",
+    "description": "Building the future with code. Passionate about AI, Cloud, and Full-stack Development.",
+    "cta": "Contact Me"
+  },
+  "Nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "articles": "Articles",
+    "contact": "Contact"
+  },
+  "Common": {
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "About": {
+    "title": "About Me",
+    "intro": "Currently studying Computer Science and Information Engineering at NCUE. As a GDG on Campus Lead, I bridge the gap between academic learning and industry technologies, with a strong focus on hardware-software integrated security solutions.",
+    "researchTitle": "Research: Post-Quantum Cryptography & Hardware Root of Trust",
+    "researchDesc": "Addressing the threat of quantum computing to current encryption systems, this research focuses on developing high-stability Physical Unclonable Functions (PUF) as a hardware root of trust for Post-Quantum Cryptography (PQC). By leveraging FPGA built-in XADC for environmental sensing and active compensation, we mitigate instability caused by PVT variations, achieving a high-performance key generation system compliant with NIST FIPS 203 standards.",
+    "researchButton": "Read Research Proposal (PDF)",
+    "researchItems": [
+      "Design of a High-Stability PUF-Based Post-Quantum Key Generation System Based on FPGA XADC Environmental Sensing Mechanism",
+      "TOEIC & Cisco Networking Technologies"
+    ]
+  },
+  "Experience": {
+    "title": "Experience & Awards",
+    "items": {
+      "sitcon_2026": {
+        "year": "2026",
+        "title": "SITCON 2026 Broadcasting Team",
+        "desc": "Member of the Broadcasting Team, handling technical support and live streaming engineering."
+      },
+      "gdgoc_lead": {
+        "year": "2025/7 - Now",
+        "title": "GDG On Campus NCUE Lead",
+        "desc": "Leading the campus developer community, planning and organizing major technical talks and workshops."
+      },
+      "itsa_2025": {
+        "year": "2025/12",
+        "title": "2025 ITSA National Programming Contest",
+        "desc": "Demonstrated algorithmic skills, won 3rd Place in the Geek Challenge."
+      },
+      "devfest_2025": {
+        "year": "2025/12",
+        "title": "2026 DevFest Changhua",
+        "desc": "Key Co-organizer, managing event logistics and speaker coordination."
+      },
+      "web_maint_2025": {
+        "year": "2025/7 - 2025/12",
+        "title": "Student Safety Division, NCUE",
+        "desc": "Responsible for full-stack maintenance and optimization of campus safety web systems."
+      },
+      "it_parttime_2025": {
+        "year": "2025 - Now",
+        "title": "Life Guidance Division, NCUE",
+        "desc": "IT Part-time Assistant, helping with system debugging and database management."
+      },
+      "ai_contest_2025": {
+        "year": "2025",
+        "title": "AI & Applications Project Competition (113th Academic Year, 2nd Sem)",
+        "desc": "Won 1st Place with an innovative AI application solution."
+      },
+      "dorm_manager": {
+        "year": "2025",
+        "title": "Dormitory 10, NCUE",
+        "desc": "Floor Manager, coordinating student affairs."
+      },
+      "academic_award_1": {
+        "year": "2025",
+        "title": "Academic Excellence Award (1st Place)",
+        "desc": "Dept. of CSIE, NCUE. 113th Academic Year, 1st Semester."
+      },
+      "academic_award_2": {
+        "year": "2025",
+        "title": "Academic Excellence Award (1st Place)",
+        "desc": "Dept. of CSIE, NCUE. 113th Academic Year, 2nd Semester."
+      },
+      "academic_award_3": {
+        "year": "2025",
+        "title": "Academic Excellence Award (2nd Place)",
+        "desc": "Dept. of CSIE, NCUE. 114th Academic Year, 1st Semester."
+      },
+      "class_rep": {
+        "year": "2025 - Now",
+        "title": "Class Representative",
+        "desc": "Dept. of CSIE, NCUE (Class of 117), serving as a liaison between students and faculty."
+      },
+      "gdgoc_core": {
+        "year": "2025/2 - 2025/7",
+        "title": "GDG On Campus NCUE Core Team Member",
+        "desc": "Core member assisting in community operations and event execution."
+      },
+      "contest_ta": {
+        "year": "2025",
+        "title": "K-12 Education Administration Math & CS Contest (Central Region)",
+        "desc": "Programming Problem Solving Teaching Assistant."
+      },
+      "speaker_n8n": {
+        "year": "2025",
+        "title": "GDGoC Speaker",
+        "desc": "Topic: Demystifying AI: From Core Concepts to Practical Workflows with n8n"
+      },
+      "speaker_cloud": {
+        "year": "2025",
+        "title": "GDGoC Speaker",
+        "desc": "Topic: 2025 Cloud AI Study Jam"
+      },
+      "speaker_gemini": {
+        "year": "2025",
+        "title": "GDGoC Speaker",
+        "desc": "Topic: Build a Gemini Bot, Together with Github"
+      },
+      "high_school": {
+        "year": "2024",
+        "title": "Taipei Municipal Datong High School",
+        "desc": "Graduated."
+      }
+    }
+  },
+  "Projects": {
+    "title": "Projects & Portfolio",
+    "items": {
+        "scholarship": {
+            "title": "NCUE Scholarship Platform",
+            "desc": "A full-stack intelligent scholarship system. Features RAG (Retrieval-Augmented Generation) powered by Google Gemini LLM for AI Q&A and auto-summarization. Integrated with automated web crawlers to sync scholarship data in real-time, and utilizes LINE Messaging API & Nodemailer for automated push notifications. Secured with Supabase RBAC.",
+            "features": ["Google Gemini AI", "RAG Pipeline", "LINE Bot Integration", "Automated Crawling", "Email Automation"]
+        },
+        "vote": {
+            "title": "Decentralized Voting System",
+            "desc": "A blockchain-based voting solution for the NCUE Student Association. Ensures fair and transparent elections via immutable ledger technology.",
+            "features": ["Blockchain", "Web3", "Smart Contracts"]
+        },
+        "meal_voucher": {
+            "title": "Meal Voucher System",
+            "desc": "Digital meal voucher application and management system, streamlining administrative processes.",
+            "features": ["System Management", "Process Automation"]
+        }
+    }
+  },
+  "Articles": {
+    "title": "Teaching Articles",
+    "wipTitle": "Writing in Progress...",
+    "items": {
+      "gcp": {
+        "title": "GCP Compute Engine Deployment Guide",
+        "desc": "Architecture, Configuration, and Best Practices."
+      },
+      "linux": {
+        "title": "Linux Kernel & Operations",
+        "desc": "In-depth Linux system tutorial."
+      },
+      "git": {
+        "title": "Git Core & GitHub Collaboration",
+        "desc": "Essential version control skills for modern software development."
+      },
+      "pqc": {
+        "title": "Intro to Post-Quantum Cryptography (PQC)",
+        "desc": "Exploring next-gen encryption algorithms resilient to quantum attacks."
+      },
+      "cv": {
+        "title": "Computer Vision (CV) in Practice",
+        "desc": "From image processing to deep learning applications."
+      },
+      "docker": {
+        "title": "Docker Containerization",
+        "desc": "Building, deploying, and managing modern applications."
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact Me",
+    "desc": "Feel free to reach out via:"
+  }
+}

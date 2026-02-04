@@ -1,0 +1,179 @@
+{
+  "Hero": {
+    "greeting": "嗨，我是泰銘",
+    "role": "Google Developer Group On Campus NCUE Lead & 資工系學生",
+    "description": "用程式碼構建未來。熱衷於 AI、雲端技術與全端開發。",
+    "cta": "聯絡我"
+  },
+  "Nav": {
+    "about": "關於我",
+    "experience": "經歷",
+    "projects": "專案",
+    "articles": "文章",
+    "contact": "聯絡"
+  },
+  "Common": {
+    "theme": "主題",
+    "language": "語言"
+  },
+  "About": {
+    "title": "關於我",
+    "intro": "目前就讀於國立彰化師範大學資訊工程學系。身為 GDG on Campus Lead，我熱衷於連結校園與業界技術，並致力於探索軟硬體整合的資安解決方案。",
+    "researchTitle": "近期研究：抗量子密碼與硬體信任根",
+    "researchDesc": "針對量子運算對現行加密體系的威脅，本研究致力於開發高穩定度的物理不可複製函數 (PUF) 作為後量子密碼學 (PQC) 的信任根。透過 FPGA 內建的 XADC 進行環境感測與主動補償，我們有效解決了製程變異與環境干擾對金鑰生成的不穩定性影響，實現了符合 NIST FIPS 203 標準的高效能金鑰生成系統。",
+    "researchButton": "閱讀完整研究計畫 (PDF)",
+    "researchItems": [
+      "基於 FPGA XADC 環境感測機制之高穩定度 PUF 後量子金鑰生成系統設計",
+      "TOEIC 英語能力檢定 & Cisco 網路技術認證"
+    ]
+  },
+  "Experience": {
+    "title": "經歷與殊榮",
+    "items": {
+      "sitcon_2026": {
+        "year": "2026",
+        "title": "SITCON 2026 製播組",
+        "desc": "擔任學生計算機年會製播組組員，負責技術支援與轉播工程。"
+      },
+      "gdgoc_lead": {
+        "year": "2025/7 - Now",
+        "title": "Google Developer Group On Campus NCUE Lead",
+        "desc": "領導校園開發者社群，策劃並舉辦大型技術講座與工作坊，連結業界資源。"
+      },
+      "itsa_2025": {
+        "year": "2025/12",
+        "title": "2025 ITSA 全國大專程式設計極客挑戰賽",
+        "desc": "展現演算法實作能力，榮獲第三名殊榮。"
+      },
+      "devfest_2025": {
+        "year": "2025/12",
+        "title": "2026 DevFest Changhua",
+        "desc": "擔任主要協辦人，統籌活動流程與講者安排。"
+      },
+      "web_maint_2025": {
+        "year": "2025/7 - 2025/12",
+        "title": "國立彰化師範大學 學務處學安組",
+        "desc": "負責校園安全網頁系統的全端維護與功能優化。"
+      },
+      "it_parttime_2025": {
+        "year": "2025 - Now",
+        "title": "國立彰化師範大學 生活輔導組",
+        "desc": "擔任資訊技術助理，協助系統除錯與資料庫管理。"
+      },
+      "ai_contest_2025": {
+        "year": "2025",
+        "title": "113 學年度第 2 學期 人工智慧及其應用專題競賽",
+        "desc": "以創新 AI 應用解決方案榮獲第一名。"
+      },
+      "dorm_manager": {
+        "year": "2025",
+        "title": "國立彰化師範大學 第十宿舍",
+        "desc": "擔任樓長，負責宿舍管理與學生事務協調。"
+      },
+      "academic_award_1": {
+        "year": "2025",
+        "title": "書卷獎 (第一名)",
+        "desc": "國立彰化師範大學 資訊工程學系 113 學年度第一學期。"
+      },
+      "academic_award_2": {
+        "year": "2025",
+        "title": "書卷獎 (第一名)",
+        "desc": "國立彰化師範大學 資訊工程學系 113 學年度第二學期。"
+      },
+      "academic_award_3": {
+        "year": "2025",
+        "title": "書卷獎 (第二名)",
+        "desc": "國立彰化師範大學 資訊工程學系 114 學年度第一學期。"
+      },
+      "class_rep": {
+        "year": "2025 - Now",
+        "title": "班級代表",
+        "desc": "國立彰化師範大學 資訊工程學系 117 級，擔任師生溝通橋樑。"
+      },
+      "gdgoc_core": {
+        "year": "2025/2 - 2025/7",
+        "title": "GDG On Campus NCUE Core Team Member",
+        "desc": "作為核心成員參與社群營運與活動執行。"
+      },
+      "contest_ta": {
+        "year": "2025",
+        "title": "國教署 數理及資訊學科能力競賽（中區）",
+        "desc": "擔任程式設計組解題助教。"
+      },
+      "speaker_n8n": {
+        "year": "2025",
+        "title": "GDGoC 講座講師",
+        "desc": "主題：Demystifying AI: From Core Concepts to Practical Workflows with n8n"
+      },
+      "speaker_cloud": {
+        "year": "2025",
+        "title": "GDGoC 講座講師",
+        "desc": "主題：2025 Cloud AI Study Jam - 雲端技術實戰分享"
+      },
+      "speaker_gemini": {
+        "year": "2025",
+        "title": "GDGoC 講座講師",
+        "desc": "主題：Build a Gemini Bot, Together with Github"
+      },
+      "high_school": {
+        "year": "2024",
+        "title": "臺北市立大同高級中學",
+        "desc": "畢業。"
+      }
+    }
+  },
+  "Projects": {
+    "title": "專案與作品集",
+    "items": {
+        "scholarship": {
+            "title": "彰化師範大學 獎學金資訊平台",
+            "desc": "全端開發的智慧型獎學金整合系統。導入 Google Gemini LLM 建構 RAG 檢索增強生成技術，提供 AI 智慧問答助手與自動化公告摘要。系統整合自動化爬蟲技術，即時同步校內外獎學金資訊，並透過 LINE Messaging API 與 Nodemailer 實作自動化推播通知，大幅提升資訊觸及率與學生申請效率。後端採用 Supabase 搭配 RBAC 權限管理，確保資料安全性。",
+            "features": ["Google Gemini AI", "RAG Pipeline", "LINE Bot 整合", "自動化爬蟲", "郵件自動通知"]
+        },
+        "vote": {
+            "title": "去中心化投票系統",
+            "desc": "為國立彰化師範大學學生會開發的區塊鏈投票解決方案。利用區塊鏈技術的不可竄改性，確保校園選舉的公平與透明。",
+            "features": ["Blockchain", "Web3", "Smart Contracts"]
+        },
+        "meal_voucher": {
+            "title": "餐券申請系統",
+            "desc": "數位化餐券申請與管理流程，簡化行政作業並提升審核效率。",
+            "features": ["System Management", "Process Automation"]
+        }
+    }
+  },
+  "Articles": {
+    "title": "教學文章",
+    "wipTitle": "撰寫中...",
+    "items": {
+      "gcp": {
+        "title": "GCP Compute Engine 部署指南",
+        "desc": "架構、配置與最佳實踐。"
+      },
+      "linux": {
+        "title": "Linux 系統核心與操作實務",
+        "desc": "深入淺出的 Linux 系統教學。"
+      },
+      "git": {
+        "title": "Git 版本控制核心與 GitHub 協作實務",
+        "desc": "掌握現代軟體開發必備的版本控制技能。"
+      },
+      "pqc": {
+        "title": "後量子密碼學 (PQC) 導論",
+        "desc": "探索抵抗量子電腦攻擊的新世代加密演算法。"
+      },
+      "cv": {
+        "title": "電腦視覺 (CV) 實戰",
+        "desc": "從影像處理到深度學習模型的應用。"
+      },
+      "docker": {
+        "title": "Docker 容器化技術",
+        "desc": "建構、部署與管理現代化應用程式。"
+      }
+    }
+  },
+  "Contact": {
+    "title": "聯絡我",
+    "desc": "歡迎透過以下方式與我聯繫："
+  }
+}
