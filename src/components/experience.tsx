@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useModalStore } from '@/store/modal-store';
 import { Presentation, Award, Briefcase, GraduationCap, Mic, Projector } from 'lucide-react';
@@ -40,6 +41,10 @@ export function Experience() {
     'speaker_n8n': 'https://www.slideshare.net/slideshow/embed_code/key/1QT8eizVmSnyWg',
     'speaker_cloud': 'https://www.slideshare.net/slideshow/embed_code/key/8aKVVjvreMxVJZ',
     'speaker_gemini': 'https://www.slideshare.net/slideshow/embed_code/key/g8BbOUEW5z8hco'
+  };
+
+  const certLinks: Record<string, string> = {
+    'gdgoc_core': '/GDG_cert.jpg'
   };
 
   const getIcon = (type: string) => {
@@ -83,6 +88,9 @@ export function Experience() {
             {items.map((item, index) => {
                 const hasSlides = !!slidesLinks[item.key];
                 const slideUrl = slidesLinks[item.key];
+
+                const hasCert = !!certLinks[item.key];
+                const certUrl = certLinks[item.key];
                 
                 return (
                     <motion.div 
@@ -143,6 +151,33 @@ export function Experience() {
                                         allowFullScreen
                                         className="absolute inset-0 w-full h-full"
                                         loading="lazy"
+                                    />
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {/* Auto-expand Certificate when in view */}
+                        {hasCert && (
+                            <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                whileInView={{ height: 'auto', opacity: 1 }}
+                                viewport={{ once: false, amount: 0.5 }}
+                                transition={{ duration: 0.5 }}
+                                className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 overflow-hidden"
+                            >
+                                <div className="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2 flex items-center gap-2">
+                                    <Award className="w-3 h-3" />
+                                    Certificate Preview
+                                </div>
+                                <div className="relative w-full bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-inner">
+                                     <Image 
+                                        src={certUrl} 
+                                        alt="Certificate"
+                                        width={0}
+                                        height={0}
+                                        sizes="100vw"
+                                        style={{ width: '100%', height: 'auto' }}
+                                        className="rounded-lg"
                                     />
                                 </div>
                             </motion.div>

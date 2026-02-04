@@ -31,12 +31,15 @@ export function About() {
   const handleZoomImage = (src: string, alt: string) => {
     openModal(
         <div className="w-full h-full flex items-center justify-center p-4">
-            <div className="relative w-full h-full max-w-4xl max-h-[90vh]">
+             <div className="relative w-auto h-auto max-w-full max-h-[90vh]">
                 <Image 
                     src={src} 
                     alt={alt} 
-                    fill 
-                    className="object-contain"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '90vh' }}
+                    className="object-contain rounded-lg"
                 />
             </div>
         </div>
@@ -68,21 +71,15 @@ export function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative group cursor-zoom-in"
-                onClick={() => handleZoomImage("/image.png", "Ming")}
+                className="relative"
             >
                 <div className="relative w-full max-w-md mx-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
                     <Image 
                         src="/image.png"
                         alt="Ming"
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover"
                     />
-                    
-                    {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                        <span className="text-white flex items-center gap-2 text-sm font-medium"><ZoomIn className="w-4 h-4"/> Zoom</span>
-                    </div>
                 </div>
                 
                 {/* Decorative Frame */}
