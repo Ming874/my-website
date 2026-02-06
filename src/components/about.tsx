@@ -30,19 +30,20 @@ export function About() {
 
   const handleZoomImage = (src: string, alt: string) => {
     openModal(
-        <div className="w-full h-full flex items-center justify-center bg-black/95 cursor-zoom-out" onClick={() => useModalStore.getState().closeModal()}>
-             <div className="relative w-full h-full p-4 md:p-8">
+        <div className="relative w-full h-[85vh] flex items-center justify-center bg-transparent" onClick={(e) => e.stopPropagation()}>
+             <div className="relative w-full h-full">
                 <Image 
                     src={src} 
                     alt={alt} 
                     fill
                     className="object-contain"
                     quality={100}
+                    priority
                 />
             </div>
         </div>,
         { 
-            className: "!max-w-none !max-h-none !w-screen !h-screen !m-0 !rounded-none !bg-transparent !border-0 !shadow-none !p-0 overflow-hidden",
+            className: "max-w-[95vw] w-full bg-black/90 border-0 shadow-2xl p-4 md:p-8",
             hideCloseButton: false
         }
     );

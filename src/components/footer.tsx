@@ -66,7 +66,7 @@ export function Footer() {
             >
               <Terminal className="w-12 h-12 text-blue-500 mb-6 opacity-80" />
               <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-none">
-                Let's <br />
+                Let&apos;s <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-[length:200%_auto] animate-gradient">
                   Connect.
                 </span>
@@ -116,7 +116,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex flex-col gap-4 text-center md:text-left">
               <div className="text-sm font-bold tracking-wide text-white">
-                 © 2026 Tai Ming Chen. All rights reserved.
+                 © {currentYear} Tai Ming Chen. All rights reserved.
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 text-xs text-gray-500 font-mono">
                  <Code className="w-3 h-3" />

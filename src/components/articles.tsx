@@ -11,6 +11,7 @@ import {
   Minimize2,
   ExternalLink,
   X,
+  MousePointerClick,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -125,6 +126,20 @@ export function Articles() {
                 )}
               </div>
 
+              {/* Mobile Hint */}
+              {isMobile && (
+                  <div className="mb-4 px-2">
+                      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-lg p-3 flex items-start gap-3">
+                          <div className="p-1 bg-blue-100 dark:bg-blue-800 rounded-full shrink-0 mt-0.5">
+                              <MousePointerClick className="w-3 h-3 text-blue-600 dark:text-blue-300" />
+                          </div>
+                          <p className="text-xs text-blue-700 dark:text-blue-300 leading-relaxed font-medium">
+                              {t('hint')}
+                          </p>
+                      </div>
+                  </div>
+              )}
+
               {/* Article List */}
               <div className="space-y-1 overflow-y-auto flex-1">
                 {articles.map((article) => (
@@ -211,16 +226,16 @@ export function Articles() {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* External Link Button (Fallback) */}
+                {/* External Link Button (Prominent) */}
                 {activeArticle?.status === "published" && (
                   <a
                     href={activeArticle.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg text-gray-500 transition-colors"
-                    title="Open in New Tab"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg border border-blue-100 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all text-xs font-bold group/btn"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <span className="hidden sm:inline">{t('openInNewTab')}</span>
+                    <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
                 )}
               </div>

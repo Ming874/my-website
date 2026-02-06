@@ -165,6 +165,8 @@
   "Articles": {
     "title": "Teaching Articles",
     "wipTitle": "Writing in Progress...",
+    "hint": "Select an article to read",
+    "openInNewTab": "Open in new window",
     "items": {
       "gcp": {
         "title": "GCP Compute Engine Deployment Guide",
