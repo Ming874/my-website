@@ -55,7 +55,7 @@ export async function generateMetadata({
       siteName: t('title'),
       images: [
         {
-          url: "/image.png",
+          url: "/me.jpg",
           width: 1200,
           height: 630,
           alt: t('title'),
@@ -68,7 +68,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t('title'),
       description: t('description'),
-      images: ["/image.png"],
+      images: ["/me.jpg"],
     },
     icons: {
       icon: "/favicon.ico",

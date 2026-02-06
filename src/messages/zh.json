@@ -17,10 +17,19 @@
   },
   "Nav": {
     "about": "關於我",
-    "experience": "經歷",
-    "projects": "專案",
-    "articles": "文章",
-    "contact": "聯絡"
+    "experience": "我的經歷",
+    "projects": "精選專案",
+    "articles": "教學文章",
+    "contact": "聯絡方式"
+  },
+  "Share": {
+    "title": "分享作品集",
+    "copyLink": "複製連結",
+    "copied": "已複製！",
+    "line": "分享至 LINE",
+    "instagram": "分享至 Instagram",
+    "native": "更多選項...",
+    "shareVia": "分享透過"
   },
   "Common": {
     "theme": "主題",
@@ -31,7 +40,8 @@
     "intro": "目前就讀於國立彰化師範大學資訊工程學系。身為 GDG on Campus Lead，我熱衷於連結校園與業界技術，並致力於探索軟硬體整合的資安解決方案。",
     "researchTitle": "近期研究：抗量子密碼與硬體信任根",
     "researchDesc": "針對量子運算對現行加密體系的威脅，本研究致力於開發高穩定度的物理不可複製函數 (PUF) 作為後量子密碼學 (PQC) 的信任根。透過 FPGA 內建的 XADC 進行環境感測與主動補償，我們有效解決了製程變異與環境干擾對金鑰生成的不穩定性影響，實現了符合 NIST FIPS 203 標準的高效能金鑰生成系統。",
-    "researchButton": "閱讀完整研究計畫 (PDF)",
+    "researchButton": "閱讀完整研究計畫",
+    "clickToView": "點選檢視",
     "researchItems": [
       "基於 FPGA XADC 環境感測機制之高穩定度 PUF 後量子金鑰生成系統設計",
       "TOEIC 英語能力檢定 & Cisco 網路技術認證"

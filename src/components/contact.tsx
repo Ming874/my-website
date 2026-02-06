@@ -18,9 +18,9 @@ export function Contact() {
     },
     { 
       name: "Email", 
-      value: "3526ming@gmail.com", 
+      value: "contact@mingchen.dev", 
       icon: Mail, 
-      url: "mailto:3526ming@gmail.com",
+      url: "mailto:contact@mingchen.dev",
       color: "hover:text-red-500 dark:hover:text-red-400"
     },
     { 

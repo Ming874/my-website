@@ -11,6 +11,10 @@ export function About() {
   const { openModal } = useModalStore();
 
   const handleOpenPdf = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      window.open("research.pdf", "_blank");
+      return;
+    }
     openModal(
       <div className="w-full h-full flex flex-col">
         <div className="flex justify-between items-center mb-4 px-2">
@@ -29,8 +33,12 @@ export function About() {
   };
 
   const handleZoomImage = (src: string, alt: string) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      window.open(src, "_blank");
+      return;
+    }
     openModal(
-        <div className="relative w-full h-[85vh] flex items-center justify-center bg-transparent" onClick={(e) => e.stopPropagation()}>
+        <div className="relative w-full h-[80vh] flex items-center justify-center bg-transparent" onClick={(e) => e.stopPropagation()}>
              <div className="relative w-full h-full">
                 <Image 
                     src={src} 
@@ -39,6 +47,7 @@ export function About() {
                     className="object-contain"
                     quality={100}
                     priority
+                    unoptimized
                 />
             </div>
         </div>,
@@ -129,9 +138,11 @@ export function About() {
                             alt="Research Architecture"
                             fill
                             className="object-contain p-1 transition-transform duration-500 group-hover/img:scale-[1.02]"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
-                        <div className="absolute top-2 right-2 bg-black/50 text-white p-1 rounded opacity-0 group-hover/img:opacity-100 transition-opacity">
-                            <ZoomIn className="w-4 h-4"/>
+                        <div className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-3 py-1.5 rounded-lg flex items-center gap-2 transition-opacity md:opacity-0 md:group-hover/img:opacity-100 shadow-lg">
+                            <ZoomIn className="w-3.5 h-3.5"/>
+                            <span className="font-medium tracking-wide">{t('clickToView')}</span>
                         </div>
                     </div>
 

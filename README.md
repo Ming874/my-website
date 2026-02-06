@@ -66,7 +66,7 @@ Blockchain-based voting solution for the NCUE Student Association to ensure fair
 ## Connect with Me
 
 - **GitHub:** [@Ming874](https://github.com/Ming874)
-- **Email:** 3526ming@gmail.com
+- **Email:** [contact@mingchen.dev](mailto:contact@mingchen.dev)
 - **LINE:** [Ming](https://line.me/ti/p/aM_h9C0qjG)
 
 ---

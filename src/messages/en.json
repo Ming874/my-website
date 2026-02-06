@@ -22,6 +22,15 @@
     "articles": "Articles",
     "contact": "Contact"
   },
+  "Share": {
+    "title": "Share Portfolio",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "line": "Share on LINE",
+    "instagram": "Share on Instagram",
+    "native": "More Options...",
+    "shareVia": "Share via"
+  },
   "Common": {
     "theme": "Theme",
     "language": "Language"
@@ -31,7 +40,8 @@
     "intro": "Currently studying Computer Science and Information Engineering at NCUE. As a GDG on Campus Lead, I bridge the gap between academic learning and industry technologies, with a strong focus on hardware-software integrated security solutions.",
     "researchTitle": "Research: Post-Quantum Cryptography & Hardware Root of Trust",
     "researchDesc": "Addressing the threat of quantum computing to current encryption systems, this research focuses on developing high-stability Physical Unclonable Functions (PUF) as a hardware root of trust for Post-Quantum Cryptography (PQC). By leveraging FPGA built-in XADC for environmental sensing and active compensation, we mitigate instability caused by PVT variations, achieving a high-performance key generation system compliant with NIST FIPS 203 standards.",
-    "researchButton": "Read Research Proposal (PDF)",
+    "researchButton": "Read Research Proposal",
+    "clickToView": "Tap to view",
     "researchItems": [
       "Design of a High-Stability PUF-Based Post-Quantum Key Generation System Based on FPGA XADC Environmental Sensing Mechanism",
       "TOEIC & Cisco Networking Technologies"
