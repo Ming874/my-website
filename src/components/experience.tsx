@@ -40,22 +40,6 @@ const itemsData = [
 // Sorting: Oldest to Newest (Ascending)
 const items = [...itemsData].sort((a, b) => a.date.localeCompare(b.date));
 
-const slidesLinks: Record<string, string> = {
-  speaker_n8n:
-    "https://www.slideshare.net/slideshow/embed_code/key/1QT8eizVmSnyWg",
-  speaker_cloud:
-    "https://www.slideshare.net/slideshow/embed_code/key/8aKVVjvreMxVJZ",
-  speaker_gemini:
-    "https://www.slideshare.net/slideshow/embed_code/key/g8BbOUEW5z8hco",
-};
-
-const certLinks: Record<string, string> = {
-  gdgoc_core: "/gdg_cert.webp",
-  academic_award_1: "/113-2.webp",
-  academic_award_2: "/114-1.webp",
-  itsa_2025: "/ITSA.webp",
-};
-
 export function Experience() {
   const t = useTranslations("Experience");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,8 +52,8 @@ export function Experience() {
   useEffect(() => {
     const handleScroll = () => {
         const viewportCenterY = window.innerHeight / 2;
-        const activationThreshold = 180; // Increased sensitivity range
-        const neighborThreshold = 350; // Range for "lighter" effect
+        const activationThreshold = 250; // Increased for better hit rate during fast scroll
+        const neighborThreshold = 400; // Range for "lighter" effect
 
         const newActive = new Set<string>();
         const newNeighbors = new Set<string>();
@@ -222,7 +206,7 @@ export function Experience() {
                         data-key={item.key}
                         initial={{ opacity: 0, y: 50, scale: 0.95 }}
                         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true, margin: "100px" }}
                         transition={{ 
                             duration: 0.5,
                             delay: index * 0.05,

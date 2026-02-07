@@ -57,7 +57,8 @@ function ShareButton() {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      const baseUrl = 'https://mingchen.dev';
+      await navigator.clipboard.writeText(baseUrl);
       setCopied(true);
       
       // Trigger confetti
@@ -82,7 +83,7 @@ function ShareButton() {
     }
   };
 
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareUrl = 'https://mingchen.dev';
 
   // Only show Native Share option if supported (mostly mobile)
   const isNativeShareSupported = typeof navigator !== 'undefined' && !!navigator.share;
@@ -109,13 +110,15 @@ function ShareButton() {
   const shareLinks = [
     {
       name: t('copyLink'),
-      icon: copied ? AnimatedCheck : Copy,
+      icon: Copy,
+      activeIcon: AnimatedCheck,
       action: handleCopy,
-      color: copied ? "text-green-500" : "text-gray-700 dark:text-gray-200"
+      color: "text-gray-700 dark:text-gray-200",
+      activeColor: "text-green-500"
     },
     {
       name: t('line'),
-      icon: MessageCircle, // Placeholder for LINE
+      icon: MessageCircle,
       action: () => window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, '_blank'),
       color: "text-[#00B900]"
     },
@@ -143,18 +146,23 @@ function ShareButton() {
             className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden z-50"
           >
             <div className="p-2 space-y-1">
-              {shareLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => { link.action(); if(link.name !== t('copyLink')) setIsOpen(false); }}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
-                >
-                  <div className="relative w-5 h-5 flex items-center justify-center">
-                    <link.icon className={`w-4 h-4 ${link.color}`} />
-                  </div>
-                  <span className="text-gray-700 dark:text-gray-200">{link.name}</span>
-                </button>
-              ))}
+              {shareLinks.map((link) => {
+                const Icon = (link.activeIcon && copied) ? link.activeIcon : link.icon;
+                const iconColor = (link.activeColor && copied && link.name === t('copyLink')) ? link.activeColor : link.color;
+                
+                return (
+                  <button
+                    key={link.name}
+                    onClick={() => { link.action(); if(link.name !== t('copyLink')) setIsOpen(false); }}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
+                  >
+                    <div className="relative w-5 h-5 flex items-center justify-center">
+                      <Icon className={`w-4 h-4 ${iconColor}`} />
+                    </div>
+                    <span className="text-gray-700 dark:text-gray-200">{link.name}</span>
+                  </button>
+                );
+              })}
               
               {isNativeShareSupported && (
                 <button
@@ -197,7 +205,7 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 select-none ${
         scrolled || isOpen
             ? 'bg-white/50 dark:bg-black/50 backdrop-blur-2xl shadow-sm border-b border-white/20 dark:border-white/10' 
             : 'bg-transparent'
