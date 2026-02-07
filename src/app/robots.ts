@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://ming-portfolio.pages.dev/sitemap.xml',
+    sitemap: 'https://mingchen.dev/sitemap.xml',
   }
 }

@@ -6,7 +6,32 @@ import { LanguageSwitcher } from './language-switcher';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Menu, X, Share2, Copy, Check, Instagram, MessageCircle, MoreHorizontal, ChevronRight } from 'lucide-react';
+import { Menu, X, Share2, Copy, MessageCircle, ChevronRight, MoreHorizontal } from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+const AnimatedCheck = () => {
+  return (
+    <motion.svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-green-500"
+    >
+      <motion.path
+        d="M20 6L9 17l-5-5"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      />
+    </motion.svg>
+  );
+};
 
 function ShareButton() {
   const t = useTranslations('Share');
@@ -24,17 +49,43 @@ function ShareButton() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setCopied(false);
+    }
+  }, [isOpen]);
+
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      
+      // Trigger confetti
+      const rect = menuRef.current?.getBoundingClientRect();
+      if (rect) {
+        const x = (rect.left + rect.width / 2) / window.innerWidth;
+        const y = (rect.top + rect.height / 2) / window.innerHeight;
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { x, y },
+          colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'],
+          disableForReducedMotion: true,
+          gravity: 5,
+          ticks: 100,
+          scalar: 0.8,
+          startVelocity: 45
+        });
+      }
     } catch (err) {
       console.error('Failed to copy:', err);
     }
   };
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+
+  // Only show Native Share option if supported (mostly mobile)
+  const isNativeShareSupported = typeof navigator !== 'undefined' && !!navigator.share;
   
   const handleNativeShare = async () => {
     if (navigator.share) {
@@ -50,10 +101,15 @@ function ShareButton() {
     }
   };
 
+  const handleShare = () => {
+     setIsOpen(!isOpen);
+  };
+
+
   const shareLinks = [
     {
       name: t('copyLink'),
-      icon: copied ? Check : Copy,
+      icon: copied ? AnimatedCheck : Copy,
       action: handleCopy,
       color: copied ? "text-green-500" : "text-gray-700 dark:text-gray-200"
     },
@@ -63,46 +119,20 @@ function ShareButton() {
       action: () => window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, '_blank'),
       color: "text-[#00B900]"
     },
-    {
-      name: t('instagram'),
-      icon: Instagram,
-      action: () => {
-         // Instagram does not have a direct web share URL for links like FB/Twitter.
-         // Common practice is to just copy link or open app. 
-         // Since 'native share' covers app opening, and 'copy link' covers manual sharing,
-         // We can redirect to Instagram profile or just trigger native share if available, fallback to copy.
-         // However, user specifically asked for "Share on IG". 
-         // Given web limitations, the best specific action is often copying the link 
-         // and telling the user, OR using native share.
-         // For now, I will use a simple workaround: Open Instagram. 
-         // Or better, since this is a "Share" button, maybe just trigger copy and toast "Link copied! Open Instagram to paste."
-         // But to keep it simple and consistent with "buttons": 
-         // I'll leave it as opening instagram website for now, or just use native share wrapper.
-         // Actually, most "Share to IG" buttons on web just don't exist because of this API limitation.
-         // But since I MUST implement it:
-         if (navigator.share) {
-            navigator.share({ title: document.title, url: shareUrl }).catch(console.error);
-         } else {
-             handleCopy();
-             window.open('https://instagram.com', '_blank');
-         }
-      },
-      color: "text-[#E1306C]"
-    },
   ];
 
-  // Only show Native Share option if supported (mostly mobile)
-  const isNativeShareSupported = typeof navigator !== 'undefined' && !!navigator.share;
 
   return (
     <div className="relative" ref={menuRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
+      <motion.button
+        onClick={handleShare}
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileTap={{ scale: 0.9 }}
         className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         aria-label={t('title')}
       >
         <Share2 className="w-5 h-5" />
-      </button>
+      </motion.button>
 
       <AnimatePresence>
         {isOpen && (
@@ -119,7 +149,9 @@ function ShareButton() {
                   onClick={() => { link.action(); if(link.name !== t('copyLink')) setIsOpen(false); }}
                   className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
                 >
-                  <link.icon className={`w-4 h-4 ${link.color}`} />
+                  <div className="relative w-5 h-5 flex items-center justify-center">
+                    <link.icon className={`w-4 h-4 ${link.color}`} />
+                  </div>
                   <span className="text-gray-700 dark:text-gray-200">{link.name}</span>
                 </button>
               ))}
@@ -133,6 +165,7 @@ function ShareButton() {
                   <span className="text-gray-700 dark:text-gray-200">{t('native')}</span>
                 </button>
               )}
+
             </div>
           </motion.div>
         )}

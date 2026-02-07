@@ -29,7 +29,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({locale, namespace: 'Metadata'});
-  const baseUrl = 'https://ming-portfolio.pages.dev';
+  const baseUrl = 'https://mingchen.dev';
 
   return {
     title: {
