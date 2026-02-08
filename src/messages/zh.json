@@ -1,8 +1,8 @@
 {
   "Metadata": {
     "title": "陳泰銘 - 個人作品集",
-    "description": "陳泰銘的個人作品集。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。專長領域包含全端開發、人工智慧 (AI) 與雲端技術。",
-    "keywords": "陳泰銘, 作品集, 彰化師範大學, NCUE, GDG, 全端開發, AI, 雲端, React, Next.js, 後量子密碼學, PQC, PUF, FPGA, RAG, Gemini AI"
+    "description": "陳泰銘的個人作品集。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。專長領域包含全端開發、雲端運算 (GCP)、人工智慧 (AI)、電腦視覺 (CV) 與硬體安全 (PQC/PUF)。",
+    "keywords": "陳泰銘, 作品集, 彰化師範大學, NCUE, GDG, 全端開發, AI, 雲端, GCP, Linux, Git, Docker, 電腦視覺, 後量子密碼學, PQC, PUF, FPGA, RAG, Gemini AI"
   },
   "Hero": {
     "greeting": "嗨，我是泰銘",
@@ -177,30 +177,31 @@
     "wipTitle": "撰寫中...",
     "hint": "選擇文章即可閱讀",
     "openInNewTab": "由新視窗開啟",
+    "comingSoon": "更多研究內容與文章正在準備中，敬請期待！",
     "items": {
       "gcp": {
         "title": "GCP Compute Engine 部署指南",
         "desc": "架構、配置與最佳實踐。"
       },
       "linux": {
-        "title": "Linux 系統核心與操作實務",
+        "title": "Linux 系統操作與指令實務",
         "desc": "深入淺出的 Linux 系統教學。"
       },
       "git": {
-        "title": "Git 版本控制核心與 GitHub 協作實務",
+        "title": "Git 版本控制與 GitHub 協作實務",
         "desc": "掌握現代軟體開發必備的版本控制技能。"
       },
       "pqc": {
-        "title": "後量子密碼學 (PQC) 導論",
-        "desc": "探索抵抗量子電腦攻擊的新世代加密演算法。"
+        "title": "後量子密碼學標準與硬體安全基礎",
+        "desc": "針對後量子運算威脅，詳解 NIST FIPS 203 (ML-KEM) 標準與晶格密碼學 (Lattice-based Cryptography) 數學原理。重點探討 FPGA 硬體實作中的關鍵安全要素，包括利用 PUF (物理不可複製函數) 作為高熵源 (Entropy Source) 建構硬體信任根 (HRoT)，以及防禦微探針與側信道攻擊 (SCA) 的底層電路設計策略。"
       },
       "cv": {
-        "title": "電腦視覺 (CV) 實戰",
-        "desc": "從影像處理到深度學習模型的應用。"
+        "title": "計算機視覺演算法及其應用",
+        "desc": "探討數位影像處理的數學基礎與核心運算子。從空間域濾波 (Spatial Domain Filtering) 出發，解析 Gaussian Smoothing 與 Median Filter 去噪技術，並實作 Sobel 與 Canny 等 Edge Detection 演算法。深入分析形態學運算（如 Erosion, Dilation）在圖像分割中的應用，並連結至現代 CNN 模型中的卷積核 (Convolutional Kernels) 特徵提取原理。"
       },
       "docker": {
-        "title": "Docker 容器化技術",
-        "desc": "建構、部署與管理現代化應用程式。"
+        "title": "Docker 容器技術與部署實務",
+        "desc": "從解決「開發與生產環境不一致」的痛點出發，介紹如何利用容器化技術封裝應用程式及其相依套件 (Dependencies)。本篇涵蓋 Dockerfile 最佳化撰寫與多階段構建 (Multi-stage Builds)，並探討在微服務 (Microservices) 架構下，如何整合 CI/CD Pipeline 實現自動化測試與部署，提升軟體交付的穩定性與擴展性。"
       }
     }
   },

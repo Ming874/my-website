@@ -49,7 +49,7 @@ export function Hero() {
   }, [displayedText, isDeleting, roleIndex, roles, typingSpeed]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-slate-50 dark:bg-black transition-colors duration-300">
+    <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-slate-50 dark:bg-black transition-colors duration-300 select-none">
         {/* Interactive Background */}
         <HeroParticles />
         

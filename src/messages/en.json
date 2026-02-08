@@ -1,8 +1,8 @@
 {
   "Metadata": {
     "title": "Tai Ming Chen - Portfolio",
-    "description": "Personal portfolio of Tai Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE, specializing in Full-stack Development, AI, and Cloud Technologies.",
-    "keywords": "Tai Ming Chen, Portfolio, NCUE, GDG, Full-stack, AI, Cloud, React, Next.js, Post-Quantum Cryptography, PQC, PUF, FPGA, RAG, Gemini AI"
+    "description": "Personal portfolio of Tai Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE. Specializing in Full-stack Development, Cloud Computing (GCP), AI/ML, Computer Vision, and Hardware Security (PQC/PUF).",
+    "keywords": "Tai Ming Chen, Portfolio, NCUE, GDG, Full-stack, AI, Cloud, GCP, Linux, Git, Docker, Computer Vision, Post-Quantum Cryptography, PQC, PUF, FPGA, RAG, Gemini AI"
   },
   "Hero": {
     "greeting": "Hi, I'm Tai Ming Chen",
@@ -177,30 +177,31 @@
     "wipTitle": "Writing in Progress...",
     "hint": "Select an article to read",
     "openInNewTab": "Open in new window",
+    "comingSoon": "More research content and articles are in preparation, stay tuned!",
     "items": {
       "gcp": {
-        "title": "GCP Compute Engine Deployment Guide",
+        "title": "GCP Compute Engine Deployment",
         "desc": "Architecture, Configuration, and Best Practices."
       },
       "linux": {
-        "title": "Linux Kernel & Operations",
+        "title": "Linux CLI & System Operations",
         "desc": "In-depth Linux system tutorial."
       },
       "git": {
-        "title": "Git Core & GitHub Collaboration",
+        "title": "Git & GitHub Collaboration",
         "desc": "Essential version control skills for modern software development."
       },
       "pqc": {
-        "title": "Intro to Post-Quantum Cryptography (PQC)",
-        "desc": "Exploring next-gen encryption algorithms resilient to quantum attacks."
+        "title": "PQC Standards & Hardware Security",
+        "desc": "Addressing post-quantum threats, this article details the NIST FIPS 203 (ML-KEM) standard and the mathematical foundations of Lattice-based Cryptography. It focuses on critical security elements in FPGA implementation, including utilizing PUF (Physical Unclonable Functions) as high-entropy sources for Hardware Root of Trust (HRoT), and low-level circuit design strategies to mitigate micro-probing and Side-Channel Attacks (SCA)."
       },
       "cv": {
-        "title": "Computer Vision (CV) in Practice",
-        "desc": "From image processing to deep learning applications."
+        "title": "Computer Vision Algorithms & Applications",
+        "desc": "Explores the mathematical foundations and core operators of digital image processing. Starting with spatial domain filtering, it analyzes denoising techniques like Gaussian Smoothing and Median Filtering, followed by the implementation of Edge Detection algorithms such as Sobel and Canny. The article further examines morphological operations (e.g., Erosion, Dilation) for image segmentation, bridging these concepts to feature extraction principles in modern Convolutional Neural Networks (CNNs)."
       },
       "docker": {
-        "title": "Docker Containerization",
-        "desc": "Building, deploying, and managing modern applications."
+        "title": "Docker Containers & Deployment",
+        "desc": "Addressing the \"it works on my machine\" dilemma, this article focuses on packaging applications and dependencies using containerization. It covers Dockerfile optimization and multi-stage builds, exploring how to integrate containers into CI/CD pipelines for Microservices architectures. The goal is to achieve automated testing and deployment, enhancing software delivery stability and scalability."
       }
     }
   },

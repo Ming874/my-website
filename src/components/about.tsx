@@ -38,8 +38,8 @@ export function About() {
       return;
     }
     openModal(
-        <div className="relative w-full h-[80vh] flex items-center justify-center bg-transparent" onClick={(e) => e.stopPropagation()}>
-             <div className="relative w-full h-full">
+        <div className="relative w-full h-[85vh] flex items-center justify-center bg-black/95" onClick={(e) => e.stopPropagation()}>
+             <div className="relative w-full h-full p-2">
                 <Image 
                     src={src} 
                     alt={alt} 
@@ -50,10 +50,23 @@ export function About() {
                     unoptimized
                 />
             </div>
+            <button 
+                className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-50"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    // Close logic is handled by the modal overlay, but we can add a specific button here if needed. 
+                    // Since GlobalModal has a close button, we might rely on that, but we need to ensure it's visible.
+                    // Actually, GlobalModal adds a close button. We just need to ensure our content doesn't cover it or conflicts.
+                    // But we used 'hideCloseButton: false'.
+                    // Let's rely on GlobalModal's close button, but ensure the background is dark.
+                }}
+            >
+                {/* Visual close hint if needed, but GlobalModal has one. */}
+            </button>
         </div>,
         { 
-            className: "max-w-[95vw] w-full bg-black/90 border-0 shadow-2xl p-4 md:p-8",
-            hideCloseButton: false
+            className: "max-w-[100vw] w-full bg-transparent border-0 shadow-none p-0 overflow-hidden",
+            hideCloseButton: false // We will let GlobalModal show the close button, but we might need to style it to be visible against black
         }
     );
   }

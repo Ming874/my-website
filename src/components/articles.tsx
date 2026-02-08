@@ -4,11 +4,8 @@ import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Terminal,
-  Hash,
   Loader2,
   Menu,
-  Maximize2,
-  Minimize2,
   ExternalLink,
   X,
   MousePointerClick,
@@ -18,7 +15,7 @@ import { useState, useEffect } from "react";
 export function Articles() {
   const t = useTranslations("Articles");
 
-  const [activeKey, setActiveKey] = useState("git");
+  const [activeKey, setActiveKey] = useState("gcp");
   const [isMobile, setIsMobile] = useState(false);
 
   // Mobile: Sidebar state (default open)
@@ -52,16 +49,16 @@ export function Articles() {
   };
 
   const articles = [
-    { key: "git", url: "https://hackmd.io/@mingchen/git", status: "published" },
     { key: "gcp", url: "https://hackmd.io/@mingchen/gcp", status: "published" },
     {
       key: "linux",
       url: "https://hackmd.io/@mingchen/linux",
       status: "published",
     },
-    { key: "pqc", status: "wip" },
+    { key: "git", url: "https://hackmd.io/@mingchen/git", status: "published" },
     { key: "cv", status: "wip" },
     { key: "docker", status: "wip" },
+    { key: "pqc", status: "wip" },
   ];
 
   const activeArticle = articles.find((a) => a.key === activeKey);
@@ -69,7 +66,7 @@ export function Articles() {
   return (
     <section
       id="articles"
-      className="py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300"
+      className="py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300 select-none"
     >
       <div className="container mx-auto px-4">
         <motion.h2
@@ -160,12 +157,10 @@ export function Articles() {
                         <Loader2
                           className={`w-4 h-4 ${activeKey === article.key ? "animate-spin" : ""}`}
                         />
-                      ) : (
-                        <Hash className="w-4 h-4 opacity-70" />
-                      )}
+                      ) : null}
 
                       <div className="flex-1">
-                        <div className="truncate font-semibold">
+                        <div className="font-semibold whitespace-normal">
                           {t(`items.${article.key}.title`)}
                         </div>
                         <div className="text-[10px] opacity-60 font-mono truncate">
@@ -182,6 +177,13 @@ export function Articles() {
                     )}
                   </button>
                 ))}
+              </div>
+
+              {/* Coming Soon Hint */}
+              <div className="mt-6 px-4 pt-6 border-t border-gray-200 dark:border-gray-800">
+                <p className="text-sm font-bold text-gray-500 dark:text-gray-400 text-center leading-relaxed">
+                  {t('comingSoon')}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -211,7 +213,7 @@ export function Articles() {
 
                   <div className="w-3 h-3 rounded-full bg-green-400/80 border border-green-500/50 cursor-default" />
                 </div>
-                <div className="hidden sm:flex text-xs font-mono text-gray-500 dark:text-gray-400 items-center gap-2">
+                <div className="hidden sm:flex text-xs font-mono text-gray-500 dark:text-gray-400 items-center gap-2 max-w-md truncate">
                   <span
                     className={
                       activeArticle?.status === "published"
@@ -221,7 +223,9 @@ export function Articles() {
                   >
                     ●
                   </span>
-                  <span>{activeKey}.md</span>
+                  <span className="truncate">
+                    {t(`items.${activeKey}.title`)}
+                  </span>
                 </div>
               </div>
 
