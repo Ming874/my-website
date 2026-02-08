@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "Tai Ming Chen - Portfolio",
+    "title": "Tai Ming Chen",
     "description": "Personal portfolio of Tai Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE. Specializing in Full-stack Development, Cloud Computing (GCP), AI/ML, Computer Vision, and Hardware Security (PQC/PUF).",
     "keywords": "Tai Ming Chen, Portfolio, NCUE, GDG, Full-stack, AI, Cloud, GCP, Linux, Git, Docker, Computer Vision, Post-Quantum Cryptography, PQC, PUF, FPGA, RAG, Gemini AI"
   },
@@ -9,10 +9,10 @@
     "roles": [
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 Broadcasting Team Member",
-      "NCUE Student Association Engineering Section Member",
+      "NCUE Student Association IT Section Member",
       "CS Student at NCUE"
     ],
-    "description": "Building the future with code. Passionate about AI, Cloud, and Full-stack Development.",
+    "description": "<b>Coding for efficiency, sharing for proficiency.</b>",
     "cta": "Contact Me"
   },
   "Nav": {
@@ -27,7 +27,6 @@
     "copyLink": "Copy Link",
     "copied": "Copied!",
     "line": "Share on LINE",
-    "instagram": "Share on Instagram",
     "native": "More Options...",
     "shareVia": "Share via"
   },
@@ -37,7 +36,7 @@
   },
   "About": {
     "title": "About Me",
-    "intro": "Currently studying <highlight>Computer Science and Information Engineering</highlight> at NCUE. As a <highlight>GDG on Campus Lead</highlight>, I bridge the gap between academic learning and industry technologies, with a strong focus on <highlight>hardware-software integrated security solutions</highlight>.",
+    "intro": "Hi, I'm a sophomore majoring in CS at NCUE and the <highlight>Lead of GDGoC NCUE</highlight>!\nI'm passionate about community involvement and love the energy of <highlight>working together towards a shared goal</highlight>.\nDriven by the desire to make campus life easier with code, I took the initiative to <highlight>develop and maintain systems</highlight> for the Student Assistance Division, Campus Security Center, Career Center, and the Student Association.\nI also believe that <highlight>\"output is the best input.\"</highlight> I enjoy organizing what I’ve learned into structured technical articles to help others get up to speed faster. Recently, I've been fascinated by <highlight>Hardware Security and Cryptography</highlight> and am currently diving deep into these fields XD.",
     "researchTitle": "Design of a High-Stability PUF-Based Post-Quantum Key Generation System Based on FPGA XADC Environmental Sensing Mechanism",
     "researchDesc": "Addressing the threat of quantum computing to current encryption standards, this research proposes an <highlight>active hardware root-of-trust architecture</highlight> integrating environmental sensing to provide high-entropy keys for <highlight>Post-Quantum Cryptography (e.g., NIST FIPS 203 ML-KEM)</highlight>. Traditional <highlight>Physical Unclonable Functions (PUFs)</highlight> suffer from instability due to <highlight>PVT variations</highlight>, while standard passive Error Correcting Codes (ECC) consume excessive FPGA resources. To overcome these bottlenecks, this system utilizes the <highlight>FPGA's built-in XADC</highlight> for real-time environmental monitoring. By implementing a <highlight>closed-loop feedback mechanism</highlight> to dynamically adjust <highlight>Tunable Delay Lines (TDL)</highlight>, the architecture actively compensates for environmental drifts at the physical layer. The design significantly reduces bit error rates and <highlight>minimizes logic resource consumption</highlight> by eliminating heavy ECC requirements, delivering a robust and efficient post-quantum key generation solution tailored for <highlight>resource-constrained IoT edge devices</highlight>.",
     "researchButton": "Read Research Proposal",
@@ -108,22 +107,22 @@
       "academic_award_1": {
         "year": "2025",
         "title": "Academic Excellence Award (1st Place)",
-        "desc": "Dept. of CSIE, NCUE. 113th Academic Year, 1st Semester."
+        "desc": "Dept. of CS, NCUE. 113th Academic Year, 1st Semester."
       },
       "academic_award_2": {
         "year": "2025",
         "title": "Academic Excellence Award (1st Place)",
-        "desc": "Dept. of CSIE, NCUE. 113th Academic Year, 2nd Semester."
+        "desc": "Dept. of CS, NCUE. 113th Academic Year, 2nd Semester."
       },
       "academic_award_3": {
         "year": "2025",
         "title": "Academic Excellence Award (2nd Place)",
-        "desc": "Dept. of CSIE, NCUE. 114th Academic Year, 1st Semester."
+        "desc": "Dept. of CS, NCUE. 114th Academic Year, 1st Semester."
       },
       "class_rep": {
         "year": "2025 - Now",
         "title": "Class Representative",
-        "desc": "Dept. of CSIE, NCUE (Class of 117), serving as a liaison between students and faculty."
+        "desc": "Dept. of CS, NCUE (Class of 117), serving as a liaison between students and faculty."
       },
       "gdgoc_core": {
         "year": "2025/2 - 2025/7",
@@ -161,12 +160,18 @@
     "title": "Projects & Portfolio",
     "items": {
         "scholarship": {
-            "title": "NCUE Scholarship Platform",
-            "desc": "A full-stack intelligent scholarship system. Features RAG (Retrieval-Augmented Generation) powered by Google Gemini LLM for AI Q&A and auto-summarization. Integrated with automated web crawlers to sync scholarship data in real-time, and utilizes LINE Messaging API & Nodemailer for automated push notifications. Secured with Supabase RBAC.",
-            "features": ["Google Gemini AI", "RAG Pipeline", "LINE Bot Integration", "Automated Crawling", "Email Automation"]
+            "title": "NCUE Scholarship Information Platform",
+            "desc": "An automated scholarship management solution designed for campus. Leveraging AI to reduce tedious information organization from 2 hours to 20 seconds—a 99.8% efficiency boost. Integrated with multi-channel notifications and a smart assistant to create a comprehensive scholarship ecosystem.",
+            "features": [
+                "Gemini AI Automated Announcement Generation",
+                "LINE & Mail Cross-Channel Push Notifications",
+                "One-Click PDF Rendering & Download",
+                "Gemini AI Smart Scholarship Assistant",
+                "Analytics Monitoring & One-Click Data Export"
+            ]
         },
         "vote": {
-            "title": "Decentralized Voting System",
+            "title": "NCUE Student Association Decentralized Voting System",
             "desc": "A blockchain-based voting solution for the NCUE Student Association. Ensures fair and transparent elections via immutable ledger technology.",
             "features": ["Blockchain", "Web3", "Smart Contracts"]
         },
@@ -176,14 +181,14 @@
             "features": ["Google Gemini AI", "Streamlit", "Technical Analysis", "Real-time Data", "RAG Pipeline"]
         },
         "meal_voucher": {
-            "title": "Meal Voucher System",
+            "title": "NCUE Campus Meal Voucher System",
             "desc": "Digital meal voucher application and management system, streamlining administrative processes.",
             "features": ["System Management", "Process Automation"]
         }
     }
   },
   "Articles": {
-    "title": "Teaching Articles",
+    "title": "Articles",
     "wipTitle": "Writing in Progress...",
     "hint": "Select an article to read",
     "openInNewTab": "Open in new window",

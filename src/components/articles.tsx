@@ -68,7 +68,7 @@ export function Articles() {
       id="articles"
       className="py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300 select-none"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 pt-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

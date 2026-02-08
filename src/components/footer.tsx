@@ -9,6 +9,7 @@ export function Footer() {
   const t = useTranslations("Contact");
   const tNav = useTranslations("Nav");
   const [activeLink, setActiveLink] = useState<string | null>(null);
+  const isManuallyActive = useRef<boolean>(false);
   const linkRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
 
   const contacts = [
@@ -48,6 +49,9 @@ export function Footer() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // If user recently clicked, don't let scroll override for 1 second
+      if (isManuallyActive.current) return;
+
       // Only run on mobile/tablet (simplistic check, can be refined)
       if (window.innerWidth >= 1024) {
         setActiveLink(null);
@@ -152,6 +156,14 @@ export function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
+                  onClick={() => {
+                    setActiveLink(contact.name);
+                    isManuallyActive.current = true;
+                    // Release the manual lock after a delay
+                    setTimeout(() => {
+                      isManuallyActive.current = false;
+                    }, 1500);
+                  }}
                   className={`group relative flex items-center justify-between p-4 md:p-6 rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isActive ? contact.activeClassName : "bg-white border-gray-200 dark:bg-white/[0.03] dark:border-white/10 " + contact.className
                   } ${!isActive && "hover:border-gray-300 dark:hover:border-white/20"}`}
@@ -180,12 +192,12 @@ export function Footer() {
 
         {/* Bottom Bar: Copyright & Info */}
         <div className="pt-8 border-t border-gray-200 dark:border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col gap-2 text-center md:text-left w-full md:w-auto">
-              <div className="text-base font-bold tracking-wide text-gray-900 dark:text-white px-2">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 overflow-hidden">
+            <div className="flex flex-col gap-2 text-center md:text-left w-full md:w-auto overflow-hidden">
+              <div className="text-[clamp(0.7rem,3.8vw,1rem)] sm:text-base font-bold tracking-wide text-gray-900 dark:text-white px-2 whitespace-nowrap">
                  © {currentYear} Tai Ming Chen. All rights reserved.
               </div>
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-sm text-gray-500 font-mono px-2">
+              <div className="flex items-center justify-center md:justify-start gap-2 text-[clamp(0.65rem,3.5vw,0.875rem)] sm:text-sm text-gray-500 font-mono px-2 whitespace-nowrap">
                  <Code className="w-3 h-3 flex-shrink-0" />
                  <span>Made with Next.js, Tailwind CSS, TypeScript</span>
               </div>

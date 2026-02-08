@@ -7,26 +7,36 @@ import { Cpu, ZoomIn, Award, Sparkles, ArrowRight, ChevronRight } from 'lucide-r
 import { useModalStore } from '@/store/modal-store';
 import { useRef, useState, useEffect } from 'react';
 
-// Reusable Highlighter Component
-const Highlighter = ({ children }: { children: React.ReactNode }) => (
-  <span className="relative inline-block font-bold text-gray-900 dark:text-white">
-    <span className="absolute bottom-1 left-0 right-0 h-[30%] bg-blue-200/60 dark:bg-blue-500/30 -z-10 rounded-sm" />
+// Reusable Highlighter Component for the Intro section (Blue theme)
+const IntroHighlighter = ({ children }: { children: React.ReactNode }) => (
+  <motion.span 
+    initial={{ backgroundSize: "0% 100%" }}
+    whileInView={{ backgroundSize: "100% 100%" }}
+    viewport={{ once: false, amount: 0.5 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    style={{
+      backgroundImage: "linear-gradient(to top, rgba(96, 165, 250, 0.3) 35%, transparent 35%)",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "0 100%",
+    }}
+    className="font-bold text-gray-900 dark:text-white px-1 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] transition-all duration-300 hover:bg-[linear-gradient(to_top,rgba(37,99,235,0.5)_35%,transparent_35%)] cursor-default"
+  >
     {children}
-  </span>
+  </motion.span>
 );
 
 const ResearchHighlighter = ({ children }: { children: React.ReactNode }) => (
   <motion.span
     initial={{ backgroundSize: "0% 100%" }}
     whileInView={{ backgroundSize: "100% 100%" }}
-    viewport={{ once: false }}
-    transition={{ duration: 0.5, ease: "easeInOut" }}
+    viewport={{ once: false, amount: 0.5 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
     style={{
       backgroundImage: "linear-gradient(to right, rgba(253, 224, 71, 0.6), rgba(253, 224, 71, 0.6))",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "0 100%",
     }}
-    className="font-bold text-gray-900 dark:text-white cursor-default [box-decoration-break:clone] [-webkit-box-decoration-break:clone] dark:bg-gradient-to-r dark:from-yellow-500/50 dark:to-yellow-500/50"
+    className="font-bold text-gray-900 dark:text-white cursor-default [box-decoration-break:clone] [-webkit-box-decoration-break:clone] dark:bg-gradient-to-r dark:from-yellow-500/50 dark:to-yellow-500/50 transition-all duration-300 hover:brightness-110"
   >
     {children}
   </motion.span>
@@ -320,7 +330,7 @@ export function About() {
                         className="absolute inset-0 w-full h-full"
                     >
                         <Image 
-                            src="/2.png" 
+                            src="/background.webp" 
                             alt="Background Layer" 
                             fill 
                             className="object-cover"
@@ -335,7 +345,7 @@ export function About() {
                         className="absolute inset-0 w-full h-full"
                     >
                          <Image 
-                            src="/1.png" 
+                            src="/foreground.webp" 
                             alt="Ming" 
                             fill 
                             className="object-cover"
@@ -406,11 +416,11 @@ export function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="prose prose-lg md:prose-xl dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 font-light leading-relaxed"
+                        className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 font-normal leading-relaxed text-lg"
                     >
                         <p>
                             {t.rich('intro', {
-                                highlight: (chunks) => <Highlighter>{chunks}</Highlighter>
+                                highlight: (chunks) => <IntroHighlighter>{chunks}</IntroHighlighter>
                             })}
                         </p>
                     </motion.div>
@@ -448,10 +458,10 @@ export function About() {
                         <div className="space-y-3">
                             <div 
                                 className="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in group border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 shadow-md hover:shadow-xl transition-all"
-                                onClick={() => handleZoomImage("/research.png", "Architecture Diagram")}
+                                onClick={() => handleZoomImage("/research.webp", "Architecture Diagram")}
                             >
                                 <Image 
-                                    src="/research.png" 
+                                    src="/research.webp" 
                                     alt="Research" 
                                     fill 
                                     className="object-contain p-2 transition-transform duration-500 group-hover:scale-105" 

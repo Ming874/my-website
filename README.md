@@ -14,7 +14,7 @@
 
 ### 2026
 - **SITCON 2026** - Broadcasting Team Member
-- **Academic Excellence Award (2nd Place)** - Dept. of CSIE, NCUE (114-1)
+- **Academic Excellence Award (2nd Place)** - Dept. of CS, NCUE (114-1)
 
 ### 2025
 - **GDG On Campus NCUE Lead** (2025/7 - Present)
@@ -25,9 +25,9 @@
 - **IT Part-time Assistant** - Life Guidance Division, NCUE
 - **AI & Applications Project Competition** - 1st Place (113-2)
 - **Dormitory Manager** - Dormitory 10, NCUE
-- **Academic Excellence Award (1st Place)** - Dept. of CSIE, NCUE (113-2)
-- **Academic Excellence Award (1st Place)** - Dept. of CSIE, NCUE (113-1)
-- **Class Representative** - Dept. of CSIE, NCUE
+- **Academic Excellence Award (1st Place)** - Dept. of CS, NCUE (113-2)
+- **Academic Excellence Award (1st Place)** - Dept. of CS, NCUE (113-1)
+- **Class Representative** - Dept. of CS, NCUE
 - **GDG On Campus NCUE Core Team Member** (2025/2 - 2025/7)
 - **Programming Contest TA** - K-12 Education Administration (Central Region)
 - **Speaker** - GDGoC: "Demystifying AI: From Core Concepts to Practical Workflows with n8n"

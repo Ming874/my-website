@@ -1,8 +1,8 @@
 {
   "Metadata": {
-    "title": "陳泰銘 - 個人網站",
-    "description": "陳泰銘的個人網站。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。專長領域包含全端開發、雲端運算 (GCP)、人工智慧 (AI)、電腦視覺 (CV) 與硬體安全 (PQC/PUF)。",
-    "keywords": "陳泰銘, 作品集, 彰化師範大學, NCUE, GDG, 全端開發, AI, 雲端, GCP, Linux, Git, Docker, 電腦視覺, 後量子密碼學, PQC, PUF, FPGA, RAG, Gemini AI"
+    "title": "陳泰銘",
+    "description": "陳泰銘的個人網站。目前就讀國立彰化師範大學資工系，擔任 GDGoC NCUE Lead。研究領域包含全端開發、雲端運算 (GCP)、人工智慧 (AI)、電腦視覺 (CV) 與硬體安全 (PQC/PUF)。",
+    "keywords": "陳泰銘, 作品集, 彰化師範大學, NCUE, GDG, 全端開發, AI, 雲端, GCP, Linux, Git, Docker, 電腦視覺, 後量子密碼學, PQC, PUF, FPGA, RAG, Gemini"
   },
   "Hero": {
     "greeting": "嗨，我是泰銘",
@@ -12,7 +12,7 @@
       "彰師學生會資訊組組員",
       "彰師資訊工程學系學生"
     ],
-    "description": "用程式碼構建未來。熱衷於 AI、雲端技術與全端開發。",
+    "description": "<b>Coding for efficiency, sharing for proficiency.</b>",
     "cta": "聯絡我"
   },
   "Nav": {
@@ -27,7 +27,6 @@
     "copyLink": "複製連結",
     "copied": "已複製！",
     "line": "分享至 LINE",
-    "instagram": "分享至 Instagram",
     "native": "更多選項...",
     "shareVia": "分享透過"
   },
@@ -37,13 +36,13 @@
   },
   "About": {
     "title": "關於我",
-    "intro": "目前就讀於國立彰化師範大學<highlight>資訊工程學系</highlight>。身為 <highlight>GDG on Campus Lead</highlight>，我熱衷於連結校園與業界技術，並致力於探索<highlight>軟硬體整合的資安解決方案</highlight>。",
+    "intro": "嗨，我是彰師大資工系大二生，也是 <highlight>GDGoC NCUE 的 Lead</highlight>！\n我熱衷於參與社群，特別喜歡那種<highlight>「一群人為了同一個目標努力」</highlight>的熱血感。\n因為喜歡透過程式讓生活更便利，我主動跳坑，協助<highlight>生輔組、校安中心、職涯中心及學生會等單位開發並維護系統</highlight>。\n此外，我相信<highlight>「輸出是最好的輸入」</highlight>，所以習慣將所學整理成架構清晰的技術文章，希望能幫助其他人更快入門。最近特別對<highlight>硬體資安與密碼學</highlight>感興趣，正在這領域努力探索中 XD",
     "researchTitle": "基於 FPGA XADC 環境感測機制之高穩定性 PUF 後量子金鑰生成系統設計",
     "researchDesc": "面對量子運算對現行加密體系的威脅，本研究提出了一種整合環境感知能力的 <highlight>主動式硬體信任根架構</highlight>，旨在為 <highlight>後量子密碼系統 (如 NIST FIPS 203 ML-KEM)</highlight> 提供高熵值的安全金鑰。針對傳統 <highlight>物理不可複製函數 (PUF)</highlight> 易受 <highlight>溫度與電壓 (PVT) 變異</highlight> 影響，導致位元錯誤率過高且傳統被動糾錯 (ECC) 消耗過多 FPGA 資源的瓶頸，本系統利用 <highlight>FPGA 內建的 XADC</highlight> 進行即時環境監控。透過 <highlight>閉迴路回授控制</highlight> 與動態調整 <highlight>可調式延遲線 (TDL)</highlight>，本架構能從物理層源頭抵銷環境漂移。實驗證實，此方法能顯著降低位元錯誤率，並在 <highlight>移除高成本 ECC 電路</highlight> 的前提下，釋放大量邏輯資源，實現適用於 <highlight>資源受限 IoT 裝置</highlight> 的高效能、高穩定性抗量子金鑰生成器。",
     "researchButton": "閱讀完整研究計畫",
     "clickToView": "點選檢視",
     "recentResearch": "近期研究",
-    "focusTitle": "專注領域",
+    "focusTitle": "學習領域",
     "tags": [
       "FPGA 設計",
       "物理不可複製函數 (PUF)",
@@ -161,12 +160,18 @@
     "title": "專案與作品集",
     "items": {
         "scholarship": {
-            "title": "彰化師範大學 獎學金資訊平台",
-            "desc": "全端開發的智慧型獎學金整合系統。導入 Google Gemini LLM 建構 RAG 檢索增強生成技術，提供 AI 智慧問答助手與自動化公告摘要。系統整合自動化爬蟲技術，即時同步校內外獎學金資訊，並透過 LINE Messaging API 與 Nodemailer 實作自動化推播通知，大幅提升資訊觸及率與學生申請效率。後端採用 Supabase 搭配 RBAC 權限管理，確保資料安全性。",
-            "features": ["Google Gemini AI", "RAG Pipeline", "LINE Bot 整合", "自動化爬蟲", "郵件自動通知"]
+            "title": "彰師獎學金資訊平台",
+            "desc": "專為校園設計的自動化獎學金管理解決方案。透過 AI 技術將繁瑣的資訊整理工作從 2 小時縮短至 20 秒，效率提升 99.8%。整合多管道推播與智慧助理，打造全方位的獎學金資訊生態系。",
+            "features": [
+                "Gemini AI 自動化公告生成",
+                "LINE & Mail 跨管道自動推播",
+                "公告一鍵渲染 PDF 下載",
+                "Gemini AI 獎學金智慧助理",
+                "數據監控與一鍵匯出報表"
+            ]
         },
         "vote": {
-            "title": "去中心化投票系統",
+            "title": "彰師學生會去中心化投票系統",
             "desc": "為國立彰化師範大學學生會開發的區塊鏈投票解決方案。利用區塊鏈技術的不可竄改性，確保校園選舉的公平與透明。",
             "features": ["Blockchain", "Web3", "Smart Contracts"]
         },
@@ -176,14 +181,14 @@
             "features": ["Google Gemini AI", "Streamlit", "技術分析", "即時數據", "RAG Pipeline"]
         },
         "meal_voucher": {
-            "title": "餐券申請系統",
+            "title": "彰師校園餐券申請系統",
             "desc": "數位化餐券申請與管理流程，簡化行政作業並提升審核效率。",
             "features": ["System Management", "Process Automation"]
         }
     }
   },
   "Articles": {
-    "title": "教學文章",
+    "title": "精選文章",
     "wipTitle": "撰寫中...",
     "hint": "選擇文章即可閱讀",
     "openInNewTab": "由新視窗開啟",

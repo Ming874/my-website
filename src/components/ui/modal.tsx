@@ -44,6 +44,19 @@ export function GlobalModal() {
             className="absolute inset-0 bg-black/60 backdrop-blur-md"
           />
 
+          {/* Close Button for 'clean' variant - Put it here to avoid being affected by content animation */}
+          {!options?.hideCloseButton && variant === 'clean' && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={closeModal}
+              className="fixed top-6 right-6 z-[60] p-2 bg-black/50 text-white rounded-full hover:bg-black/70 backdrop-blur-sm transition-all border border-white/10"
+            >
+              <X className="w-5 h-5" />
+            </motion.button>
+          )}
+
           {/* Modal Content */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: variant === 'clean' ? 0 : 20 }}
@@ -57,15 +70,11 @@ export function GlobalModal() {
             }
             onClick={(e) => variant === 'clean' && e.stopPropagation()}
           >
-            {/* Close Button */}
-            {!options?.hideCloseButton && (
+            {/* Close Button for 'default' variant */}
+            {!options?.hideCloseButton && variant !== 'clean' && (
               <button
                 onClick={closeModal}
-                className={
-                  variant === 'clean'
-                    ? "fixed top-6 right-6 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 backdrop-blur-sm transition-all border border-white/10"
-                    : "absolute top-4 right-4 z-10 p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                }
+                className="absolute top-4 right-4 z-10 p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

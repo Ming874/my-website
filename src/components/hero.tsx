@@ -72,8 +72,26 @@ export function Hero() {
         <motion.h2 
             className="text-xl md:text-3xl lg:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400 tracking-tight min-h-[1.5em]"
         >
-          {displayedText}
-          <span className="animate-pulse ml-1">|</span>
+          {displayedText.split('').map((char, index) => {
+            // Find the full word this character belongs to
+            const currentRole = roles[roleIndex];
+            const googleMatch = currentRole.match(/Google/);
+            
+            if (googleMatch) {
+              const start = googleMatch.index!;
+              const end = start + 6;
+              if (index >= start && index < end) {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335'];
+                return (
+                  <span key={index} style={{ color: googleColors[index - start] }}>
+                    {char}
+                  </span>
+                );
+              }
+            }
+            return <span key={index}>{char}</span>;
+          })}
+          <span className="animate-pulse ml-1 text-blue-600 dark:text-blue-400">|</span>
         </motion.h2>
 
         <motion.p 
@@ -82,7 +100,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
         >
-          {t('description')}
+          {t.rich('description', {
+            b: (chunks) => <span className="font-bold">{chunks}</span>
+          })}
         </motion.p>
 
         <motion.div
