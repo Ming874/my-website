@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from 'next-intl';
-import { motion, useScroll, useTransform, useMotionValue, useAnimation, useMotionTemplate } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useAnimation, useMotionTemplate, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { Cpu, ZoomIn, Award, Sparkles, ArrowRight, ChevronRight } from 'lucide-react';
 import { useModalStore } from '@/store/modal-store';
@@ -35,14 +35,16 @@ const ResearchHighlighter = ({ children }: { children: React.ReactNode }) => (
 // Slide to Unlock Button Component
 const SlideButton = ({ onUnlock, text }: { onUnlock: () => void, text: string }) => {
   const constraintsRef = useRef<HTMLDivElement>(null);
-  const [, setIsDragging] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const x = useMotionValue(0);
   const controls = useAnimation();
   const [unlocked, setUnlocked] = useState(false);
 
-  // Calculate progress for opacity/style changes
-  const bgOpacity = useTransform(x, [0, 200], [0.5, 1]);
-  const width = useTransform(x, (latest) => Math.max(56, latest + 56)); // Handle width (56px) + drag distance
+  // Fade out text as the handle slides over it
+  const textOpacity = useTransform(x, [0, 150], [1, 0]);
+  
+  // Wake/Trail effect width - Adjusted to overlap with handle (56px width)
+  const wakeWidth = useTransform(x, (latest) => latest + 56);
 
   const handleDragEnd = () => {
     setIsDragging(false);
@@ -68,18 +70,22 @@ const SlideButton = ({ onUnlock, text }: { onUnlock: () => void, text: string })
   return (
     <div 
         ref={constraintsRef} 
-        className="relative w-full sm:w-[350px] h-16 bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 shadow-inner select-none"
+        className="relative w-full sm:w-[350px] h-16 bg-gray-100/20 dark:bg-gray-800/20 backdrop-blur-md rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 shadow-inner select-none"
     >
-        {/* Track Progress Fill */}
+        {/* Liquid Wake/Trail Effect - Now overlaps with handle */}
         <motion.div 
-            className="absolute top-1 bottom-1 left-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full z-10"
-            style={{ opacity: bgOpacity, width }} 
+            className="absolute top-1 bottom-1 left-1 rounded-full z-10 pointer-events-none"
+            style={{ 
+                width: wakeWidth,
+                background: 'linear-gradient(to right, rgba(37, 99, 235, 0.4), rgba(37, 99, 235, 0.1))',
+                boxShadow: 'inset 0 1px 3px rgba(255, 255, 255, 0.2)',
+            }}
         />
         
         {/* Text Label */}
         <motion.div 
-            className="absolute inset-0 flex items-center justify-center font-bold text-gray-500 dark:text-gray-400 pointer-events-none z-0"
-            style={{ opacity: useTransform(x, [0, 150], [1, 0]) }}
+            className="absolute inset-0 flex items-center justify-center font-bold text-gray-400 dark:text-gray-500 pointer-events-none z-0"
+            style={{ opacity: textOpacity }}
         >
             <span className="flex items-center gap-2 text-sm uppercase tracking-widest pl-12 drop-shadow-sm"> 
                 {text} <ChevronRight className="w-4 h-4 animate-pulse" />
@@ -95,23 +101,35 @@ const SlideButton = ({ onUnlock, text }: { onUnlock: () => void, text: string })
             </div>
         )}
 
-        {/* Draggable Handle */}
+        {/* Draggable Handle with Liquid Glass Effect */}
         <motion.div
-            className="absolute left-1 top-1 bottom-1 w-14 rounded-full shadow-lg border flex items-center justify-center cursor-grab active:cursor-grabbing z-30 transition-colors duration-300 bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700"
+            className="absolute left-1 top-1 bottom-1 w-14 rounded-full shadow-lg flex items-center justify-center cursor-grab active:cursor-grabbing z-30 overflow-hidden"
             drag="x"
             dragConstraints={constraintsRef}
             dragElastic={0.05}
             dragMomentum={false}
-            whileDrag={{ scale: 1.05 }}
             onDragStart={() => setIsDragging(true)}
             onDragEnd={handleDragEnd}
             animate={controls}
-            style={{ x }}
+            style={{ 
+                x,
+                background: 'rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(12px) saturate(200%) contrast(1.2) brightness(1.2)',
+                WebkitBackdropFilter: 'blur(12px) saturate(200%) contrast(1.2) brightness(1.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.8)',
+                border: '1px solid rgba(255, 255, 255, 0.6)',
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
         >
-            <div className="transition-colors duration-300 text-blue-600 dark:text-blue-400">
+            {/* Glossy Highlights */}
+            <div className="absolute top-1 left-2 right-2 h-1.5 bg-gradient-to-b from-white/70 to-transparent rounded-full blur-[0.5px]" />
+            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-blue-400/30 rounded-full blur-[1.5px]" />
+            
+            <div className="transition-colors duration-300 text-blue-600 dark:text-blue-400 z-10 relative">
                 <ArrowRight className="w-6 h-6" />
+                {/* Subtle lens flare inner */}
+                <div className="absolute -inset-1 bg-blue-400/10 rounded-full blur-sm -z-10" />
             </div>
         </motion.div>
     </div>
@@ -131,10 +149,16 @@ export function About() {
   // --- Mouse & Tilt Parallax Logic ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  
+  // Smooth the mouse/tilt values
+  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
   useEffect(() => {
-    // Handle device orientation (Tilt) for mobile
+    let isMounted = true;
+
     const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (!isMounted) return;
       if (e.gamma !== null && e.beta !== null) {
         // Map gamma (left/right tilt, -30 to 30 deg) to -0.5 to 0.5
         const x = Math.max(-1, Math.min(1, e.gamma / 30)) * 0.5;
@@ -146,13 +170,35 @@ export function About() {
       }
     };
 
-    if (typeof window !== 'undefined' && window.DeviceOrientationEvent) {
-      // Note: iOS requires permission for DeviceOrientation, which usually requires a user gesture.
-      // For now, we listen for the event which works on most Android devices and non-iOS browsers.
-      window.addEventListener('deviceorientation', handleOrientation);
+    // Auto-request or setup listener
+    if (typeof window !== 'undefined') {
+      if (window.DeviceOrientationEvent) {
+        // On non-iOS devices or if already granted, we can just listen
+        window.addEventListener('deviceorientation', handleOrientation);
+      }
+
+      // Special handling for iOS permission on first interaction
+      const requestIOSPermission = async () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const permission = await (DeviceOrientationEvent as any).requestPermission();
+            if (permission === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+            }
+          } catch (e) {
+            console.error("DeviceOrientation permission denied", e);
+          }
+        }
+        window.removeEventListener('pointerdown', requestIOSPermission);
+      };
+
+      window.addEventListener('pointerdown', requestIOSPermission);
     }
 
     return () => {
+      isMounted = false;
       window.removeEventListener('deviceorientation', handleOrientation);
     };
   }, [mouseX, mouseY]);
@@ -170,13 +216,13 @@ export function About() {
     mouseY.set(0);
   };
 
-  // --- Parallax Transforms ---
-  // Mouse Parallax (Desktop)
-  const xBack = useTransform(mouseX, [-0.5, 0.5], ["1.5%", "-1.5%"]);
-  const yMouseBack = useTransform(mouseY, [-0.5, 0.5], ["1.5%", "-1.5%"]);
+  // --- Parallax Transforms (using smooth values) ---
+  // Background moves slower, foreground moves faster to create depth
+  const xBack = useTransform(smoothMouseX, [-0.5, 0.5], ["3%", "-3%"]);
+  const yMouseBack = useTransform(smoothMouseY, [-0.5, 0.5], ["3%", "-3%"]);
   
-  const xFront = useTransform(mouseX, [-0.5, 0.5], ["4%", "-4%"]);
-  const yMouseFront = useTransform(mouseY, [-0.5, 0.5], ["4%", "-4%"]);
+  const xFront = useTransform(smoothMouseX, [-0.5, 0.5], ["8%", "-8%"]);
+  const yMouseFront = useTransform(smoothMouseY, [-0.5, 0.5], ["8%", "-8%"]);
 
   // Scroll Parallax (Mobile & Desktop)
   // Background moves slower (appears further)
@@ -188,9 +234,9 @@ export function About() {
   const yBack = useMotionTemplate`calc(${yScrollBack} + ${yMouseBack})`;
   const yFront = useMotionTemplate`calc(${yScrollFront} + ${yMouseFront})`;
   
-  // 3D Rotation (Subtle)
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["2deg", "-2deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-2deg", "2deg"]);
+  // 3D Rotation (Balanced)
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], ["-5deg", "5deg"]);
 
   // Background gradient movement
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -245,7 +291,7 @@ export function About() {
   const tags = t.raw('tags') as string[];
 
   return (
-    <section id="about" ref={containerRef} className="py-24 lg:py-32 relative overflow-hidden bg-white dark:bg-[#050505]">
+    <section id="about" ref={containerRef} className="py-24 lg:py-32 relative overflow-hidden bg-white dark:bg-[#050505] select-none">
       
       {/* Background Ambience */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 pointer-events-none">
