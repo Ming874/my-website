@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Sparkles, Bot, Database, Globe, Lock } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Bot, Database, Globe, Lock, Cpu, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 
 export function Projects() {
@@ -36,6 +36,8 @@ export function Projects() {
     if (feature.includes('AI') || feature.includes('Gemini')) return <Bot className="w-3 h-3" />;
     if (feature.includes('Pipeline') || feature.includes('爬蟲')) return <Database className="w-3 h-3" />;
     if (feature.includes('Web3') || feature.includes('Blockchain')) return <Lock className="w-3 h-3" />;
+    if (feature.includes('FPGA') || feature.includes('Design')) return <Cpu className="w-3 h-3" />;
+    if (feature.includes('Security') || feature.includes('PQC') || feature.includes('PUF') || feature.includes('安全')) return <ShieldCheck className="w-3 h-3" />;
     return <Sparkles className="w-3 h-3" />;
   };
 

@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "陳泰銘 - 個人作品集",
-    "description": "陳泰銘的個人作品集。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。專長領域包含全端開發、雲端運算 (GCP)、人工智慧 (AI)、電腦視覺 (CV) 與硬體安全 (PQC/PUF)。",
+    "title": "陳泰銘 - 個人網站",
+    "description": "陳泰銘的個人網站。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。專長領域包含全端開發、雲端運算 (GCP)、人工智慧 (AI)、電腦視覺 (CV) 與硬體安全 (PQC/PUF)。",
     "keywords": "陳泰銘, 作品集, 彰化師範大學, NCUE, GDG, 全端開發, AI, 雲端, GCP, Linux, Git, Docker, 電腦視覺, 後量子密碼學, PQC, PUF, FPGA, RAG, Gemini AI"
   },
   "Hero": {
@@ -23,7 +23,7 @@
     "contact": "聯絡方式"
   },
   "Share": {
-    "title": "分享作品集",
+    "title": "分享網站",
     "copyLink": "複製連結",
     "copied": "已複製！",
     "line": "分享至 LINE",
@@ -37,11 +37,21 @@
   },
   "About": {
     "title": "關於我",
-    "intro": "目前就讀於國立彰化師範大學資訊工程學系。身為 GDG on Campus Lead，我熱衷於連結校園與業界技術，並致力於探索軟硬體整合的資安解決方案。",
-    "researchTitle": "近期研究：抗量子密碼與硬體信任根",
-    "researchDesc": "針對量子運算對現行加密體系的威脅，本研究致力於開發高穩定度的物理不可複製函數 (PUF) 作為後量子密碼學 (PQC) 的信任根。透過 FPGA 內建的 XADC 進行環境感測與主動補償，我們有效解決了製程變異與環境干擾對金鑰生成的不穩定性影響，實現了符合 NIST FIPS 203 標準的高效能金鑰生成系統。",
+    "intro": "目前就讀於國立彰化師範大學<highlight>資訊工程學系</highlight>。身為 <highlight>GDG on Campus Lead</highlight>，我熱衷於連結校園與業界技術，並致力於探索<highlight>軟硬體整合的資安解決方案</highlight>。",
+    "researchTitle": "基於 FPGA XADC 環境感測機制之高穩定性 PUF 後量子金鑰生成系統設計",
+    "researchDesc": "面對量子運算對現行加密體系的威脅，本研究提出了一種整合環境感知能力的 <highlight>主動式硬體信任根架構</highlight>，旨在為 <highlight>後量子密碼系統 (如 NIST FIPS 203 ML-KEM)</highlight> 提供高熵值的安全金鑰。針對傳統 <highlight>物理不可複製函數 (PUF)</highlight> 易受 <highlight>溫度與電壓 (PVT) 變異</highlight> 影響，導致位元錯誤率過高且傳統被動糾錯 (ECC) 消耗過多 FPGA 資源的瓶頸，本系統利用 <highlight>FPGA 內建的 XADC</highlight> 進行即時環境監控。透過 <highlight>閉迴路回授控制</highlight> 與動態調整 <highlight>可調式延遲線 (TDL)</highlight>，本架構能從物理層源頭抵銷環境漂移。實驗證實，此方法能顯著降低位元錯誤率，並在 <highlight>移除高成本 ECC 電路</highlight> 的前提下，釋放大量邏輯資源，實現適用於 <highlight>資源受限 IoT 裝置</highlight> 的高效能、高穩定性抗量子金鑰生成器。",
     "researchButton": "閱讀完整研究計畫",
     "clickToView": "點選檢視",
+    "recentResearch": "近期研究",
+    "focusTitle": "專注領域",
+    "tags": [
+      "FPGA 設計",
+      "物理不可複製函數 (PUF)",
+      "後量子密碼學 (PQC)",
+      "NIST FIPS 203 / ML-KEM",
+      "XADC 環境感測",
+      "硬體安全"
+    ],
     "researchItems": [
       "基於 FPGA XADC 環境感測機制之高穩定度 PUF 後量子金鑰生成系統設計",
       "TOEIC 英語能力檢定 & Cisco 網路技術認證"
@@ -127,17 +137,17 @@
       },
       "speaker_n8n": {
         "year": "2025",
-        "title": "GDGoC 講座講師",
+        "title": "Google 開發者社群 講座講師",
         "desc": "主題：Demystifying AI: From Core Concepts to Practical Workflows with n8n"
       },
       "speaker_cloud": {
         "year": "2025",
-        "title": "GDGoC 講座講師",
+        "title": "Google 開發者社群 講座講師",
         "desc": "主題：2025 Cloud AI Study Jam - 雲端技術實戰分享"
       },
       "speaker_gemini": {
         "year": "2025",
-        "title": "GDGoC 講座講師",
+        "title": "Google 開發者社群 講座講師",
         "desc": "主題：Build a Gemini Bot, Together with Github"
       },
       "high_school": {

@@ -3,6 +3,7 @@ import { create } from 'zustand';
 interface ModalOptions {
   className?: string;
   hideCloseButton?: boolean;
+  variant?: 'default' | 'clean';
 }
 
 interface ModalState {

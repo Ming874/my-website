@@ -37,11 +37,21 @@
   },
   "About": {
     "title": "About Me",
-    "intro": "Currently studying Computer Science and Information Engineering at NCUE. As a GDG on Campus Lead, I bridge the gap between academic learning and industry technologies, with a strong focus on hardware-software integrated security solutions.",
-    "researchTitle": "Research: Post-Quantum Cryptography & Hardware Root of Trust",
-    "researchDesc": "Addressing the threat of quantum computing to current encryption systems, this research focuses on developing high-stability Physical Unclonable Functions (PUF) as a hardware root of trust for Post-Quantum Cryptography (PQC). By leveraging FPGA built-in XADC for environmental sensing and active compensation, we mitigate instability caused by PVT variations, achieving a high-performance key generation system compliant with NIST FIPS 203 standards.",
+    "intro": "Currently studying <highlight>Computer Science and Information Engineering</highlight> at NCUE. As a <highlight>GDG on Campus Lead</highlight>, I bridge the gap between academic learning and industry technologies, with a strong focus on <highlight>hardware-software integrated security solutions</highlight>.",
+    "researchTitle": "Design of a High-Stability PUF-Based Post-Quantum Key Generation System Based on FPGA XADC Environmental Sensing Mechanism",
+    "researchDesc": "Addressing the threat of quantum computing to current encryption standards, this research proposes an <highlight>active hardware root-of-trust architecture</highlight> integrating environmental sensing to provide high-entropy keys for <highlight>Post-Quantum Cryptography (e.g., NIST FIPS 203 ML-KEM)</highlight>. Traditional <highlight>Physical Unclonable Functions (PUFs)</highlight> suffer from instability due to <highlight>PVT variations</highlight>, while standard passive Error Correcting Codes (ECC) consume excessive FPGA resources. To overcome these bottlenecks, this system utilizes the <highlight>FPGA's built-in XADC</highlight> for real-time environmental monitoring. By implementing a <highlight>closed-loop feedback mechanism</highlight> to dynamically adjust <highlight>Tunable Delay Lines (TDL)</highlight>, the architecture actively compensates for environmental drifts at the physical layer. The design significantly reduces bit error rates and <highlight>minimizes logic resource consumption</highlight> by eliminating heavy ECC requirements, delivering a robust and efficient post-quantum key generation solution tailored for <highlight>resource-constrained IoT edge devices</highlight>.",
     "researchButton": "Read Research Proposal",
     "clickToView": "Tap to view",
+    "recentResearch": "Recent Research",
+    "focusTitle": "Focus Areas",
+    "tags": [
+      "FPGA Design",
+      "Physical Unclonable Function (PUF)",
+      "Post-Quantum Cryptography (PQC)",
+      "NIST FIPS 203 / ML-KEM",
+      "XADC Environmental Sensing",
+      "Hardware Security"
+    ],
     "researchItems": [
       "Design of a High-Stability PUF-Based Post-Quantum Key Generation System Based on FPGA XADC Environmental Sensing Mechanism",
       "TOEIC & Cisco Networking Technologies"
@@ -127,17 +137,17 @@
       },
       "speaker_n8n": {
         "year": "2025",
-        "title": "GDGoC Speaker",
+        "title": "Google Developer Group On Campus Speaker",
         "desc": "Topic: Demystifying AI: From Core Concepts to Practical Workflows with n8n"
       },
       "speaker_cloud": {
         "year": "2025",
-        "title": "GDGoC Speaker",
+        "title": "Google Developer Group On Campus Speaker",
         "desc": "Topic: 2025 Cloud AI Study Jam"
       },
       "speaker_gemini": {
         "year": "2025",
-        "title": "GDGoC Speaker",
+        "title": "Google Developer Group On Campus Speaker",
         "desc": "Topic: Build a Gemini Bot, Together with Github"
       },
       "high_school": {

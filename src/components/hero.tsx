@@ -64,7 +64,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-[clamp(2rem,5vw,6rem)] sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-300 dark:to-white drop-shadow-sm whitespace-nowrap"
+            className="text-[clamp(2rem,5vw,6rem)] sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-300 dark:to-white drop-shadow-sm whitespace-nowrap"
         >
           {t('greeting')}
         </motion.h1>

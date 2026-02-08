@@ -1,10 +1,12 @@
 import { Navbar } from '@/components/navbar';
 import { Hero } from '@/components/hero';
-import { About } from '@/components/about';
-import { Experience } from '@/components/experience';
-import { Projects } from '@/components/projects';
-import { Articles } from '@/components/articles';
 import { Footer } from '@/components/footer';
+import dynamic from 'next/dynamic';
+
+const About = dynamic(() => import('@/components/about').then(mod => mod.About));
+const Experience = dynamic(() => import('@/components/experience').then(mod => mod.Experience));
+const Projects = dynamic(() => import('@/components/projects').then(mod => mod.Projects));
+const Articles = dynamic(() => import('@/components/articles').then(mod => mod.Articles));
 
 export const runtime = 'edge';
 
