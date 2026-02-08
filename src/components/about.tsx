@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useMotionValue, useAnimation, useMotio
 import Image from 'next/image';
 import { Cpu, ZoomIn, Award, Sparkles, ArrowRight, ChevronRight } from 'lucide-react';
 import { useModalStore } from '@/store/modal-store';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 // Reusable Highlighter Component
 const Highlighter = ({ children }: { children: React.ReactNode }) => (
@@ -16,16 +16,20 @@ const Highlighter = ({ children }: { children: React.ReactNode }) => (
 );
 
 const ResearchHighlighter = ({ children }: { children: React.ReactNode }) => (
-  <span className="relative inline-block font-bold text-gray-900 dark:text-white group cursor-default">
-    <motion.span
-      initial={{ width: "0%" }}
-      whileInView={{ width: "100%" }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="absolute bottom-1 left-0 h-[40%] bg-yellow-300/60 dark:bg-yellow-500/50 -z-10 rounded-sm group-hover:bg-yellow-300/90 dark:group-hover:bg-yellow-500/80 transition-colors duration-300"
-    />
+  <motion.span
+    initial={{ backgroundSize: "0% 100%" }}
+    whileInView={{ backgroundSize: "100% 100%" }}
+    viewport={{ once: false }}
+    transition={{ duration: 0.5, ease: "easeInOut" }}
+    style={{
+      backgroundImage: "linear-gradient(to right, rgba(253, 224, 71, 0.6), rgba(253, 224, 71, 0.6))",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "0 100%",
+    }}
+    className="font-bold text-gray-900 dark:text-white cursor-default [box-decoration-break:clone] [-webkit-box-decoration-break:clone] dark:bg-gradient-to-r dark:from-yellow-500/50 dark:to-yellow-500/50"
+  >
     {children}
-  </span>
+  </motion.span>
 );
 
 // Slide to Unlock Button Component
@@ -124,9 +128,34 @@ export function About() {
     offset: ["start end", "end start"]
   });
 
-  // --- Mouse Parallax Logic ---
+  // --- Mouse & Tilt Parallax Logic ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    // Handle device orientation (Tilt) for mobile
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (e.gamma !== null && e.beta !== null) {
+        // Map gamma (left/right tilt, -30 to 30 deg) to -0.5 to 0.5
+        const x = Math.max(-1, Math.min(1, e.gamma / 30)) * 0.5;
+        // Map beta (front/back tilt, target 40 deg as neutral, range 10-70) to -0.5 to 0.5
+        const y = Math.max(-1, Math.min(1, (e.beta - 40) / 30)) * 0.5;
+        
+        mouseX.set(x);
+        mouseY.set(y);
+      }
+    };
+
+    if (typeof window !== 'undefined' && window.DeviceOrientationEvent) {
+      // Note: iOS requires permission for DeviceOrientation, which usually requires a user gesture.
+      // For now, we listen for the event which works on most Android devices and non-iOS browsers.
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation);
+    };
+  }, [mouseX, mouseY]);
 
   const handleMouseMove = ({ currentTarget, clientX, clientY }: React.MouseEvent) => {
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
