@@ -2,60 +2,80 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "system";
 
 interface ThemeContextType {
   theme: Theme;
-  toggleTheme: () => void;
+  resolvedTheme: "light" | "dark"; // 實際生效的主題
   setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("theme");
-      if (saved) return saved === "dark";
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    return false;
-  });
+  const [theme, setThemeState] = useState<Theme>("system");
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
+  // 初始化讀取 localStorage
   useEffect(() => {
-    const html = document.documentElement;
-    if (darkMode) {
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
+    if (savedTheme) {
+      setThemeState(savedTheme);
     }
-  }, [darkMode]);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem("theme")) {
-        setDarkMode(e.matches);
-      }
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  const toggleTheme = () => setDarkMode(!darkMode);
-  const setTheme = (theme: Theme) => setDarkMode(theme === "dark");
+  // 處理主題邏輯
+  useEffect(() => {
+    const root = window.document.documentElement;
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-  const value = {
-    theme: (darkMode ? "dark" : "light") as Theme,
-    toggleTheme,
-    setTheme,
+    const updateTheme = () => {
+      const currentTheme = localStorage.getItem("theme") as Theme || "system";
+      let effectiveTheme: "light" | "dark";
+
+      if (currentTheme === "system") {
+        effectiveTheme = mediaQuery.matches ? "dark" : "light";
+      } else {
+        effectiveTheme = currentTheme as "light" | "dark";
+      }
+
+      setResolvedTheme(effectiveTheme);
+      
+      if (effectiveTheme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+    };
+
+    updateTheme();
+
+    // 監聽系統主題變更 (動態核心)
+    const handleChange = () => {
+      if (theme === "system") {
+        updateTheme();
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [theme]);
+
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  const toggleTheme = () => {
+    if (theme === "system") setTheme("light");
+    else if (theme === "light") setTheme("dark");
+    else setTheme("system");
   };
 
   return (
-    <ThemeContext.Provider value={value}>
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300 font-sans selection:bg-blue-200 dark:selection:bg-blue-900">
+    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme, toggleTheme }}>
+      <div className={`min-h-screen transition-colors duration-300 font-sans selection:bg-blue-200 dark:selection:bg-blue-900 ${resolvedTheme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
         {children}
       </div>
     </ThemeContext.Provider>

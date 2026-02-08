@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Monitor } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { useEffect, useState } from "react"
 
 export function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -14,18 +14,41 @@ export function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    return <div className="w-9 h-9" /> // Placeholder to prevent layout shift
+    return <div className="w-9 h-9" />
   }
 
   return (
     <button
       onClick={toggleTheme}
-      className="relative p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+      className="relative p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-300 flex items-center justify-center group"
+      title={`Current: ${theme} (Showing: ${resolvedTheme})`}
       aria-label="Toggle theme"
     >
-      <Sun className={`h-5 w-5 transition-all ${theme === 'dark' ? 'rotate-90 scale-0' : 'rotate-0 scale-100'}`} />
-      <Moon className={`absolute h-5 w-5 top-2 left-2 transition-all ${theme === 'dark' ? 'rotate-0 scale-100' : '-rotate-90 scale-0'}`} />
-      <span className="sr-only">Toggle theme</span>
+      <div className="relative w-5 h-5">
+        {/* System Icon */}
+        <Monitor 
+          className={`absolute inset-0 h-5 w-5 transition-all duration-500 ${
+            theme === 'system' ? 'rotate-0 scale-100 opacity-100' : 'rotate-90 scale-0 opacity-0'
+          }`} 
+        />
+        
+        {/* Sun Icon */}
+        <Sun 
+          className={`absolute inset-0 h-5 w-5 transition-all duration-500 ${
+            theme === 'light' ? 'rotate-0 scale-100 opacity-100' : 'rotate-90 scale-0 opacity-0'
+          }`} 
+        />
+        
+        {/* Moon Icon */}
+        <Moon 
+          className={`absolute inset-0 h-5 w-5 transition-all duration-500 ${
+            theme === 'dark' ? 'rotate-0 scale-100 opacity-100' : 'rotate-90 scale-0 opacity-0'
+          }`} 
+        />
+      </div>
+
+      {/* Mode Indicator Dot */}
+      <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
     </button>
   )
 }
