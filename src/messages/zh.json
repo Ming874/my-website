@@ -36,7 +36,7 @@
   },
   "About": {
     "title": "關於我",
-    "intro": "嗨，我是彰師大資工系大二生，也是 <highlight>GDGoC NCUE 的 Lead</highlight>！\n我熱衷於參與社群，特別喜歡那種<highlight>「一群人為了同一個目標努力」</highlight>的熱血感。\n因為喜歡透過程式讓生活更便利，我主動跳坑，協助<highlight>生輔組、校安中心、職涯中心及學生會等單位開發並維護系統</highlight>。\n此外，我相信<highlight>「輸出是最好的輸入」</highlight>，所以習慣將所學整理成架構清晰的技術文章，希望能幫助其他人更快入門。最近特別對<highlight>硬體資安與密碼學</highlight>感興趣，正在這領域努力探索中 XD",
+    "intro": "嗨，我是彰師大資工系大二生，也是 <highlight>GDGoC NCUE 的 Lead</highlight>！\n我熱衷於參與社群，特別喜歡那種<highlight>「一群人為了同一個目標努力」</highlight>的熱血感。\n因為喜歡透過程式讓生活更便利，我主動跳坑，協助<highlight>生輔組、學安組、職涯發展中心及學生會等單位開發並維護系統</highlight>。\n此外，我相信<highlight>「輸出是最好的輸入」</highlight>，所以習慣將所學整理成架構清晰的技術文章，希望能幫助其他人更快入門。最近特別對<highlight>硬體資安與密碼學</highlight>感興趣，正在這領域努力探索中 XD",
     "researchTitle": "基於 FPGA XADC 環境感測機制之高穩定性 PUF 後量子金鑰生成系統設計",
     "researchDesc": "面對量子運算對現行加密體系的威脅，本研究提出了一種整合環境感知能力的 <highlight>主動式硬體信任根架構</highlight>，旨在為 <highlight>後量子密碼系統 (如 NIST FIPS 203 ML-KEM)</highlight> 提供高熵值的安全金鑰。針對傳統 <highlight>物理不可複製函數 (PUF)</highlight> 易受 <highlight>溫度與電壓 (PVT) 變異</highlight> 影響，導致位元錯誤率過高且傳統被動糾錯 (ECC) 消耗過多 FPGA 資源的瓶頸，本系統利用 <highlight>FPGA 內建的 XADC</highlight> 進行即時環境監控。透過 <highlight>閉迴路回授控制</highlight> 與動態調整 <highlight>可調式延遲線 (TDL)</highlight>，本架構能從物理層源頭抵銷環境漂移。實驗證實，此方法能顯著降低位元錯誤率，並在 <highlight>移除高成本 ECC 電路</highlight> 的前提下，釋放大量邏輯資源，實現適用於 <highlight>資源受限 IoT 裝置</highlight> 的高效能、高穩定性抗量子金鑰生成器。",
     "researchButton": "閱讀完整研究計畫",
@@ -59,100 +59,105 @@
   "Experience": {
     "title": "經歷與殊榮",
     "items": {
-      "sitcon_2026": {
-        "year": "2026",
-        "title": "SITCON 2026 製播組",
-        "desc": "擔任學生計算機年會製播組組員，負責技術支援與轉播工程。"
-      },
-      "general_affairs_2025": {
-        "year": "2025/7 - Now",
-        "title": "國立彰化師範大學學生會 資訊組 組員",
-        "desc": "協助資訊管理與行政事務處理。"
-      },
-      "gdgoc_lead": {
-        "year": "2025/7 - Now",
-        "title": "Google Developer Group On Campus NCUE Lead",
-        "desc": "領導校園開發者社群，策劃並舉辦大型技術講座與工作坊，連結業界資源。"
-      },
-      "itsa_2025": {
-        "year": "2025/12",
-        "title": "2025 ITSA 全國大專程式設計極客挑戰賽",
-        "desc": "展現演算法實作能力，榮獲第三名殊榮。"
-      },
-      "devfest_2025": {
-        "year": "2025/12",
-        "title": "2026 DevFest Changhua",
-        "desc": "擔任主要協辦人，統籌活動流程與講者安排。"
-      },
-      "web_maint_2025": {
-        "year": "2025/7 - 2025/12",
-        "title": "國立彰化師範大學 學務處學安組",
-        "desc": "負責校園安全網頁系統的全端維護與功能優化。"
-      },
-      "it_parttime_2025": {
-        "year": "2025 - Now",
-        "title": "國立彰化師範大學 生活輔導組",
-        "desc": "擔任資訊工讀生一職，協助進行系統開發、內部資料庫重構以及工作流程自動化，大幅提升行政效率。"
-      },
-      "ai_contest_2025": {
-        "year": "2025",
-        "title": "113 學年度第 2 學期 人工智慧及其應用專題競賽",
-        "desc": "以深度結合 AI 的開源股票投資資訊整合平台 榮獲第一名。"
-      },
-      "dorm_manager": {
-        "year": "2025",
-        "title": "國立彰化師範大學 第十宿舍",
-        "desc": "擔任樓長一職，負責宿舍管理與居民事務協調。"
-      },
-      "academic_award_1": {
-        "year": "2025",
-        "title": "書卷獎 (第一名)",
-        "desc": "國立彰化師範大學 資訊工程學系 113 學年度第一學期。"
-      },
-      "academic_award_2": {
-        "year": "2025",
-        "title": "書卷獎 (第一名)",
-        "desc": "國立彰化師範大學 資訊工程學系 113 學年度第二學期。"
-      },
-      "academic_award_3": {
-        "year": "2025",
-        "title": "書卷獎 (第二名)",
-        "desc": "國立彰化師範大學 資訊工程學系 114 學年度第一學期。"
-      },
-      "class_rep": {
-        "year": "2025 - Now",
-        "title": "班級代表",
-        "desc": "擔任 國立彰化師範大學 資訊工程學系 117 級班級代表一職，負責班級事務的溝通協調以及活動辦理。"
+      "hs_grad": {
+        "year": "2024/6",
+        "title": "臺北市立大同高級中學 畢業",
+        "desc": ""
       },
       "gdgoc_core": {
         "year": "2025/2 - 2025/7",
-        "title": "GDG On Campus NCUE Core Team Member",
-        "desc": "作為核心成員參與社群營運與活動執行。"
-      },
-      "contest_ta": {
-        "year": "2025",
-        "title": "國教署數理及資訊學科能力競賽 解題助教",
-        "desc": "擔任中區資訊學科能力競賽解題助教一職，負責於賽前進行題目驗證，並協助考生理解題意。"
+        "title": "GDG on Campus NCUE Core Team Member",
+        "desc": "擔任 Google 開發者社群核心成員，協同策劃技術活動，並致力於社群經營與推廣，促進校園技術交流氛圍。"
       },
       "speaker_n8n": {
-        "year": "2025",
+        "year": "2025/4",
         "title": "Google 開發者社群 講座講師",
-        "desc": "主題：Demystifying AI: From Core Concepts to Practical Workflows with n8n"
+        "desc": "主講「Demystifying AI: From Core Concepts to Practical Workflows with n8n」，深入淺出解析 AI 基礎原理，並透過實作示範如何運用 n8n 構建高效的 AI 自動化工作流程。"
+      },
+      "award_113_1": {
+        "year": "2025/4",
+        "title": "113-1 學期 書卷獎 (第一名)",
+        "desc": ""
+      },
+      "it_safety": {
+        "year": "2025/7 - 2025/12",
+        "title": "國立彰化師範大學 學生安全組 資訊工讀生",
+        "desc": "負責維護學生安全組 RPage 網站，確保平台資訊即時更新，並維持系統運作之穩定性與正確性。"
+      },
+      "class_rep": {
+        "year": "2025/7 - Now",
+        "title": "班級代表",
+        "desc": "擔任資訊工程學系 117 級班級代表，負責班級事務的溝通協調並主辦各項活動。"
+      },
+      "gdgoc_lead": {
+        "year": "2025/7 - Now",
+        "title": "Google Developer Group on Campus NCUE Lead",
+        "desc": "擔任此職位期間，我們整合了校內外的資源並舉辦了多場技術講座，成功活絡校園資訊研究的學習氛圍。此經歷不僅深化了我的社群經營能力，更在實務中磨練了團隊管理、活動統籌及溝通協調的能力。\n\n社群網站: https://gdg.ncuesa.org.tw"
+      },
+      "sa_it": {
+        "year": "2025/7 - Now",
+        "title": "國立彰化師範大學學生會 資訊組組員",
+        "desc": "協助維護學生會官方網站，並主導開發選舉投票系統，提升學生自治事務的數位化程度。"
+      },
+      "it_guidance": {
+        "year": "2025/7 - Now",
+        "title": "國立彰化師範大學 生活輔導組 系統開發與維護",
+        "desc": "協助生輔組進行工作流程優化，開發了多個內部使用的工具來協助承辦人員，運用 Google Apps Script 串接 Google Forms 與 Sheets，開發失物招領系統及餐卷管理系統；並主動規劃與建置獎學金資訊平台，大幅提升行政作業效率。"
+      },
+      "dorm_manager": {
+        "year": "2025/9 - Now",
+        "title": "國立彰化師範大學第十宿舍 樓長",
+        "desc": "擔任樓長一職，協助宿舍管理與居民事務協調。"
       },
       "speaker_cloud": {
-        "year": "2025",
+        "year": "2025/10",
         "title": "Google 開發者社群 講座講師",
-        "desc": "主題：2025 Cloud AI Study Jam - 雲端技術實戰分享"
+        "desc": "主講 Cloud Study Jam，介紹 GCP 上的各式服務，諸如: Compute Engine, Cloud Run, Cloud Storage 等，並示範了如何使用這些服務來構建和部署應用程式。"
+      },
+      "award_ai": {
+        "year": "2025/10",
+        "title": "國立彰化師範大學 人工智慧及其應用 專題競賽 第一名",
+        "desc": "開發「FinAgent」AI 驅動股票分析平台，整合即時股市數據、技術線圖與財報資訊，並導入 Google Gemini 2.5 pro 提供智能投資分析與建議，獲評審高度肯定。"
+      },
+      "award_113_2": {
+        "year": "2025/11",
+        "title": "113-2 學期 書卷獎 (第一名)",
+        "desc": ""
+      },
+      "contest_ta": {
+        "year": "2025/11",
+        "title": "國教署數理及資訊學科能力競賽 解題助教",
+        "desc": "擔任中區資訊學科能力競賽解題助教，負責賽前題目驗證與測試，並於競賽期間協助考生釐清題意，確保賽事順利進行。"
       },
       "speaker_gemini": {
-        "year": "2025",
+        "year": "2025/11",
         "title": "Google 開發者社群 講座講師",
-        "desc": "主題：Build a Gemini Bot, Together with Github"
+        "desc": "主講「Build a Gemini Bot, Together with Github」，分享如何利用 Gemini 構建聊天機器人，並示範整合 GitHub 實現自動化開發流程。"
       },
-      "high_school": {
-        "year": "2024",
-        "title": "臺北市立大同高級中學",
-        "desc": "畢業。"
+      "award_itsa": {
+        "year": "2025/12",
+        "title": "ITSA 全國大專程式設計極客挑戰賽 第三名",
+        "desc": "這場比賽讓我深刻意識到，寫網站（甚至學習本身）不能靠 Vibe Coding，必須對技術有更深層的理解，才能解決開發中遇到的各種難題。這讓我徹底改變了原本的學習態度與方式。"
+      },
+      "devfest_2025": {
+        "year": "2025/12",
+        "title": "DevFest Changhua 2026 主要協辦人",
+        "desc": ""
+      },
+      "award_114_1": {
+        "year": "2026/2",
+        "title": "114-1 學期 書卷獎 (第二名)",
+        "desc": ""
+      },
+      "it_career": {
+        "year": "2026/2 - Now",
+        "title": "國立彰化師範大學 職涯發展中心 系統開發與維護",
+        "desc": ""
+      },
+      "sitcon_2026": {
+        "year": "2026/3",
+        "title": "SITCON 學生計算機年會 製播組組員",
+        "desc": ""
       }
     }
   },
@@ -161,7 +166,7 @@
     "items": {
         "scholarship": {
             "title": "彰師獎學金資訊平台",
-            "desc": "專為校園設計的自動化獎學金管理解決方案。透過 AI 技術將繁瑣的資訊整理工作從 2 小時縮短至 20 秒，效率提升 99.8%。整合多管道推播與智慧助理，打造全方位的獎學金資訊生態系。",
+            "desc": "專為校園設計的自動化獎學金管理解決方案。藉由深度整合 AI，將繁瑣的獎學金發布流程從 2 小時縮短至 20 秒，效率提升 99.8%。整合多管道推播與智慧助理，打造全方位的獎學金資訊生態系。",
             "features": [
                 "Gemini AI 自動化公告生成",
                 "LINE & Mail 跨管道自動推播",
@@ -171,19 +176,16 @@
             ]
         },
         "vote": {
-            "title": "彰師學生會去中心化投票系統",
-            "desc": "為國立彰化師範大學學生會開發的區塊鏈投票解決方案。利用區塊鏈技術的不可竄改性，確保校園選舉的公平與透明。",
-            "features": ["Blockchain", "Web3", "Smart Contracts"]
+            "title": "學生會零知識證明電子投票系統",
+            "desc": "專為校園自治設計的高隱私投票方案。採用 zk-SNARKs (Groth16) 密碼學技術與 Merkle Tree 驗證機制，在無需區塊鏈 Gas Fee 的架構下，實現「身分與選票完全脫鉤」。透過 Circom 電路確保投票權的數學可驗證性，徹底解決傳統電子投票的信任問題。"
         },
         "fin_agent": {
             "title": "FinAgent - AI 智慧股票分析平台",
-            "desc": "整合即時股價、互動式技術線圖與詳細財報的金融分析平台。內建 Google Gemini 驅動的 AI 分析師，可自動生成個股分析報告並提供互動式問答。整合 SerpAPI 獲取即時財經新聞，並透過 Streamlit 打造直觀友善的操作介面。",
-            "features": ["Google Gemini AI", "Streamlit", "技術分析", "即時數據", "RAG Pipeline"]
+            "desc": "整合即時股價、互動式技術線圖與詳細財報的金融分析平台。內建 Google Gemini 驅動的 AI 分析師，可自動生成個股分析報告並提供互動式問答。整合 SerpAPI 獲取即時財經新聞，並透過 Streamlit 打造直觀友善的操作介面。"
         },
         "meal_voucher": {
-            "title": "彰師校園餐券申請系統",
-            "desc": "數位化餐券申請與管理流程，簡化行政作業並提升審核效率。",
-            "features": ["System Management", "Process Automation"]
+            "title": "校園餐券管理系統",
+            "desc": "本系統為基於 Google Apps Script 開發的自動化餐券管理解決方案，深度整合 Google Forms、Docs、Sheets 與 Gmail 服務，實現從「學生申請」到「行政核銷」的全自動化工作流；當學生提交表單後，系統即時解析身分並套用對應範本自動生成 PDF 申請書，隨即寄發電子郵件通知申請者，同時將資料同步寫入後端審核表，並透過觸發器（Triggers）自動連動分配表與核銷表，支援批次流水號核銷、狀態同步以及自動產出經費使用與人次統計報表，大幅降低人工資料處理的錯誤率與行政成本。"
         }
     }
   },

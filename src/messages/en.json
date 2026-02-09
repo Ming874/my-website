@@ -8,7 +8,7 @@
     "greeting": "Hi, I'm Tai Ming Chen",
     "roles": [
       "Google Developer Group On Campus NCUE Lead",
-      "SITCON 2026 Broadcasting Team Member",
+      "SITCON 2026 Broadcast Team Member",
       "NCUE Student Association IT Section Member",
       "CS Student at NCUE"
     ],
@@ -36,7 +36,7 @@
   },
   "About": {
     "title": "About Me",
-    "intro": "Hi, I'm a sophomore majoring in CS at NCUE and the <highlight>Lead of GDGoC NCUE</highlight>!\nI'm passionate about community involvement and love the energy of <highlight>working together towards a shared goal</highlight>.\nDriven by the desire to make campus life easier with code, I took the initiative to <highlight>develop and maintain systems</highlight> for the Student Assistance Division, Campus Security Center, Career Center, and the Student Association.\nI also believe that <highlight>\"output is the best input.\"</highlight> I enjoy organizing what I’ve learned into structured technical articles to help others get up to speed faster. Recently, I've been fascinated by <highlight>Hardware Security and Cryptography</highlight> and am currently diving deep into these fields XD.",
+    "intro": "Hi, I'm a sophomore majoring in CS at NCUE and the <highlight>Lead of GDGoC NCUE</highlight>!\nI'm passionate about community involvement and love the energy of <highlight>working together towards a shared goal</highlight>.\nDriven by the desire to make campus life easier with code, I took the initiative to <highlight>develop and maintain systems</highlight> for the Student Service Section, Student Safety Section, Career Development Center, and the Student Association.\nI also believe that <highlight>\"output is the best input.\"</highlight> I enjoy organizing what I’ve learned into structured technical articles to help others get up to speed faster. Recently, I've been fascinated by <highlight>Hardware Security and Cryptography</highlight> and am currently diving deep into these fields XD.",
     "researchTitle": "Design of a High-Stability PUF-Based Post-Quantum Key Generation System Based on FPGA XADC Environmental Sensing Mechanism",
     "researchDesc": "Addressing the threat of quantum computing to current encryption standards, this research proposes an <highlight>active hardware root-of-trust architecture</highlight> integrating environmental sensing to provide high-entropy keys for <highlight>Post-Quantum Cryptography (e.g., NIST FIPS 203 ML-KEM)</highlight>. Traditional <highlight>Physical Unclonable Functions (PUFs)</highlight> suffer from instability due to <highlight>PVT variations</highlight>, while standard passive Error Correcting Codes (ECC) consume excessive FPGA resources. To overcome these bottlenecks, this system utilizes the <highlight>FPGA's built-in XADC</highlight> for real-time environmental monitoring. By implementing a <highlight>closed-loop feedback mechanism</highlight> to dynamically adjust <highlight>Tunable Delay Lines (TDL)</highlight>, the architecture actively compensates for environmental drifts at the physical layer. The design significantly reduces bit error rates and <highlight>minimizes logic resource consumption</highlight> by eliminating heavy ECC requirements, delivering a robust and efficient post-quantum key generation solution tailored for <highlight>resource-constrained IoT edge devices</highlight>.",
     "researchButton": "Read Research Proposal",
@@ -59,100 +59,105 @@
   "Experience": {
     "title": "Experience & Awards",
     "items": {
-      "sitcon_2026": {
-        "year": "2026",
-        "title": "SITCON 2026 Broadcasting Team",
-        "desc": "Member of the Broadcasting Team, handling technical support and live streaming engineering."
-      },
-      "general_affairs_2025": {
-        "year": "2025/7 - Now",
-        "title": "Information Section Member, General Affairs Division, NCUE",
-        "desc": "Assisting with information management and administrative tasks."
-      },
-      "gdgoc_lead": {
-        "year": "2025/7 - Now",
-        "title": "GDG On Campus NCUE Lead",
-        "desc": "Leading the campus developer community, planning and organizing major technical talks and workshops."
-      },
-      "itsa_2025": {
-        "year": "2025/12",
-        "title": "2025 ITSA National Programming Contest",
-        "desc": "Demonstrated algorithmic skills, won 3rd Place in the Geek Challenge."
-      },
-      "devfest_2025": {
-        "year": "2025/12",
-        "title": "2026 DevFest Changhua",
-        "desc": "Key Co-organizer, managing event logistics and speaker coordination."
-      },
-      "web_maint_2025": {
-        "year": "2025/7 - 2025/12",
-        "title": "Student Safety Division, NCUE",
-        "desc": "Responsible for full-stack maintenance and optimization of campus safety web systems."
-      },
-      "it_parttime_2025": {
-        "year": "2025 - Now",
-        "title": "Life Guidance Division, NCUE",
-        "desc": "IT Part-time Assistant, helping with system debugging and database management."
-      },
-      "ai_contest_2025": {
-        "year": "2025",
-        "title": "AI & Applications Project Competition (113th Academic Year, 2nd Sem)",
-        "desc": "Won 1st Place with an innovative AI application solution."
-      },
-      "dorm_manager": {
-        "year": "2025",
-        "title": "Dormitory 10, NCUE",
-        "desc": "Floor Manager, coordinating student affairs."
-      },
-      "academic_award_1": {
-        "year": "2025",
-        "title": "Academic Excellence Award (1st Place)",
-        "desc": "Dept. of CS, NCUE. 113th Academic Year, 1st Semester."
-      },
-      "academic_award_2": {
-        "year": "2025",
-        "title": "Academic Excellence Award (1st Place)",
-        "desc": "Dept. of CS, NCUE. 113th Academic Year, 2nd Semester."
-      },
-      "academic_award_3": {
-        "year": "2025",
-        "title": "Academic Excellence Award (2nd Place)",
-        "desc": "Dept. of CS, NCUE. 114th Academic Year, 1st Semester."
-      },
-      "class_rep": {
-        "year": "2025 - Now",
-        "title": "Class Representative",
-        "desc": "Dept. of CS, NCUE (Class of 117), serving as a liaison between students and faculty."
+      "hs_grad": {
+        "year": "2024/6",
+        "title": "Graduated from Taipei Municipal Datong High School",
+        "desc": ""
       },
       "gdgoc_core": {
         "year": "2025/2 - 2025/7",
-        "title": "GDG On Campus NCUE Core Team Member",
-        "desc": "Core member assisting in community operations and event execution."
-      },
-      "contest_ta": {
-        "year": "2025",
-        "title": "K-12 Education Administration Math & CS Contest (Central Region)",
-        "desc": "Programming Problem Solving Teaching Assistant."
+        "title": "GDG on Campus NCUE Core Team Member",
+        "desc": "Served as a core member of the Google Developer Group, co-planning technical events and dedicating efforts to community management and promotion, fostering an active atmosphere for technical exchange on campus."
       },
       "speaker_n8n": {
-        "year": "2025",
-        "title": "Google Developer Group On Campus Speaker",
-        "desc": "Topic: Demystifying AI: From Core Concepts to Practical Workflows with n8n"
+        "year": "2025/4",
+        "title": "Speaker, Google Developer Group on Campus",
+        "desc": "Topic: \"Demystifying AI: From Core Concepts to Practical Workflows with n8n.\" Explained the fundamental principles of AI and demonstrated how to build efficient AI automation workflows using n8n through practical examples."
+      },
+      "award_113_1": {
+        "year": "2025/4",
+        "title": "Academic Excellence Award (1st Place), 113-1 Semester",
+        "desc": ""
+      },
+      "it_safety": {
+        "year": "2025/7 - 2025/12",
+        "title": "IT Assistant, Student Safety Section, NCUE",
+        "desc": "Responsible for maintaining the section's RPage website, ensuring real-time information updates, and maintaining system stability and accuracy."
+      },
+      "class_rep": {
+        "year": "2025/7 - Now",
+        "title": "Class Representative",
+        "desc": "Served as the Class Representative for the Class of 117, Dept. of CS. Acted as the primary liaison for communication between the department and students, and orchestrated various class activities."
+      },
+      "gdgoc_lead": {
+        "year": "2025/7 - Now",
+        "title": "Lead, Google Developer Group on Campus NCUE",
+        "desc": "During this tenure, I integrated internal and external resources and hosted multiple technical seminars, successfully revitalizing the campus learning atmosphere for information technology. This experience not only deepened my community management skills but also honed my abilities in team leadership, event coordination, and cross-functional communication.\n\nWebsite: https://gdg.ncuesa.org.tw"
+      },
+      "sa_it": {
+        "year": "2025/7 - Now",
+        "title": "Member, IT Section, NCUE Student Association",
+        "desc": "Assisted in maintaining the official Student Association website and spearheaded the development of the election voting system, enhancing the digitalization of student self-governance affairs."
+      },
+      "it_guidance": {
+        "year": "2025/7 - Now",
+        "title": "System Developer & Maintainer, Student Service Section, NCUE",
+        "desc": "Assisted in optimizing internal administrative workflows by developing multiple tools using Google Apps Script to integrate Google Forms and Sheets, including a Lost & Found system and a Meal Voucher management system. Proactively planned and built a scholarship information platform, significantly improving administrative efficiency."
+      },
+      "dorm_manager": {
+        "year": "2025/9 - Now",
+        "title": "Resident Assistant, Dormitory 10, NCUE",
+        "desc": "Served as Resident Assistant, assisting in dormitory environment management, maintaining order, and coordinating resident affairs."
       },
       "speaker_cloud": {
-        "year": "2025",
-        "title": "Google Developer Group On Campus Speaker",
-        "desc": "Topic: 2025 Cloud AI Study Jam"
+        "year": "2025/10",
+        "title": "Speaker, Google Developer Group on Campus",
+        "desc": "Topic: \"Cloud Study Jam.\" Introduced various GCP services such as Compute Engine, Cloud Run, and Cloud Storage, and demonstrated how to use these services to build and deploy applications."
+      },
+      "award_ai": {
+        "year": "2025/10",
+        "title": "1st Place, NCUE AI and Applications Project Competition",
+        "desc": "Developed \"FinAgent,\" an AI-driven stock analysis platform integrating real-time stock data, technical charts, and financial reports. Incorporated Google Gemini 2.5 Pro to provide intelligent investment analysis and recommendations, receiving high acclaim from judges."
+      },
+      "award_113_2": {
+        "year": "2025/11",
+        "title": "Academic Excellence Award (1st Place), 113-2 Semester",
+        "desc": ""
+      },
+      "contest_ta": {
+        "year": "2025/11",
+        "title": "Problem-Solving TA, National Senior High School Informatics Ability Competition (Central Region)",
+        "desc": "Served as the Teaching Assistant for the Central Region Informatics Competition. Responsible for pre-competition problem verification and testing, and assisted contestants in clarifying problem statements during the contest to ensure smooth operations."
       },
       "speaker_gemini": {
-        "year": "2025",
-        "title": "Google Developer Group On Campus Speaker",
-        "desc": "Topic: Build a Gemini Bot, Together with Github"
+        "year": "2025/11",
+        "title": "Speaker, Google Developer Group on Campus",
+        "desc": "Topic: \"Build a Gemini Bot, Together with GitHub.\" Shared how to build a chatbot using Gemini and demonstrated integration with GitHub to achieve automated development workflows."
       },
-      "high_school": {
-        "year": "2024",
-        "title": "Taipei Municipal Datong High School",
-        "desc": "Graduated."
+      "award_itsa": {
+        "year": "2025/12",
+        "title": "3rd Place, 2025 ITSA Programming Geek Contest",
+        "desc": "This competition made me deeply realize that web development (and learning in general) cannot rely solely on \"Vibe Coding.\" A deeper understanding of technology is essential to solve complex development problems. This realization completely transformed my learning attitude and methods."
+      },
+      "devfest_2025": {
+        "year": "2025/12",
+        "title": "Core Organizer, DevFest Changhua 2026",
+        "desc": ""
+      },
+      "award_114_1": {
+        "year": "2026/2",
+        "title": "Academic Excellence Award (2nd Place), 114-1 Semester",
+        "desc": ""
+      },
+      "it_career": {
+        "year": "2026/2 - Now",
+        "title": "System Developer & Maintainer, Career Development Center, NCUE",
+        "desc": ""
+      },
+      "sitcon_2026": {
+        "year": "2026/3",
+        "title": "Broadcast Team Member, SITCON 2026",
+        "desc": ""
       }
     }
   },
@@ -171,19 +176,16 @@
             ]
         },
         "vote": {
-            "title": "NCUE Student Association Decentralized Voting System",
-            "desc": "A blockchain-based voting solution for the NCUE Student Association. Ensures fair and transparent elections via immutable ledger technology.",
-            "features": ["Blockchain", "Web3", "Smart Contracts"]
+            "title": "NCUESA Zero-Knowledge E-Voting System",
+            "desc": "A privacy-first voting solution designed for student governance. Leveraging zk-SNARKs (Groth16) and Merkle Tree verification, it achieves complete decoupling of voter identity from cast ballots without blockchain gas fees. Built with Circom circuits to mathematically guarantee voting eligibility and anonymity, solving the trust dilemma of traditional e-voting."
         },
         "fin_agent": {
             "title": "FinAgent - AI Stock Analysis Platform",
-            "desc": "An intelligent financial analysis platform integrating real-time stock data, interactive technical charts, and detailed financial reports. Features an AI-driven analyst powered by Google Gemini for automated report generation and interactive Q&A. Includes real-time news integration via SerpAPI and a user-friendly Streamlit interface.",
-            "features": ["Google Gemini AI", "Streamlit", "Technical Analysis", "Real-time Data", "RAG Pipeline"]
+            "desc": "An intelligent financial analysis platform integrating real-time stock data, interactive technical charts, and detailed financial reports. Features an AI-driven analyst powered by Google Gemini for automated report generation and interactive Q&A. Includes real-time news integration via SerpAPI and a user-friendly Streamlit interface."
         },
         "meal_voucher": {
-            "title": "NCUE Campus Meal Voucher System",
-            "desc": "Digital meal voucher application and management system, streamlining administrative processes.",
-            "features": ["System Management", "Process Automation"]
+            "title": "Campus Meal Voucher Management System",
+            "desc": "Built on Google Apps Script, this solution seamlessly integrates Google Forms, Docs, Sheets, and Gmail to orchestrate the entire workflow from student application to administrative verification. Key features include identity-based PDF generation with instant email notifications, real-time backend data synchronization via triggers, and batch serial number processing. The system also automatically generates financial and headcount reports, significantly reducing manual errors and administrative overhead."
         }
     }
   },

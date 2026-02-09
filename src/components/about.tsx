@@ -12,8 +12,8 @@ const IntroHighlighter = ({ children }: { children: React.ReactNode }) => (
   <motion.span 
     initial={{ backgroundSize: "0% 100%" }}
     whileInView={{ backgroundSize: "100% 100%" }}
-    viewport={{ once: false, amount: 0.5 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
+    viewport={{ once: false, amount: 0.1 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
     style={{
       backgroundImage: "linear-gradient(to top, rgba(96, 165, 250, 0.3) 35%, transparent 35%)",
       backgroundRepeat: "no-repeat",
@@ -29,8 +29,8 @@ const ResearchHighlighter = ({ children }: { children: React.ReactNode }) => (
   <motion.span
     initial={{ backgroundSize: "0% 100%" }}
     whileInView={{ backgroundSize: "100% 100%" }}
-    viewport={{ once: false, amount: 0.5 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
+    viewport={{ once: false, amount: 0.1 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
     style={{
       backgroundImage: "linear-gradient(to right, rgba(253, 224, 71, 0.6), rgba(253, 224, 71, 0.6))",
       backgroundRepeat: "no-repeat",
@@ -301,7 +301,7 @@ export function About() {
   const tags = t.raw('tags') as string[];
 
   return (
-    <section id="about" ref={containerRef} className="py-24 lg:py-32 relative overflow-hidden bg-white dark:bg-[#050505] select-none">
+    <section id="about" ref={containerRef} className="pt-12 pb-24 lg:pt-16 lg:pb-32 relative overflow-hidden bg-white dark:bg-[#050505] select-none">
       
       {/* Background Ambience */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 pointer-events-none">
@@ -434,61 +434,68 @@ export function About() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="space-y-8"
+                    className="space-y-10"
                 >
-                    <div className="flex items-center gap-4">
-                        <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400">
-                            <Cpu className="w-6 h-6" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div className="flex items-center gap-4">
+                            <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400">
+                                <Cpu className="w-6 h-6" />
+                            </div>
+                            <span className="text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">{t('recentResearch')}</span>
                         </div>
-                        <span className="text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">{t('recentResearch')}</span>
+                        
+                        {/* Desktop Slide to Unlock */}
+                        <div className="hidden md:block">
+                            <SlideButton 
+                                onUnlock={handleOpenPdf} 
+                                text={t('researchButton')} 
+                            />
+                        </div>
                     </div>
 
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                        {t('researchTitle')}
-                    </h3>
+                    <div className="flex flex-col md:items-start md:text-left space-y-8">
+                        <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight max-w-4xl">
+                            {t('researchTitle')}
+                        </h3>
 
-                    <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {t.rich('researchDesc', {
-                            highlight: (chunks) => <ResearchHighlighter>{chunks}</ResearchHighlighter>
-                        })}
-                    </p>
+                        <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-4xl font-light">
+                            {t.rich('researchDesc', {
+                                highlight: (chunks) => <ResearchHighlighter>{chunks}</ResearchHighlighter>
+                            })}
+                        </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        {/* Research Image Thumbnail */}
-                        <div className="space-y-3">
+                        {/* Research Image - No external container, Centered */}
+                        <div className="space-y-3 w-full max-w-2xl md:self-center">
                             <div 
-                                className="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in group border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 shadow-md hover:shadow-xl transition-all"
+                                className="relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in group transition-all"
                                 onClick={() => handleZoomImage("/research.webp", "Architecture Diagram")}
                             >
                                 <Image 
                                     src="/research.webp" 
                                     alt="Research" 
                                     fill 
-                                    className="object-contain p-2 transition-transform duration-500 group-hover:scale-105" 
+                                    className="object-contain transition-transform duration-500 group-hover:scale-105" 
                                 />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                    <span className="bg-white/90 dark:bg-black/90 text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-                                        <ZoomIn className="w-4 h-4" /> View
-                                    </span>
+                                <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <div className="bg-white/90 dark:bg-black/90 p-3 rounded-full shadow-xl">
+                                        <ZoomIn className="w-6 h-6 text-blue-600" />
+                                    </div>
                                 </div>
                             </div>
                             
-                            {/* Tap to view Hint moved here */}
-                            <p className="text-xs text-center text-gray-400 dark:text-gray-500">
+                            <p className="text-sm text-center text-gray-500 dark:text-gray-400 font-bold font-mono tracking-widest uppercase">
                                 {t.rich('clickToView', { 
                                     b: (chunks) => <b>{chunks}</b> 
                                 }) || "Tap to view full diagram"}
                             </p>
                         </div>
 
-                        {/* Slide to Unlock Action */}
-                        <div className="flex flex-col justify-center gap-4">
-                            <div className="w-full flex justify-start md:justify-center">
-                                <SlideButton 
-                                    onUnlock={handleOpenPdf} 
-                                    text={t('researchButton')} // "Read Research Proposal"
-                                />
-                            </div>
+                        {/* Mobile Slide to Unlock - Only shown on small screens */}
+                        <div className="md:hidden w-full flex justify-center pt-4">
+                            <SlideButton 
+                                onUnlock={handleOpenPdf} 
+                                text={t('researchButton')} 
+                            />
                         </div>
                     </div>
                 </motion.div>

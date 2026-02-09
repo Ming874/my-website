@@ -66,14 +66,14 @@ export function Articles() {
   return (
     <section
       id="articles"
-      className="py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300 select-none"
+      className="pt-12 pb-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300 select-none"
     >
-      <div className="container mx-auto px-4 pt-8">
+      <div className="container mx-auto px-4 pt-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-purple-700 dark:from-blue-400 dark:to-purple-400"
+          className="text-4xl md:text-5xl font-bold mb-12 py-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-purple-700 dark:from-blue-400 dark:to-purple-400"
         >
           {t("title")}
         </motion.h2>

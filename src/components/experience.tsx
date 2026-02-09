@@ -13,28 +13,29 @@ import { useRef } from "react";
 import { useModalStore } from "@/store/modal-store";
 
 const itemsData = [
-  { key: "sitcon_2026", type: "vol", date: "2026-03" },
-  { key: "academic_award_3", type: "award", date: "2026-02" },
-  { key: "itsa_2025", type: "award", date: "2025-12" },
-  { key: "devfest_2025", type: "vol", date: "2025-12" },
-  { key: "academic_award_2", type: "award", date: "2025-09" },
-  { key: "it_parttime_2025", type: "work", date: "2025-09" },
-  { key: "class_rep", type: "vol", date: "2025-09" },
-  { key: "gdgoc_lead", type: "lead", date: "2025-07" },
-  { key: "general_affairs_2025", type: "work", date: "2025-07" },
-  { key: "web_maint_2025", type: "work", date: "2025-07" },
-  { key: "ai_contest_2025", type: "award", date: "2025-06" },
-  { key: "speaker_gemini", type: "speak", date: "2025-05" },
-  { key: "speaker_n8n", type: "speak", date: "2025-04" },
-  { key: "speaker_cloud", type: "speak", date: "2025-03" },
-  { key: "academic_award_1", type: "award", date: "2025-02" },
+  { key: "hs_grad", type: "edu", date: "2024-06" },
   { key: "gdgoc_core", type: "vol", date: "2025-02" },
-  { key: "dorm_manager", type: "vol", date: "2025-02" },
-  { key: "contest_ta", type: "work", date: "2025-01" },
-  { key: "high_school", type: "edu", date: "2024-06" },
+  { key: "speaker_n8n", type: "speak", date: "2025-04" },
+  { key: "award_113_1", type: "award", date: "2025-04" },
+  { key: "it_safety", type: "work", date: "2025-07" },
+  { key: "class_rep", type: "vol", date: "2025-07" },
+  { key: "gdgoc_lead", type: "lead", date: "2025-07" },
+  { key: "sa_it", type: "vol", date: "2025-07" },
+  { key: "it_guidance", type: "work", date: "2025-07" },
+  { key: "dorm_manager", type: "vol", date: "2025-09" },
+  { key: "speaker_cloud", type: "speak", date: "2025-10" },
+  { key: "award_ai", type: "award", date: "2025-10" },
+  { key: "award_113_2", type: "award", date: "2025-11" },
+  { key: "contest_ta", type: "work", date: "2025-11" },
+  { key: "speaker_gemini", type: "speak", date: "2025-11" },
+  { key: "award_itsa", type: "award", date: "2025-12" },
+  { key: "devfest_2025", type: "vol", date: "2025-12" },
+  { key: "award_114_1", type: "award", date: "2026-02" },
+  { key: "it_career", type: "work", date: "2026-02" },
+  { key: "sitcon_2026", type: "vol", date: "2026-03" },
 ] as const;
 
-// Chronological Sequence: 2024 to 2026 (Growth)
+// Sorting: Oldest to Newest
 const items = [...itemsData].sort((a, b) => a.date.localeCompare(b.date));
 
 const ExperienceItem = ({ 
@@ -55,25 +56,48 @@ const ExperienceItem = ({
   const slideUrl = slidesLinks[item.key];
   const certUrl = certLinks[item.key];
 
+  const nodeVariants = {
+    inactive: { 
+      backgroundColor: "transparent", 
+      boxShadow: "none",
+      borderColor: "rgb(59, 130, 246)"
+    },
+    active: { 
+      backgroundColor: "rgb(59, 130, 246)",
+      boxShadow: "0 0 12px rgba(59, 130, 246, 0.8)",
+      borderColor: "rgb(59, 130, 246)"
+    }
+  };
+
+  const dateVariants = {
+    inactive: { opacity: 0.2, color: "rgb(156, 163, 175)" },
+    active: { opacity: 1, color: "rgb(37, 99, 235)" }
+  };
+
   return (
-    <div className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16 mb-12 last:mb-0 pl-10 md:pl-0">
+    <motion.div 
+      initial="inactive"
+      whileInView="active"
+      viewport={{ once: false, amount: 0.2, margin: "0px 0px -50% 0px" }}
+      className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16 mb-12 last:mb-0 pl-10 md:pl-0 group/exp"
+    >
       
-      {/* Dynamic Tracking Node (Fill logic improved) */}
+      {/* Dynamic Tracking Node (Sync logic improved) */}
       <div className="absolute left-0 md:left-[224px] top-3 z-20 -translate-x-1/2">
         <motion.div 
-          initial={{ backgroundColor: "rgba(59, 130, 246, 0)" }}
-          whileInView={{ 
-            backgroundColor: "rgb(59, 130, 246)",
-            boxShadow: "0 0 12px rgba(59, 130, 246, 0.8)" 
-          }}
-          viewport={{ once: false, amount: 0.8, margin: "-45% 0px -45% 0px" }}
-          className="w-3.5 h-3.5 rounded-full border-2 border-blue-500 transition-colors duration-300"
+          variants={nodeVariants}
+          transition={{ duration: 0.2 }}
+          className="w-3.5 h-3.5 rounded-full border-2 transition-colors"
         />
       </div>
 
       {/* Left: Sticky Year */}
-      <div className="md:sticky md:top-32 h-fit">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-black text-gray-200 dark:text-gray-800 tracking-tighter transition-colors group-hover:text-blue-600/20 break-words font-mono">
+      <div className="md:sticky md:top-32 h-fit md:text-right md:pr-4">
+        <motion.div 
+          variants={dateVariants}
+          transition={{ duration: 0.2 }}
+          className="text-lg md:text-xl font-bold tracking-tight font-mono italic whitespace-nowrap"
+        >
           {t(`items.${item.key}.year`)}
         </motion.div>
       </div>
@@ -85,31 +109,38 @@ const ExperienceItem = ({
             {t(`items.${item.key}.title`)}
           </h3>
           <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed max-w-4xl font-light italic">
-            {t(`items.${item.key}.desc`)}
+            {t(`items.${item.key}.desc`).split(/(https?:\/\/[^\s]+)/g).map((part: string, i: number) => 
+              part.match(/^https?:\/\//) ? (
+                <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 underline underline-offset-4 transition-colors break-all">
+                  {part}
+                </a>
+              ) : part
+            )}
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-4 pt-2">
+        <div className="space-y-4 pt-2">
           {slideUrl && (
-            <button onClick={() => window.open(slideUrl, '_blank')} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/5 hover:bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest transition-all">
-              <Projector className="w-4 h-4" /> View Slides
-            </button>
+            <div className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
+              <iframe 
+                src={slideUrl} 
+                className="absolute inset-0 w-full h-full" 
+                frameBorder="0" 
+                marginWidth={0} 
+                marginHeight={0} 
+                scrolling="no" 
+                allowFullScreen
+              />
+            </div>
           )}
-          {certUrl && (
-            <button onClick={() => openImageModal(certUrl, t(`items.${item.key}.title`))} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/5 hover:bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-[10px] font-black uppercase tracking-widest transition-all">
-              <Award className="w-4 h-4" /> View Certificate
-            </button>
-          )}
-        </div>
 
-        {/* Bare Image Preview (No external container) */}
-        {certUrl && (
-          <div className="pt-2">
+          {/* Bare Image Preview (No external container) */}
+          {certUrl && (
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden cursor-zoom-in group/img transition-all duration-500"
+              className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden cursor-zoom-in group/img transition-all duration-500 border border-gray-100 dark:border-gray-800 shadow-sm"
               onClick={() => openImageModal(certUrl, t(`items.${item.key}.title`))}
             >
               <Image src={certUrl} alt="Preview" fill className="object-contain transition-transform duration-700 group-hover/img:scale-105" />
@@ -119,10 +150,10 @@ const ExperienceItem = ({
                 </div>
               </div>
             </motion.div>
-          </div>
-        )}
+          )}
+        </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -146,9 +177,9 @@ export function Experience() {
 
   const certLinks: Record<string, string> = {
     gdgoc_core: "/gdg_cert.webp",
-    academic_award_1: "/113-1.webp",
-    academic_award_2: "/113-2.webp",
-    itsa_2025: "/ITSA.webp",
+    award_113_1: "/113-1.webp",
+    award_113_2: "/113-2.webp",
+    award_itsa: "/ITSA.webp",
   };
 
   const openImageModal = (imgSrc: string, alt: string) => {
@@ -161,10 +192,10 @@ export function Experience() {
   };
 
   return (
-    <section id="experience" className="py-24 bg-white dark:bg-[#050505] transition-colors duration-300 select-none overflow-hidden" ref={containerRef}>
+    <section id="experience" className="pt-12 pb-24 bg-white dark:bg-[#050505] transition-colors duration-300 select-none overflow-hidden" ref={containerRef}>
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-20 space-y-4">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-blue-600 dark:text-blue-500 font-mono text-xs font-black uppercase tracking-[0.4em]">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-blue-600 dark:text-blue-500 font-mono text-sm md:text-base font-black uppercase tracking-[0.4em]">
             Milestones & Achievements
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight tracking-tighter">
