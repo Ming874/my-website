@@ -15,22 +15,25 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
   const isEven = index % 2 === 0;
 
   const showcaseImages = [
-    '/idx.png',
-    '/display.png',
-    '/bot.png',
-    '/backend.png'
+    '/p01.webp',
+    '/p02.webp',
+    '/p03.webp',
+    '/p04.webp',
+    '/p05.webp',
+    '/p06.webp',
+    '/p07.webp'
   ];
   
   const [activeImg, setActiveImg] = useState(0);
   
   useEffect(() => {
-    if (isScholarship && isHovered) {
+    if (isScholarship) {
       const interval = setInterval(() => {
         setActiveImg((prev) => (prev + 1) % showcaseImages.length);
-      }, 2000);
+      }, 3000);
       return () => clearInterval(interval);
     }
-  }, [isScholarship, isHovered]);
+  }, [isScholarship]);
 
   const handleZoomImage = (src: string, alt: string) => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
@@ -87,7 +90,7 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
         transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`group relative w-full py-12 lg:py-24 transition-all duration-500 ${
+        className={`relative w-full py-12 lg:py-24 transition-all duration-500 ${
           isEven ? 'bg-white dark:bg-[#050505]' : 'bg-gray-50/60 dark:bg-[#0a0a0a]'
         }`}
       >
@@ -113,7 +116,7 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
               {/* Mobile Image Carousel - Shown only on small screens */}
               <div className="lg:hidden w-full -mx-6 px-6 sm:mx-0 sm:px-0">
                 <div 
-                    className="relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in group transition-all shadow-xl"
+                    className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all shadow-xl"
                     onClick={() => handleZoomImage(showcaseImages[activeImg], "Scholarship Platform")}
                 >
                     <AnimatePresence mode="wait">
@@ -163,7 +166,7 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
             </div>
             <div className={`hidden lg:block lg:col-span-5 relative ${!isEven ? 'lg:order-1' : ''}`}>
                <div 
-                    className="relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in group transition-all"
+                    className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all"
                     onClick={() => handleZoomImage(showcaseImages[activeImg], "Scholarship Platform")}
                 >
                     <AnimatePresence mode="wait">

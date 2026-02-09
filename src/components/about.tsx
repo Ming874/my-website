@@ -169,6 +169,10 @@ export function About() {
 
     const handleOrientation = (e: DeviceOrientationEvent) => {
       if (!isMounted) return;
+
+      // Only run tilt effect on desktop (simplistic check) to avoid unwanted motion on mobile
+      if (window.innerWidth < 1024) return;
+
       if (e.gamma !== null && e.beta !== null) {
         // Map gamma (left/right tilt, -30 to 30 deg) to -0.5 to 0.5
         const x = Math.max(-1, Math.min(1, e.gamma / 30)) * 0.5;

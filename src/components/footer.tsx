@@ -62,8 +62,14 @@ export function Footer() {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 1;
       
+      // If we are near the very bottom of the page, highlight all contact links
+      // This prevents the "filling effect" from being canceled when the user reaches the end.
+      if (scrollProgress > 0.92) {
+        setActiveLink('ALL');
+        return;
+      }
+
       // Dynamic focus point: moves from center towards bottom as we reach the end of the page
-      // This ensures the last item gets highlighted even if it can't reach the exact center.
       const focusPointY = (window.innerHeight / 2) + (scrollProgress > 0.8 ? (scrollProgress - 0.8) * 5 * (window.innerHeight / 4) : 0);
 
       let closestLink = null;
@@ -76,7 +82,7 @@ export function Footer() {
           const elCenterY = rect.top + rect.height / 2;
           const distance = Math.abs(elCenterY - focusPointY);
 
-          // Activation threshold: only highlight if reasonably close to the focus point
+          // Activation threshold: highlight the closest link when it's near the focus point
           if (distance < 200 && distance < minDistance) {
             minDistance = distance;
             closestLink = contact.name;
