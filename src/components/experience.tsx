@@ -78,7 +78,7 @@ const ExperienceItem = ({
     <motion.div 
       initial="inactive"
       whileInView="active"
-      viewport={{ once: false, amount: 0.1, margin: "-20px" }}
+      viewport={{ once: true, amount: 0.1, margin: "-20px" }}
       className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16 mb-12 last:mb-0 pl-10 md:pl-0 group/exp will-change-transform"
       style={{ backfaceVisibility: "hidden" }}
     >
@@ -128,7 +128,7 @@ const ExperienceItem = ({
 
         <div className="space-y-4 pt-2">
           {slideUrl && (
-            <div className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
+            <div className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm bg-gray-50 dark:bg-gray-900">
               <iframe 
                 src={slideUrl} 
                 className="absolute inset-0 w-full h-full" 
@@ -147,10 +147,16 @@ const ExperienceItem = ({
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-10px" }}
-              className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden cursor-zoom-in group/img transition-all duration-500 border border-gray-100 dark:border-gray-800 shadow-sm will-change-transform"
+              className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden cursor-zoom-in group/img transition-all duration-500 border border-gray-100 dark:border-gray-800 shadow-sm bg-gray-50 dark:bg-gray-900 will-change-transform"
               onClick={() => openImageModal(certUrl, t(`items.${item.key}.title`))}
             >
-              <Image src={certUrl} alt="Preview" fill className="object-contain transition-transform duration-700 group-hover/img:scale-105" />
+              <img 
+                src={certUrl} 
+                alt="Preview" 
+                className="w-full h-full object-contain transition-transform duration-700 group-hover/img:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="absolute inset-0 bg-blue-600/0 group-hover/img:bg-blue-600/5 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all">
                 <div className="p-3 bg-white/90 dark:bg-black/90 rounded-full shadow-xl">
                   <ZoomIn className="w-6 h-6 text-blue-600" />
@@ -191,8 +197,14 @@ export function Experience() {
 
   const openImageModal = (imgSrc: string, alt: string) => {
     openModal(
-      <div className="relative w-[90vw] h-[90vh] pointer-events-auto">
-        <Image src={imgSrc} alt={alt} fill className="object-contain" quality={100} priority unoptimized />
+      <div className="relative w-[90vw] h-[90vh] pointer-events-auto flex items-center justify-center">
+        <img 
+            src={imgSrc} 
+            alt={alt} 
+            className="max-w-full max-h-full object-contain shadow-2xl"
+            loading="eager"
+            decoding="sync"
+        />
       </div>,
       { variant: 'clean', className: "p-0", hideCloseButton: false },
     );

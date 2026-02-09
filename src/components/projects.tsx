@@ -41,15 +41,13 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
         return;
     }
     openModal(
-        <div className="relative w-[90vw] h-[90vh] pointer-events-auto">
-            <Image 
+        <div className="relative w-[90vw] h-[90vh] pointer-events-auto flex items-center justify-center">
+            <img 
                 src={src} 
                 alt={alt} 
-                fill
-                className="object-contain"
-                quality={100}
-                priority
-                unoptimized
+                className="max-w-full max-h-full object-contain shadow-2xl"
+                loading="eager"
+                decoding="sync"
             />
         </div>,
         { 
@@ -67,7 +65,7 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
       <motion.span 
         initial={{ opacity: 0, x: !isEven ? -100 : 100 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`text-[12rem] md:text-[20rem] lg:text-[28rem] font-black leading-none ${
           isEven 
@@ -117,19 +115,25 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
               {/* Mobile Image Carousel - Shown only on small screens */}
               <div className="lg:hidden w-full -mx-6 px-6 sm:mx-0 sm:px-0">
                 <div 
-                    className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all shadow-xl"
+                    className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all shadow-xl bg-gray-100 dark:bg-gray-900"
                     onClick={() => handleZoomImage(showcaseImages[activeImg], "Scholarship Platform")}
                 >
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="popLayout">
                         <motion.div 
                             key={activeImg} 
                             initial={{ opacity: 0 }} 
                             animate={{ opacity: 1 }} 
                             exit={{ opacity: 0 }} 
-                            transition={{ duration: 0.5 }} 
+                            transition={{ duration: 0.4 }} 
                             className="absolute inset-0"
                         >
-                            <Image src={showcaseImages[activeImg]} alt="Showcase" fill className="object-contain" />
+                            <img 
+                              src={showcaseImages[activeImg]} 
+                              alt="Showcase" 
+                              className="w-full h-full object-contain"
+                              loading="eager"
+                              decoding="async"
+                            />
                         </motion.div>
                     </AnimatePresence>
                 </div>
@@ -167,19 +171,25 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
             </div>
             <div className={`hidden lg:block lg:col-span-5 relative ${!isEven ? 'lg:order-1' : ''}`}>
                <div 
-                    className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all"
+                    className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all bg-gray-100 dark:bg-gray-900"
                     onClick={() => handleZoomImage(showcaseImages[activeImg], "Scholarship Platform")}
                 >
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="popLayout">
                         <motion.div 
                             key={activeImg} 
                             initial={{ opacity: 0 }} 
                             animate={{ opacity: 1 }} 
                             exit={{ opacity: 0 }} 
-                            transition={{ duration: 0.5 }} 
+                            transition={{ duration: 0.4 }} 
                             className="absolute inset-0"
                         >
-                            <Image src={showcaseImages[activeImg]} alt="Showcase" fill className="object-contain transition-transform duration-500 group-hover:scale-105" />
+                            <img 
+                              src={showcaseImages[activeImg]} 
+                              alt="Showcase" 
+                              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                              loading="eager"
+                              decoding="async"
+                            />
                         </motion.div>
                     </AnimatePresence>
                     
