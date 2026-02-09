@@ -48,61 +48,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
-    const handleScroll = () => {
-      // If user recently clicked, don't let scroll override for 1 second
-      if (isManuallyActive.current) return;
-
-      // Only run on mobile/tablet (simplistic check, can be refined)
-      if (window.innerWidth >= 1024) {
-        setActiveLink(null);
-        return;
-      }
-
-      const scrollY = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 1;
-      
-      // If we are near the very bottom of the page, highlight all contact links
-      // This prevents the "filling effect" from being canceled when the user reaches the end.
-      if (scrollProgress > 0.92) {
-        setActiveLink('ALL');
-        return;
-      }
-
-      // Dynamic focus point: moves from center towards bottom as we reach the end of the page
-      const focusPointY = (window.innerHeight / 2) + (scrollProgress > 0.8 ? (scrollProgress - 0.8) * 5 * (window.innerHeight / 4) : 0);
-
-      let closestLink = null;
-      let minDistance = Infinity;
-
-      contacts.forEach((contact) => {
-        const el = linkRefs.current.get(contact.name);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const elCenterY = rect.top + rect.height / 2;
-          const distance = Math.abs(elCenterY - focusPointY);
-
-          // Activation threshold: highlight the closest link when it's near the focus point
-          if (distance < 200 && distance < minDistance) {
-            minDistance = distance;
-            closestLink = contact.name;
-          }
-        }
-      });
-
-      setActiveLink(closestLink);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    
-    // Initial check
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
+    // Scroll handling removed to prevent automatic "filling" effect
+    // Keeping it only for manual clicks if needed, but simplifying it.
+    setActiveLink(null);
   }, []);
 
   return (
@@ -119,7 +67,7 @@ export function Footer() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" 
       />
-       <motion.div 
+      <motion.div 
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 dark:bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" 
