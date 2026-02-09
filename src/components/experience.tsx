@@ -146,8 +146,8 @@ export function Experience() {
 
   const certLinks: Record<string, string> = {
     gdgoc_core: "/gdg_cert.webp",
-    academic_award_1: "/113-2.webp",
-    academic_award_2: "/114-1.webp",
+    academic_award_1: "/113-1.webp",
+    academic_award_2: "/113-2.webp",
     itsa_2025: "/ITSA.webp",
   };
 
