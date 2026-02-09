@@ -78,8 +78,9 @@ const ExperienceItem = ({
     <motion.div 
       initial="inactive"
       whileInView="active"
-      viewport={{ once: false, amount: 0.2, margin: "0px 0px -50% 0px" }}
-      className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16 mb-12 last:mb-0 pl-10 md:pl-0 group/exp"
+      viewport={{ once: false, amount: 0.1, margin: "-20px" }}
+      className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16 mb-12 last:mb-0 pl-10 md:pl-0 group/exp will-change-transform"
+      style={{ backfaceVisibility: "hidden" }}
     >
       
       {/* Dynamic Tracking Node (Sync logic improved) */}
@@ -103,7 +104,13 @@ const ExperienceItem = ({
       </div>
 
       {/* Right: Content Area */}
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="space-y-4">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true, margin: "-10px" }} 
+        transition={{ duration: 0.5 }} 
+        className="space-y-4 will-change-transform"
+      >
         <div className="space-y-1">
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight">
             {t(`items.${item.key}.title`)}
@@ -139,8 +146,8 @@ const ExperienceItem = ({
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden cursor-zoom-in group/img transition-all duration-500 border border-gray-100 dark:border-gray-800 shadow-sm"
+              viewport={{ once: true, margin: "-10px" }}
+              className="relative w-full max-w-sm aspect-[1.414/1] rounded-2xl overflow-hidden cursor-zoom-in group/img transition-all duration-500 border border-gray-100 dark:border-gray-800 shadow-sm will-change-transform"
               onClick={() => openImageModal(certUrl, t(`items.${item.key}.title`))}
             >
               <Image src={certUrl} alt="Preview" fill className="object-contain transition-transform duration-700 group-hover/img:scale-105" />

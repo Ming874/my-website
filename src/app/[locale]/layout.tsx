@@ -80,7 +80,7 @@ export async function generateMetadata({
       images: ["/me.jpg"],
     },
     icons: {
-      icon: "/favicon.ico?v=1",
+      icon: "/favicon.ico",
     },
   };
 }

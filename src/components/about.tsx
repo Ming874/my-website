@@ -376,9 +376,10 @@ export function About() {
 
                 {/* Focus Areas (Moved to Left Column) */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    className="will-change-transform"
                 >
                      <h4 className="text-xl font-bold mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
                         <Award className="w-6 h-6 text-yellow-500" />
@@ -388,9 +389,10 @@ export function About() {
                         {tags.map((tag, i) => (
                             <motion.span 
                                 key={tag}
-                                className="px-4 py-2 bg-gray-100 dark:bg-gray-800/50 border border-transparent hover:border-blue-500/50 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors cursor-default"
+                                className="px-4 py-2 bg-gray-100 dark:bg-gray-800/50 border border-transparent hover:border-blue-500/50 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors cursor-default will-change-transform"
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true, margin: "-10px" }}
                                 transition={{ delay: i * 0.05 }}
                             >
                                 {tag}
@@ -406,21 +408,21 @@ export function About() {
                 {/* Intro Header & Text */}
                 <div className="space-y-8">
                     <motion.h2 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white leading-tight"
+                        viewport={{ once: true, margin: "-20px" }}
+                        className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white leading-tight will-change-transform"
                     >
                         {t('title')}
                         <span className="text-blue-600 dark:text-blue-500">.</span>
                     </motion.h2>
 
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "-20px" }}
                         transition={{ delay: 0.1 }}
-                        className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 font-normal leading-relaxed text-lg"
+                        className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 font-normal leading-relaxed text-lg will-change-transform"
                     >
                         <p>
                             {t.rich('intro', {
@@ -435,10 +437,10 @@ export function About() {
 
                 {/* Research Section */}
                 <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="space-y-10"
+                    viewport={{ once: true, margin: "-20px" }}
+                    className="space-y-10 will-change-transform"
                 >
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div className="flex items-center gap-4">

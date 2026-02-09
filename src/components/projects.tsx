@@ -84,15 +84,16 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
   if (isScholarship) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`relative w-full py-12 lg:py-24 transition-all duration-500 ${
+        className={`relative w-full py-12 lg:py-24 transition-all duration-500 will-change-transform ${
           isEven ? 'bg-white dark:bg-[#050505]' : 'bg-gray-50/60 dark:bg-[#0a0a0a]'
         }`}
+        style={{ backfaceVisibility: "hidden" }}
       >
         {backgroundNumber}
         <div className="container mx-auto px-6 relative z-10">
@@ -198,13 +199,14 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
   // Regular Projects without Image
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative w-full py-16 lg:py-24 transition-all duration-500 ${
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className={`group relative w-full py-16 lg:py-24 transition-all duration-500 will-change-transform ${
         isEven ? 'bg-white dark:bg-[#050505]' : 'bg-gray-50/60 dark:bg-[#0a0a0a]'
       }`}
+      style={{ backfaceVisibility: "hidden" }}
     >
       {backgroundNumber}
       <div className="container mx-auto px-6 relative z-10">
