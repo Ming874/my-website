@@ -31,9 +31,10 @@ const itemsData = [
   { key: "award_itsa", type: "award", date: "2025-12" },
   { key: "devfest_2025", type: "vol", date: "2025-12" },
   { key: "award_114_1", type: "award", date: "2026-02" },
-  { key: "it_career", type: "work", date: "2026-02" },
-  { key: "sitcon_2026", type: "vol", date: "2026-03" },
-] as const;
+    {key: "it_career", type: "work", date: "2026-02" },
+    { key: "sitcon_2026", type: "vol", date: "2026-03" },
+    { key: "twnog_7", type: "vol", date: "2026-05" },
+  ] as const;
 
 // Sorting: Oldest to Newest
 const items = [...itemsData].sort((a, b) => a.date.localeCompare(b.date));
@@ -74,11 +75,16 @@ const ExperienceItem = ({
     active: { opacity: 1, color: "rgb(37, 99, 235)" }
   };
 
+  const contentVariants = {
+    inactive: { opacity: 0, y: 15 },
+    active: { opacity: 1, y: 0 }
+  };
+
   return (
     <motion.div 
       initial="inactive"
       whileInView="active"
-      viewport={{ once: true, amount: 0.1, margin: "-20px" }}
+      viewport={{ once: true, margin: "0px 0px -45% 0px" }}
       className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-16 mb-12 last:mb-0 pl-10 md:pl-0 group/exp will-change-transform"
       style={{ backfaceVisibility: "hidden" }}
     >
@@ -87,7 +93,7 @@ const ExperienceItem = ({
       <div className="absolute left-0 md:left-[224px] top-3 z-20 -translate-x-1/2">
         <motion.div 
           variants={nodeVariants}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.4 }}
           className="w-3.5 h-3.5 rounded-full border-2 transition-colors"
         />
       </div>
@@ -96,7 +102,7 @@ const ExperienceItem = ({
       <div className="md:sticky md:top-32 h-fit md:text-right md:pr-4">
         <motion.div 
           variants={dateVariants}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.4 }}
           className="text-lg md:text-xl font-bold tracking-tight font-mono italic whitespace-nowrap"
         >
           {t(`items.${item.key}.year`)}
@@ -105,9 +111,7 @@ const ExperienceItem = ({
 
       {/* Right: Content Area */}
       <motion.div 
-        initial={{ opacity: 0, y: 15 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true, margin: "-10px" }} 
+        variants={contentVariants}
         transition={{ duration: 0.5 }} 
         className="space-y-4 will-change-transform"
       >
@@ -214,10 +218,10 @@ export function Experience() {
     <section id="experience" className="pt-12 pb-24 bg-white dark:bg-[#050505] transition-colors duration-300 select-none overflow-hidden" ref={containerRef}>
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-20 space-y-4">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-blue-600 dark:text-blue-500 font-mono text-sm md:text-base font-black uppercase tracking-[0.4em]">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-blue-600 dark:text-blue-500 font-mono text-sm md:text-base font-black uppercase tracking-[0.4em]">
             Milestones & Achievements
           </motion.div>
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight tracking-tighter">
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.1 }} className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight tracking-tighter">
             {t("title")}<span className="text-blue-600">.</span>
           </motion.h2>
         </div>

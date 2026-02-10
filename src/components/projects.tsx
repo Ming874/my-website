@@ -2,17 +2,17 @@
 
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Sparkles, Bot, Globe, ArrowUpRight, Monitor, Cpu, ShieldCheck, Database, Zap, ZoomIn } from 'lucide-react';
+import { Github, Globe, ArrowUpRight, Zap, ZoomIn } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useModalStore } from '@/store/modal-store';
 
-const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any }) => {
+const ProjectRow = ({ project, index, t, mounted }: { project: any, index: number, t: any, mounted: boolean }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { openModal } = useModalStore();
   const isScholarship = project.key === 'scholarship';
   const isEven = index % 2 === 0;
+  const isTablet = mounted && window.innerWidth >= 768;
 
   const showcaseImages = [
     '/p01.webp',
@@ -63,8 +63,13 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
       !isEven ? 'justify-start lg:pl-20' : 'justify-end lg:pr-20'
     } ${index === 0 ? 'lg:hidden' : ''}`}>
       <motion.span 
-        initial={{ opacity: 0, x: !isEven ? -100 : 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        key={mounted ? 'mounted' : 'server'}
+        variants={{
+          hidden: { opacity: 0, x: !isEven ? -100 : 100 },
+          visible: { opacity: 1, x: 0 }
+        }}
+        initial={isTablet ? "hidden" : "visible"}
+        whileInView={isTablet ? "visible" : "visible"}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`text-[12rem] md:text-[20rem] lg:text-[28rem] font-black leading-none ${
@@ -82,8 +87,8 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
   if (isScholarship) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={isTablet ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+        whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
         viewport={{ once: true, margin: "-20px" }}
         transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
         onMouseEnter={() => setIsHovered(true)}
@@ -209,8 +214,8 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
   // Regular Projects without Image
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={isTablet ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+      whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
       viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
       className={`group relative w-full py-16 lg:py-24 transition-all duration-500 will-change-transform ${
@@ -249,6 +254,12 @@ const ProjectRow = ({ project, index, t }: { project: any, index: number, t: any
 
 export function Projects() {
   const t = useTranslations('Projects'); 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const projects = [
     { key: "scholarship", link: "https://scholarship.ncuesa.org.tw", github: "https://github.com/GDG-on-campus-NCUE/NCUE-Scholarship", tags: ["Next.js", "Supabase", "Gemini"] },
     { key: "vote", link: "https://election.ncuesa.org.tw", github: "https://github.com/GDG-on-campus-NCUE/NCUE-SAVote", tags: ["React", "NestJS", "ZK Proof", "Circom"] },
@@ -275,7 +286,7 @@ export function Projects() {
       </div>
       <div className="flex flex-col">
         {projects.map((project, index) => (
-          <ProjectRow key={project.key} project={project} index={index} t={t} />
+          <ProjectRow key={project.key} project={project} index={index} t={t} mounted={mounted} />
         ))}
       </div>
     </section>

@@ -85,8 +85,11 @@ function ShareButton() {
 
   const shareUrl = 'https://mingchen.dev';
 
-  // Only show Native Share option if supported (mostly mobile)
-  const isNativeShareSupported = typeof navigator !== 'undefined' && !!navigator.share;
+  const [isNativeShareSupported, setIsNativeShareSupported] = useState(false);
+
+  useEffect(() => {
+    setIsNativeShareSupported(!!navigator.share);
+  }, []);
   
   const handleNativeShare = async () => {
     if (navigator.share) {

@@ -45,7 +45,6 @@ const ResearchHighlighter = ({ children }: { children: React.ReactNode }) => (
 // Slide to Unlock Button Component
 const SlideButton = ({ onUnlock, text }: { onUnlock: () => void, text: string }) => {
   const constraintsRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
   const x = useMotionValue(0);
   const controls = useAnimation();
   const [unlocked, setUnlocked] = useState(false);
@@ -57,7 +56,6 @@ const SlideButton = ({ onUnlock, text }: { onUnlock: () => void, text: string })
   const wakeWidth = useTransform(x, (latest) => latest + 56);
 
   const handleDragEnd = () => {
-    setIsDragging(false);
     const currentX = x.get();
     if (constraintsRef.current) {
         const constraintWidth = constraintsRef.current.offsetWidth;
@@ -118,7 +116,6 @@ const SlideButton = ({ onUnlock, text }: { onUnlock: () => void, text: string })
             dragConstraints={constraintsRef}
             dragElastic={0.05}
             dragMomentum={false}
-            onDragStart={() => setIsDragging(true)}
             onDragEnd={handleDragEnd}
             animate={controls}
             style={{ 
@@ -150,6 +147,11 @@ export function About() {
   const t = useTranslations('About');
   const { openModal } = useModalStore();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -171,7 +173,7 @@ export function About() {
       if (!isMounted) return;
 
       // Only run tilt effect on desktop (simplistic check) to avoid unwanted motion on mobile
-      if (window.innerWidth < 1024) return;
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) return;
 
       if (e.gamma !== null && e.beta !== null) {
         // Map gamma (left/right tilt, -30 to 30 deg) to -0.5 to 0.5
@@ -252,6 +254,9 @@ export function About() {
   const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], ["5deg", "-5deg"]);
   const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], ["-5deg", "5deg"]);
 
+  const isDesktop = mounted && window.innerWidth >= 1024;
+  const isTablet = mounted && window.innerWidth >= 768;
+
   // Background gradient movement
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
@@ -325,12 +330,12 @@ export function About() {
                     className="relative w-full aspect-[3/4] rounded-[2rem] shadow-2xl overflow-hidden bg-gray-100 dark:bg-gray-900 perspective-1000"
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+                    style={isDesktop ? { rotateX, rotateY, transformStyle: "preserve-3d" } : {}}
                 >
                     
                     {/* Layer 2: Background */}
                     <motion.div 
-                        style={{ y: yBack, x: xBack, scale: 1.25 }} 
+                        style={isDesktop ? { y: yBack, x: xBack, scale: 1.25 } : {}} 
                         className="absolute inset-0 w-full h-full"
                     >
                         <Image 
@@ -345,7 +350,7 @@ export function About() {
 
                     {/* Layer 1: Foreground */}
                     <motion.div 
-                        style={{ y: yFront, x: xFront, scale: 1.25 }} 
+                        style={isDesktop ? { y: yFront, x: xFront, scale: 1.25 } : {}} 
                         className="absolute inset-0 w-full h-full"
                     >
                          <Image 
@@ -376,8 +381,8 @@ export function About() {
 
                 {/* Focus Areas (Moved to Left Column) */}
                 <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={isTablet ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+                    whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
                     viewport={{ once: true, margin: "-20px" }}
                     className="will-change-transform"
                 >
@@ -390,8 +395,8 @@ export function About() {
                             <motion.span 
                                 key={tag}
                                 className="px-4 py-2 bg-gray-100 dark:bg-gray-800/50 border border-transparent hover:border-blue-500/50 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors cursor-default will-change-transform"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={isTablet ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
+                                whileInView={isTablet ? { opacity: 1, scale: 1 } : {}}
                                 viewport={{ once: true, margin: "-10px" }}
                                 transition={{ delay: i * 0.05 }}
                             >
@@ -408,8 +413,8 @@ export function About() {
                 {/* Intro Header & Text */}
                 <div className="space-y-8">
                     <motion.h2 
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={isTablet ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+                        whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
                         viewport={{ once: true, margin: "-20px" }}
                         className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white leading-tight will-change-transform"
                     >
@@ -418,8 +423,8 @@ export function About() {
                     </motion.h2>
 
                     <motion.div 
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={isTablet ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+                        whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
                         viewport={{ once: true, margin: "-20px" }}
                         transition={{ delay: 0.1 }}
                         className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 font-normal leading-relaxed text-lg will-change-transform"
@@ -437,8 +442,8 @@ export function About() {
 
                 {/* Research Section */}
                 <motion.div 
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={isTablet ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+                    whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
                     viewport={{ once: true, margin: "-20px" }}
                     className="space-y-10 will-change-transform"
                 >

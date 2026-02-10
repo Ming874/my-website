@@ -11,6 +11,14 @@ export function Footer() {
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const isManuallyActive = useRef<boolean>(false);
   const linkRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setActiveLink(null);
+  }, []);
+
+  const isTablet = mounted && window.innerWidth >= 768;
 
   const contacts = [
     {
@@ -47,12 +55,6 @@ export function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  useEffect(() => {
-    // Scroll handling removed to prevent automatic "filling" effect
-    // Keeping it only for manual clicks if needed, but simplifying it.
-    setActiveLink(null);
-  }, []);
-
   return (
     <footer id="contact" className="relative bg-gray-100 dark:bg-black text-gray-900 dark:text-white pt-16 pb-8 overflow-hidden transition-colors duration-300 select-none">
       {/* Dynamic Background */}
@@ -78,8 +80,8 @@ export function Footer() {
           {/* Left Section: CTA */}
           <div className="lg:w-1/2">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={isTablet ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+              whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
               viewport={{ once: true }}
               className="relative"
             >
@@ -106,8 +108,8 @@ export function Footer() {
                   ref={(el) => { if (el) linkRefs.current.set(contact.name, el); }}
                   href={contact.url}
                   target="_blank"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={isTablet ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
+                  whileInView={isTablet ? { opacity: 1, x: 0 } : {}}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => {
