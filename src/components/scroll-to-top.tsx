@@ -82,12 +82,12 @@ export default function ScrollToTop() {
                     style={{ zIndex: 0 }}
                 />
 
-                {/* Progress Ring (Gradient) */}
+                {/* Progress Ring (Black & White) */}
                 <div 
-                    className="absolute inset-0 rounded-full" 
+                    className="absolute inset-0 rounded-full text-black dark:text-white" 
                     style={{ 
                         zIndex: 1,
-                        background: `conic-gradient(from 0deg at 50% 50%, #60a5fa 0%, #9333ea ${progressDeg}deg, transparent ${progressDeg}deg)`,
+                        background: `conic-gradient(from 0deg at 50% 50%, currentColor 0%, currentColor ${progressDeg}deg, transparent ${progressDeg}deg)`,
                         WebkitMaskImage: 'radial-gradient(transparent 58%, black 61%)',
                         maskImage: 'radial-gradient(transparent 58%, black 61%)',
                     }}
@@ -95,18 +95,18 @@ export default function ScrollToTop() {
 
                 {/* Caps for the progress line */}
                 <svg 
-                    className="absolute inset-0 w-full h-full pointer-events-none" 
+                    className="absolute inset-0 w-full h-full pointer-events-none text-black dark:text-white" 
                     style={{ zIndex: 2 }}
                 >
                     {progress > 0 && (
-                        <circle cx={center} cy={strokeWidth/2} r={strokeWidth/2} fill="#60a5fa" />
+                        <circle cx={center} cy={strokeWidth/2} r={strokeWidth/2} fill="currentColor" />
                     )}
                     {progress > 0 && ( progress < 0.99) && (
                         <circle 
                             cx={endX} 
                             cy={endY} 
                             r={strokeWidth/2} 
-                            fill="#9333ea" 
+                            fill="currentColor" 
                         />
                     )}
                 </svg>

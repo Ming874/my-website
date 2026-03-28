@@ -20,7 +20,9 @@
     "experience": "我的經歷",
     "projects": "精選專案",
     "articles": "教學文章",
-    "contact": "聯絡方式"
+    "contact": "聯絡方式",
+    "tools": "實驗小工具",
+    "authenticator": "Authenticator"
   },
   "Share": {
     "title": "分享網站",

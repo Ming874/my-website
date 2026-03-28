@@ -20,7 +20,9 @@
     "experience": "Experience",
     "projects": "Projects",
     "articles": "Articles",
-    "contact": "Contact"
+    "contact": "Contact",
+    "tools": "Experimental Tools",
+    "authenticator": "Authenticator"
   },
   "Share": {
     "title": "Share Portfolio",

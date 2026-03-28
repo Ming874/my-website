@@ -6,7 +6,7 @@ import { LanguageSwitcher } from './language-switcher';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Menu, X, Share2, Copy, MessageCircle, ChevronRight, MoreHorizontal } from 'lucide-react';
+import { Menu, X, Share2, Copy, MessageCircle, ChevronRight, MoreHorizontal, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const AnimatedCheck = () => {
@@ -60,7 +60,7 @@ function ShareButton() {
       const baseUrl = 'https://mingchen.dev';
       await navigator.clipboard.writeText(baseUrl);
       setCopied(true);
-      
+
       // Trigger confetti
       const rect = menuRef.current?.getBoundingClientRect();
       if (rect) {
@@ -90,7 +90,7 @@ function ShareButton() {
   useEffect(() => {
     setIsNativeShareSupported(!!navigator.share);
   }, []);
-  
+
   const handleNativeShare = async () => {
     if (navigator.share) {
       try {
@@ -152,7 +152,7 @@ function ShareButton() {
               {shareLinks.map((link) => {
                 const Icon = (link.activeIcon && copied) ? link.activeIcon : link.icon;
                 const iconColor = (link.activeColor && copied && link.name === t('copyLink')) ? link.activeColor : link.color;
-                
+
                 return (
                   <button
                     key={link.name}
@@ -166,7 +166,7 @@ function ShareButton() {
                   </button>
                 );
               })}
-              
+
               {isNativeShareSupported && (
                 <button
                   onClick={handleNativeShare}
@@ -185,10 +185,67 @@ function ShareButton() {
   );
 }
 
+function ToolsDropdown() {
+  const t = useTranslations('Nav');
+  const [isOpen, setIsOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 150);
+  };
+
+  return (
+    <div 
+      className="relative" 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave}
+    >
+      <button
+        className="relative text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group py-2 flex items-center gap-1"
+      >
+        {t('tools')}
+        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full" />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute left-0 mt-0 w-48 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden z-50"
+          >
+            <div className="p-2">
+              <Link
+                href="https://auth.mingchen.dev"
+                target="_blank"
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-gray-700 dark:text-gray-200"
+              >
+                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                {t('authenticator')}
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function Navbar() {
   const t = useTranslations('Nav');
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileToolsOpen, setIsMobileToolsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -234,13 +291,14 @@ export function Navbar() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
+          <ToolsDropdown />
         </div>
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <LanguageSwitcher />
           <ShareButton />
-          
+
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
@@ -273,6 +331,37 @@ export function Navbar() {
                   <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-all" />
                 </Link>
               ))}
+
+              {/* Mobile Tools Menu */}
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setIsMobileToolsOpen(!isMobileToolsOpen)}
+                  className="px-4 py-4 text-base font-bold text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all flex items-center justify-between group"
+                >
+                  {t('tools')}
+                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isMobileToolsOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {isMobileToolsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="pl-4 flex flex-col gap-1"
+                    >
+                      <Link
+                        href="https://auth.mingchen.dev"
+                        target="_blank"
+                        className="px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                        {t('authenticator')}
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
         )}
