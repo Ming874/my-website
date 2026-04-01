@@ -233,6 +233,14 @@ function ToolsDropdown() {
                 <div className="w-2 h-2 rounded-full bg-blue-500" />
                 {t('authenticator')}
               </Link>
+              <Link
+                href="https://cloud.mingchen.dev"
+                target="_blank"
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-gray-700 dark:text-gray-200"
+              >
+                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                {t('cloud')}
+              </Link>
             </div>
           </motion.div>
         )}
@@ -357,6 +365,15 @@ export function Navbar() {
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                         {t('authenticator')}
+                      </Link>
+                      <Link
+                        href="https://cloud.mingchen.dev"
+                        target="_blank"
+                        className="px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                        {t('cloud')}
                       </Link>
                     </motion.div>
                   )}

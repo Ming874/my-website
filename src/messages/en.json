@@ -22,7 +22,8 @@
     "articles": "Articles",
     "contact": "Contact",
     "tools": "Experimental Tools",
-    "authenticator": "Authenticator"
+    "authenticator": "Authenticator",
+    "cloud": "Private Cloud"
   },
   "Share": {
     "title": "Share Portfolio",

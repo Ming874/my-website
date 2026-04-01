@@ -22,7 +22,8 @@
     "articles": "教學文章",
     "contact": "聯絡方式",
     "tools": "實驗小工具",
-    "authenticator": "Authenticator"
+    "authenticator": "驗證器",
+    "cloud": "私有雲"
   },
   "Share": {
     "title": "分享網站",
