@@ -31,9 +31,10 @@ const itemsData = [
   { key: "award_itsa", type: "award", date: "2025-12" },
   { key: "devfest_2025", type: "vol", date: "2025-12" },
   { key: "award_114_1", type: "award", date: "2026-02" },
-    {key: "it_career", type: "work", date: "2026-02" },
-    { key: "sitcon_2026", type: "vol", date: "2026-03" },
-    { key: "twnog_7", type: "vol", date: "2026-05" },
+  {key: "it_career", type: "work", date: "2026-02" },
+  { key: "sitcon_2026", type: "vol", date: "2026-03" },
+  { key: "twnog_7", type: "vol", date: "2026-05" },
+  { key: "sa_digital_minister", type: "lead", date: "2026-08" },
   ] as const;
 
 // Sorting: Oldest to Newest
