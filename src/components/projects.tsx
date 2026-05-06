@@ -261,7 +261,7 @@ export function Projects() {
   }, []);
 
   const projects = [
-    { key: "scholarship", link: "https://scholarship.ncuesa.org.tw", github: "https://github.com/GDG-on-campus-NCUE/NCUE-Scholarship", tags: ["Next.js", "Supabase", "Gemini"] },
+    { key: "scholarship", link: "https://scholarship.ncuesa.org.tw", github: "https://github.com/Ming874/NCUE-Scholarship", tags: ["Next.js", "Supabase", "Gemini"] },
     { key: "vote", link: "https://election.ncuesa.org.tw", github: "https://github.com/GDG-on-campus-NCUE/NCUE-SAVote", tags: ["React", "NestJS", "ZK Proof", "Circom"] },
     { key: "fin_agent", github: "https://github.com/Ming874/FinAgent", tags: ["Python", "Streamlit", "Gemini"] },
     { key: "meal_voucher", tags: ["GAS", "Google Sheets API", "Google Docs API", "Gmail Service"] }

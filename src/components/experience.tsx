@@ -22,7 +22,6 @@ const itemsData = [
   { key: "gdgoc_lead", type: "lead", date: "2025-07" },
   { key: "sa_it", type: "vol", date: "2025-07" },
   { key: "it_guidance", type: "work", date: "2025-07" },
-  { key: "dorm_manager", type: "vol", date: "2025-09" },
   { key: "speaker_cloud", type: "speak", date: "2025-10" },
   { key: "award_ai", type: "award", date: "2025-10" },
   { key: "award_113_2", type: "award", date: "2025-11" },
@@ -35,6 +34,7 @@ const itemsData = [
   { key: "sitcon_2026", type: "vol", date: "2026-03" },
   { key: "twnog_7", type: "vol", date: "2026-05" },
   { key: "sa_digital_minister", type: "lead", date: "2026-08" },
+  { key: "it_network", type: "work", date: "2026-09" },
   ] as const;
 
 // Sorting: Oldest to Newest
@@ -198,6 +198,8 @@ export function Experience() {
     award_113_1: "/113-1.webp",
     award_113_2: "/113-2.webp",
     award_itsa: "/ITSA.webp",
+    devfest_2025: "/devfest.webp",
+    sitcon_2026: "/SITCON.webp",
   };
 
   const openImageModal = (imgSrc: string, alt: string) => {
