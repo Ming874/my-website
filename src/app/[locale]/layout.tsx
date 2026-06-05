@@ -47,8 +47,8 @@ export async function generateMetadata({
     },
     description: t('description'),
     keywords: t('keywords').split(', '),
-    authors: [{ name: "Tai Ming Chen", url: "https://github.com/Ming874" }],
-    creator: "Tai Ming Chen",
+    authors: [{ name: "Ming Chen", url: "https://github.com/Ming874" }],
+    creator: "Ming Chen",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}/${locale}`,

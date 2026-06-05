@@ -132,7 +132,7 @@ function ShareButton() {
     <div className="relative" ref={menuRef}>
       <motion.button
         onClick={handleShare}
-        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         aria-label={t('title')}
@@ -143,9 +143,10 @@ function ShareButton() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25, mass: 1.2 }}
             className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden z-50"
           >
             <div className="p-2 space-y-1">
@@ -252,14 +253,29 @@ function ToolsDropdown() {
 export function Navbar() {
   const t = useTranslations('Nav');
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileToolsOpen, setIsMobileToolsOpen] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 50);
+
+      // Hide instantly when scrolling down, show instantly when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setHidden(true);
+      } else if (currentScrollY < lastScrollY) {
+        setHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -272,20 +288,31 @@ export function Navbar() {
   ];
 
   return (
-    <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 select-none ${
-        scrolled || isOpen
-            ? 'bg-white/50 dark:bg-black/50 backdrop-blur-2xl shadow-sm border-b border-white/20 dark:border-white/10' 
-            : 'bg-transparent'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="#" className="text-xl font-bold tracking-tighter text-gray-900 dark:text-white">
-          Tai Ming Chen
-        </Link>
+    <>
+      <header className="fixed top-4 md:top-6 w-full z-[45] flex justify-center pointer-events-none px-4">
+        <motion.nav
+          className={`pointer-events-auto w-full max-w-5xl transition-colors duration-500 select-none rounded-full ${
+            scrolled
+                ? 'bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] border border-white/50 dark:border-gray-700/50' 
+                : 'bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/20 dark:border-gray-800/30'
+          }`}
+          initial={{ y: -50, opacity: 0, scale: 0.8 }}
+          animate={{ 
+            y: hidden ? -50 : 0, 
+            opacity: hidden ? 0 : 1,
+            scale: hidden ? 0.8 : 1
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 350, 
+            damping: 25,
+            mass: 1.2
+          }}
+        >
+        <div className="px-6 h-14 md:h-16 flex items-center justify-between">
+          <Link href="#" className="text-xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:opacity-80 transition-opacity">
+            Ming Chen
+          </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
@@ -309,25 +336,52 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <Menu className="w-5 h-5" />
           </button>
         </div>
       </div>
+      </motion.nav>
+      </header>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation Menu Backdrop */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/10 dark:border-white/5 overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm z-[50] md:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Navigation Menu Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed top-0 right-0 h-[100dvh] w-72 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl border-l border-white/20 dark:border-white/10 z-[60] shadow-2xl flex flex-col md:hidden overflow-y-auto"
           >
-            <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
+            {/* Close button inside drawer */}
+            <div className="flex justify-end p-6">
+              <button
+                className="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-colors bg-white/50 dark:bg-black/50"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="px-6 pb-6 flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -341,7 +395,7 @@ export function Navbar() {
               ))}
 
               {/* Mobile Tools Menu */}
-              <div className="flex flex-col">
+              <div className="flex flex-col mt-2 pt-2 border-t border-gray-200/50 dark:border-gray-800/50">
                 <button
                   onClick={() => setIsMobileToolsOpen(!isMobileToolsOpen)}
                   className="px-4 py-4 text-base font-bold text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all flex items-center justify-between group"
@@ -355,7 +409,7 @@ export function Navbar() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="pl-4 flex flex-col gap-1"
+                      className="pl-4 flex flex-col gap-1 overflow-hidden"
                     >
                       <Link
                         href="https://auth.mingchen.dev"
@@ -383,6 +437,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 }

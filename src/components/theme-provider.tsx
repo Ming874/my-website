@@ -14,14 +14,18 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
+  const [theme, setThemeState] = useState<Theme>("dark");
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark");
 
   // 初始化讀取 localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
     if (savedTheme) {
       setThemeState(savedTheme);
+    } else {
+      // 若無紀錄則預設為 dark 並存入
+      setThemeState("dark");
+      localStorage.setItem("theme", "dark");
     }
   }, []);
 
@@ -31,7 +35,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const updateTheme = () => {
-      const currentTheme = localStorage.getItem("theme") as Theme || "system";
+      const currentTheme = localStorage.getItem("theme") as Theme || "dark";
       let effectiveTheme: "light" | "dark";
 
       if (currentTheme === "system") {

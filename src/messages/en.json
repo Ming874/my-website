@@ -1,11 +1,11 @@
 {
   "Metadata": {
-    "title": "Tai Ming Chen",
-    "description": "Personal portfolio of Tai Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE. Specializing in Full-stack Development, Cloud Computing (GCP), AI/ML, Computer Vision, and Hardware Security (PQC/PUF).",
-    "keywords": "Tai Ming Chen, Portfolio, NCUE, GDG, Full-stack, AI, Cloud, GCP, Linux, Git, Docker, Computer Vision, Post-Quantum Cryptography, PQC, PUF, FPGA, RAG, Gemini AI"
+    "title": "Ming Chen",
+    "description": "Personal portfolio of Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE. Specializing in Full-stack Development, Cloud Computing (GCP), AI/ML, Computer Vision, and Hardware Security (PQC/PUF).",
+    "keywords": "Ming Chen, Portfolio, NCUE, GDG, Full-stack, AI, Cloud, GCP, Linux, Git, Docker, Computer Vision, Post-Quantum Cryptography, PQC, PUF, FPGA, RAG, Gemini AI"
   },
   "Hero": {
-    "greeting": "Hi, I'm Tai Ming Chen",
+    "greeting": "Hi, I'm Ming Chen",
     "roles": [
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 Broadcast Team Member",

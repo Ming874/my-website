@@ -133,13 +133,13 @@ const FRAG = /* glsl */`
     if (alpha < 0.01) discard;
 
     // --- Colors ---
-    vec3 cBase   = vec3(0.04, 0.04, 0.06);
-    vec3 cBlue   = vec3(0.259, 0.522, 0.961);
-    vec3 cRed    = vec3(0.922, 0.255, 0.212);
-    vec3 cYellow = vec3(0.980, 0.729, 0.012);
+    vec3 cBase   = vec3(0.000, 0.000, 1.000); // #0000ff
+    vec3 cBlue   = vec3(0.259, 0.522, 0.961); // #4285f5
+    vec3 cRed    = vec3(0.922, 0.255, 0.212); // #eb4236
+    vec3 cYellow = vec3(0.980, 0.729, 0.012); // #faba03
 
     // --- Dynamic colour zones ---
-    float t  = uTime * 1.2;
+    float t  = uTime * 3.5;  // 律動改快一點 (原本 1.2 -> 3.5)
     float p1 = sin(vPos.x * 0.8 + t);
     float p2 = sin(vPos.y * 0.8 + t * 0.8 + p1);
 
@@ -238,29 +238,37 @@ function initScene(canvas: HTMLCanvasElement): () => void {
   // ── Mouse tracking ────────────────────────────────────────────────────────
   const mouseTarget = new THREE.Vector2(0, 0);
   const hovering    = { current: true };
+  let isTouch = false;
 
   const onMouseMove = (e: MouseEvent) => {
+    if (isTouch) return; // Ignore emulated mouse events on mobile
     const vp = getViewport();
     // Convert pixel → NDC → world
     mouseTarget.x =  ((e.clientX / window.innerWidth)  * 2 - 1) * (vp.w / 2);
     mouseTarget.y = -((e.clientY / window.innerHeight)  * 2 - 1) * (vp.h / 2);
     hovering.current = true;
   };
-  const onLeave = () => { hovering.current = false; };
-  const onEnter = () => { hovering.current = true; };
+  const onLeave = () => { if (!isTouch) hovering.current = false; };
+  const onEnter = () => { if (!isTouch) hovering.current = true; };
 
   const onTouch = (e: TouchEvent) => {
-    if (!e.touches.length) return;
-    const vp = getViewport();
-    mouseTarget.x =  ((e.touches[0].clientX / window.innerWidth)  * 2 - 1) * (vp.w / 2);
-    mouseTarget.y = -((e.touches[0].clientY / window.innerHeight) * 2 - 1) * (vp.h / 2);
+    isTouch = true;
+    // Keep halo locked to center on mobile devices
+    mouseTarget.x = 0;
+    mouseTarget.y = 0;
     hovering.current = true;
   };
-  const onTouchEnd = () => { hovering.current = false; };
+  const onTouchEnd = () => { 
+    isTouch = true;
+    mouseTarget.x = 0;
+    mouseTarget.y = 0;
+    hovering.current = false; 
+  };
 
   window.addEventListener("mousemove",  onMouseMove);
   document.body.addEventListener("mouseleave", onLeave);
   document.body.addEventListener("mouseenter", onEnter);
+  window.addEventListener("touchstart", onTouch,    { passive: true });
   window.addEventListener("touchmove",  onTouch,    { passive: true });
   window.addEventListener("touchend",   onTouchEnd);
 
@@ -298,6 +306,7 @@ function initScene(canvas: HTMLCanvasElement): () => void {
     window.removeEventListener("mousemove",  onMouseMove);
     document.body.removeEventListener("mouseleave", onLeave);
     document.body.removeEventListener("mouseenter", onEnter);
+    window.removeEventListener("touchstart", onTouch);
     window.removeEventListener("touchmove",  onTouch);
     window.removeEventListener("touchend",   onTouchEnd);
     window.removeEventListener("resize",     onResize);

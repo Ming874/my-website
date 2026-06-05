@@ -43,7 +43,7 @@ export function Footer() {
     },
     {
       name: "LINE",
-      value: "Tai Ming Chen",
+      value: "Ming Chen",
       icon: MessageCircle,
       url: "https://line.me/ti/p/aM_h9C0qjG",
       className: "hover:text-green-500 hover:bg-green-600/20 hover:border-green-600",
@@ -151,7 +151,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 overflow-hidden">
             <div className="flex flex-col gap-2 text-center md:text-left w-full md:w-auto overflow-hidden">
               <div className="text-[clamp(0.6rem,3vw,1rem)] sm:text-base font-bold tracking-wide text-gray-900 dark:text-white px-2 whitespace-nowrap">
-                 © {currentYear} Tai Ming Chen. All rights reserved.
+                 © {currentYear} Ming Chen. All rights reserved.
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 text-[clamp(0.55rem,2.8vw,0.875rem)] sm:text-sm text-gray-500 font-mono px-2 whitespace-nowrap">
                  <Code className="w-3 h-3 flex-shrink-0" />

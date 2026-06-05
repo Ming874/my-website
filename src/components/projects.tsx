@@ -160,17 +160,25 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
 
               <div className={`flex flex-wrap gap-4 pt-6 ${!isEven ? 'lg:justify-end' : ''}`}>
                 {project.link && (
-                  <Link href={project.link} target="_blank" className="flex items-center gap-2 text-[10px] sm:text-xs font-black uppercase tracking-widest group/link bg-blue-600 text-white px-4 sm:px-6 py-3 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 whitespace-nowrap">
+                  <motion.a href={project.link} target="_blank" 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="flex items-center gap-2 text-[10px] sm:text-xs font-black uppercase tracking-widest group/link bg-blue-600 text-white px-4 sm:px-6 py-3 rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20 whitespace-nowrap">
                     <Globe className="w-4 h-4" />
                     <span>Live Demo</span>
                     <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </Link>
+                  </motion.a>
                 )}
                 {project.github && (
-                  <Link href={project.github} target="_blank" className="flex items-center gap-2 text-[10px] sm:text-xs font-black uppercase tracking-widest group/link border border-gray-200 dark:border-gray-800 px-4 sm:px-6 py-3 rounded-full hover:bg-gray-50 dark:hover:bg-gray-900 transition-all whitespace-nowrap">
+                  <motion.a href={project.github} target="_blank" 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="flex items-center gap-2 text-[10px] sm:text-xs font-black uppercase tracking-widest group/link border border-gray-200 dark:border-gray-800 px-4 sm:px-6 py-3 rounded-full hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors whitespace-nowrap">
                     <Github className="w-4 h-4" />
                     <span>Source Code</span>
-                  </Link>
+                  </motion.a>
                 )}
               </div>
             </div>
@@ -234,16 +242,24 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
           </p>
           <div className="flex gap-4">
             {project.link && (
-              <Link href={project.link} target="_blank" className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 hover:border-blue-500 transition-all font-bold text-sm bg-white dark:bg-transparent shadow-sm">
+              <motion.a href={project.link} target="_blank" 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 hover:border-blue-500 transition-colors font-bold text-sm bg-white dark:bg-transparent shadow-sm">
                 <Globe className="w-4 h-4" />
                 <span>View Live</span>
-              </Link>
+              </motion.a>
             )}
             {project.github && (
-              <Link href={project.github} target="_blank" className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 hover:border-blue-500 transition-all font-bold text-sm bg-white dark:bg-transparent shadow-sm">
+              <motion.a href={project.github} target="_blank" 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 hover:border-blue-500 transition-colors font-bold text-sm bg-white dark:bg-transparent shadow-sm">
                 <Github className="w-4 h-4" />
                 <span>Source</span>
-              </Link>
+              </motion.a>
             )}
           </div>
         </div>
