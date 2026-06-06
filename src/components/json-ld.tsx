@@ -3,8 +3,8 @@ export function JsonLd({ locale }: { locale: string }) {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": locale === 'zh' ? "陳泰銘" : "Ming Chen",
-    "url": "https://ming-portfolio.pages.dev",
-    "image": "https://ming-portfolio.pages.dev/image.png",
+    "url": "https://mingchen.dev",
+    "image": "https://mingchen.dev/me.jpg",
     "description": locale === 'zh' 
       ? "陳泰銘的個人網站。目前就讀彰化師範大學資工系，擔任 GDG on Campus Lead。"
       : "Personal portfolio of Ming Chen, a Computer Science student and GDG on Campus Lead at NCUE.",

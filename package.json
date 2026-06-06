@@ -15,7 +15,7 @@
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "framer-motion": "^12.31.0",
-    "jsqr": "^1.4.0",
+    "html5-qrcode": "^2.3.8",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
     "next-intl": "^4.8.2",

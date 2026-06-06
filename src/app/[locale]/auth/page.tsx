@@ -51,9 +51,9 @@ export default function AuthPage() {
   };
 
   return (
-    <main className="h-[100dvh] bg-background text-foreground flex flex-col overflow-hidden select-none">
+    <main className="fixed inset-0 bg-background text-foreground flex flex-col overflow-hidden select-none">
       <Navbar />
-      <div className={`flex-1 flex flex-col items-center justify-center w-full ${!isLocked ? 'pt-16 pb-6 px-4' : ''}`}>
+      <div className={`flex-1 flex flex-col items-center justify-center w-full h-full ${!isLocked ? 'md:py-8 md:px-4' : ''}`}>
         {isLocked ? (
           <LockScreen 
             onUnlock={handleUnlock} 

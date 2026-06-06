@@ -93,7 +93,7 @@ export function VaultScreen({ accounts, onAdd, onDelete }: VaultScreenProps) {
   };
 
   return (
-    <div className="flex flex-col h-full max-h-[85vh] md:max-h-[800px] w-full max-w-md mx-auto relative bg-gray-50 dark:bg-[#050505] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
+    <div className="flex flex-col w-full h-full md:h-auto md:max-h-[800px] max-w-md mx-auto relative bg-gray-50 dark:bg-[#050505] md:rounded-3xl overflow-hidden shadow-none md:shadow-2xl border-0 md:border border-gray-200 dark:border-gray-800">
       <header className="flex items-center justify-between p-6 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
@@ -140,7 +140,7 @@ export function VaultScreen({ accounts, onAdd, onDelete }: VaultScreenProps) {
                   >
                     <div className="flex justify-between items-center relative z-10">
                       <div>
-                        <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-1">{acc.label}</div>
+                        <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1">{acc.label}</div>
                         <div className="text-4xl font-bold tracking-[0.1em] text-gray-900 dark:text-white font-mono flex items-center gap-2">
                           {code.substring(0, 3)} {code.substring(3)}
                           <AnimatePresence>
