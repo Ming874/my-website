@@ -45,7 +45,7 @@ export function Footer() {
       <div className="container mx-auto px-6 lg:px-8 max-w-6xl relative z-10">
         
         {/* Compact Professional Layout */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16 relative z-20">
           
           <div className="max-w-md">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
