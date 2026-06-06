@@ -3,8 +3,6 @@
 import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
-const GROUND_Y = 180;
-
 export function DinoGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
@@ -66,8 +64,11 @@ export function DinoGame() {
     const resize = () => {
       const parent = canvas.parentElement;
       if (parent) {
-        canvas.width = parent.clientWidth;
-        canvas.height = 200;
+        const isMobile = window.innerWidth < 640;
+        const scaleFactor = isMobile ? 0.6 : 1; // 60% size on mobile allows seeing 1.6x further
+        
+        canvas.width = parent.clientWidth / scaleFactor;
+        canvas.height = 200 / scaleFactor;
       }
     };
     window.addEventListener("resize", resize);
@@ -86,8 +87,8 @@ export function DinoGame() {
         obstacles.push({
           x: canvas.width,
           y: yOffset,
-          w: 30,
-          h: 20,
+          w: 60, // Shorter forgiving hitbox
+          h: 15,
           type: 'bird',
           frameOffset: Math.floor(Math.random() * 20),
         });
@@ -288,47 +289,16 @@ export function DinoGame() {
       ctx.restore();
     };
 
-    const drawDerpyBird = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, frameOff: number, isDark: boolean) => {
+    const drawFunnyTextBird = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, frameOff: number, isDark: boolean) => {
       ctx.save();
-      ctx.translate(x, y - h);
+      const flapY = Math.sin((frame + frameOff) * 0.15) * 5;
       
-      const flapY = Math.sin((frame + frameOff) * 0.2) * 5;
-      ctx.translate(0, flapY);
-
       const color = isDark ? "#ffffff" : "#111827";
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = color;
       ctx.fillStyle = color;
-      ctx.lineCap = "round";
-
-      // Body
-      ctx.beginPath();
-      ctx.ellipse(w/2, h/2, 12, 6, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-
-      // Wing
-      const wingAngle = Math.sin((frame + frameOff) * 0.4) * Math.PI/4;
-      ctx.beginPath();
-      ctx.ellipse(w/2, h/2, 8, 3, wingAngle, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-
-      // Beak
-      ctx.beginPath();
-      ctx.moveTo(w/2 - 12, h/2);
-      ctx.lineTo(w/2 - 18, h/2 + 2);
-      ctx.lineTo(w/2 - 12, h/2 + 4);
-      ctx.fillStyle = isDark ? "#111827" : "#ffffff"; // Reverse of body for contrast
-      ctx.fill();
-      ctx.stroke();
-
-      // Eye
-      ctx.fillStyle = isDark ? "#111827" : "#ffffff";
-      ctx.beginPath();
-      ctx.arc(w/2 - 8, h/2 - 2, 1.5, 0, Math.PI*2);
-      ctx.fill();
-
+      ctx.font = "bold 12px sans-serif"; // Smaller font
+      ctx.textAlign = "left";
+      ctx.fillText("我不會畫烏鴉", x, y - h + flapY);
+      
       ctx.restore();
     };
 
@@ -336,9 +306,12 @@ export function DinoGame() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const isDark = resolvedTheme === "dark";
-      const textColor = isDark ? "#A1A1AA" : "#52525B";
+      // Use DOM class to guarantee we match the actual visible theme
+      const isDark = document.documentElement.classList.contains('dark');
+      const textColor = isDark ? "#ffffff" : "#111827"; // Use pure white for scoreboard/ground
       
+      const GROUND_Y = canvas.height * 0.9;
+
       // Ground line
       ctx.fillStyle = textColor;
       ctx.fillRect(0, GROUND_Y, canvas.width, 1);
@@ -356,7 +329,7 @@ export function DinoGame() {
         if (obs.type === 'cactus') {
           drawDerpyCactus(ctx, obs.x, GROUND_Y, obs.w, obs.h, isDark);
         } else {
-          drawDerpyBird(ctx, obs.x, GROUND_Y - obs.y, obs.w, obs.h, obs.frameOffset, isDark);
+          drawFunnyTextBird(ctx, obs.x, GROUND_Y - obs.y, obs.w, obs.h, obs.frameOffset, isDark);
         }
       });
 
@@ -405,20 +378,35 @@ export function DinoGame() {
           spawnObstacle();
         }
 
+        const GROUND_Y = canvas.height * 0.9;
+
         for (let i = obstacles.length - 1; i >= 0; i--) {
           obstacles[i].x -= gameSpeed;
 
           const obs = obstacles[i];
-          const margin = 12; // Massive margin for very forgiving collisions 
+
+          // Hitbox margins
+          const dMargin = 10; // Forgiving margin for Dino
+          const oMarginX = obs.type === 'bird' ? 10 : 12; // Bird is text, needs less X margin
+          const oMarginY = obs.type === 'bird' ? 2 : 12; // Bird height is only 15, so Y margin must be small
 
           const dCurrentHeight = dino.isDucking ? DINO_DUCK_H : DINO_H;
           const dCurrentWidth = DINO_W;
-          const dinoWorldY = GROUND_Y - dCurrentHeight - dino.y;
 
-          const obsWorldY = obs.type === 'bird' ? GROUND_Y - obs.h - obs.y : GROUND_Y - obs.h;
+          // Hitbox for Dino
+          const dx = dino.x + dMargin;
+          const dy = GROUND_Y - dCurrentHeight - dino.y + dMargin;
+          const dw = dCurrentWidth - dMargin * 2;
+          const dh = dCurrentHeight - dMargin * 2;
 
-          const collidesX = dino.x + margin < obs.x + obs.w && dino.x + dCurrentWidth - margin > obs.x;
-          const collidesY = dinoWorldY + margin < obsWorldY + obs.h && dinoWorldY + dCurrentHeight - margin > obsWorldY;
+          // Hitbox for Obstacle
+          const ox = obs.x + oMarginX;
+          const oy = GROUND_Y - obs.h - obs.y + oMarginY;
+          const ow = obs.w - oMarginX * 2;
+          const oh = obs.h - oMarginY * 2;
+
+          const collidesX = dx < ox + ow && dx + dw > ox;
+          const collidesY = dy < oy + oh && dy + dh > oy;
 
           if (collidesX && collidesY) {
             isPlaying = false;
