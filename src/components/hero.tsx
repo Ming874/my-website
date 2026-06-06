@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { HeroParticles } from './ui/hero-particles';
 import { useState, useEffect } from 'react';
 
-export function Hero() {
+export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const t = useTranslations('Hero');
   // Use t.raw to get the array of roles. Type assertion might be needed depending on setup, 
   // but usually t.raw returns `any`.
@@ -18,6 +18,9 @@ export function Hero() {
   const [typingSpeed, setTypingSpeed] = useState(100);
 
   useEffect(() => {
+    // Wait until loaded on mobile
+    if (!isLoaded) return;
+
     // Handle the typing animation
     const handleTyping = () => {
       const currentRole = roles[roleIndex];
@@ -46,12 +49,12 @@ export function Hero() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed]);
+  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed, isLoaded]);
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-slate-50 dark:bg-black transition-colors duration-300 select-none">
         {/* Interactive Background */}
-        <HeroParticles />
+        <HeroParticles isLoaded={isLoaded} />
         
         {/* Gradient Orbs (Subtle) */}
         <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">

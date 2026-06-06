@@ -58,8 +58,8 @@ function ShareButton() {
 
   const handleCopy = async () => {
     try {
-      const baseUrl = 'https://mingchen.dev';
-      await navigator.clipboard.writeText(baseUrl);
+      const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://mingchen.dev';
+      await navigator.clipboard.writeText(currentUrl);
       setCopied(true);
 
       // Trigger confetti
@@ -84,7 +84,7 @@ function ShareButton() {
     }
   };
 
-  const shareUrl = 'https://mingchen.dev';
+
 
   const [isNativeShareSupported, setIsNativeShareSupported] = useState(false);
 
@@ -95,9 +95,10 @@ function ShareButton() {
   const handleNativeShare = async () => {
     if (navigator.share) {
       try {
+        const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://mingchen.dev';
         await navigator.share({
           title: document.title,
-          url: shareUrl,
+          url: currentUrl,
         });
         setIsOpen(false);
       } catch (err) {
@@ -123,7 +124,10 @@ function ShareButton() {
     {
       name: t('line'),
       icon: MessageCircle,
-      action: () => window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, '_blank'),
+      action: () => {
+        const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://mingchen.dev';
+        window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(currentUrl)}`, '_blank');
+      },
       color: "text-[#00B900]"
     },
   ];
@@ -250,14 +254,13 @@ function ToolsDropdown() {
   );
 }
 
-export function Navbar() {
+export function Navbar({ title, titleHref = "/", titleIcon }: { title?: string, titleHref?: string, titleIcon?: React.ReactNode }) {
   const t = useTranslations('Nav');
   const pathname = usePathname();
   const isHome = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobileToolsOpen, setIsMobileToolsOpen] = useState(false);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -312,8 +315,9 @@ export function Navbar() {
           }}
         >
         <div className="px-6 h-14 md:h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:opacity-80 transition-opacity">
-            Ming Chen
+          <Link href={titleHref} className="text-xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:opacity-80 transition-opacity flex items-center gap-2">
+            {titleIcon}
+            {title || "Ming Chen"}
           </Link>
 
         {/* Desktop Navigation */}
@@ -366,11 +370,11 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-[100dvh] w-72 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl border-l border-white/20 dark:border-white/10 z-[60] shadow-2xl flex flex-col md:hidden overflow-y-auto"
+            initial={{ clipPath: 'circle(0% at 100% 0%)', opacity: 0 }}
+            animate={{ clipPath: 'circle(150% at 100% 0%)', opacity: 1 }}
+            exit={{ clipPath: 'circle(0% at 100% 0%)', opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 150 }}
+            className="fixed top-0 right-0 h-[100dvh] w-full sm:w-80 bg-white/90 dark:bg-gray-900/90 backdrop-blur-3xl border-l border-white/20 dark:border-white/10 z-[60] shadow-2xl flex flex-col md:hidden overflow-y-auto"
           >
             {/* Close button inside drawer */}
             <div className="flex justify-end p-6">
@@ -398,41 +402,28 @@ export function Navbar() {
 
               {/* Mobile Tools Menu */}
               <div className="flex flex-col mt-2 pt-2 border-t border-gray-200/50 dark:border-gray-800/50">
-                <button
-                  onClick={() => setIsMobileToolsOpen(!isMobileToolsOpen)}
-                  className="px-4 py-4 text-base font-bold text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all flex items-center justify-between group"
-                >
+                <div className="px-4 py-3 text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   {t('tools')}
-                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isMobileToolsOpen ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {isMobileToolsOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="pl-4 flex flex-col gap-1 overflow-hidden"
-                    >
-                      <Link
-                        href="/auth"
-                        className="px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                        {t('authenticator')}
-                      </Link>
-                      <NextLink
-                        href="https://cloud.mingchen.dev"
-                        target="_blank"
-                        className="px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                        {t('cloud')}
-                      </NextLink>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <Link
+                    href="/auth"
+                    className="px-4 py-3 text-base font-bold text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all flex items-center gap-3"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-blue-500" />
+                    {t('authenticator')}
+                  </Link>
+                  <NextLink
+                    href="https://cloud.mingchen.dev"
+                    target="_blank"
+                    className="px-4 py-3 text-base font-bold text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all flex items-center gap-3"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-blue-500" />
+                    {t('cloud')}
+                  </NextLink>
+                </div>
               </div>
             </div>
           </motion.div>

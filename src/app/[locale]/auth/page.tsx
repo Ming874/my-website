@@ -6,6 +6,7 @@ import { useVault } from '@/hooks/use-vault';
 import { LockScreen } from '@/components/auth/lock-screen';
 import { VaultScreen } from '@/components/auth/vault-screen';
 import { Navbar } from '@/components/navbar';
+import { Shield } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export default function AuthPage() {
@@ -52,8 +53,8 @@ export default function AuthPage() {
 
   return (
     <main className="fixed inset-0 bg-background text-foreground flex flex-col overflow-hidden select-none">
-      <Navbar />
-      <div className={`flex-1 flex flex-col items-center justify-center w-full h-full ${!isLocked ? 'md:py-8 md:px-4' : ''}`}>
+      <Navbar title={t('vault')} titleIcon={<Shield className="w-5 h-5 text-emerald-600" />} />
+      <div className={`flex-1 flex flex-col items-center justify-center w-full h-full pt-20 pb-4 px-0 md:pt-24 md:pb-8 md:px-4 ${isLocked ? 'p-4' : ''}`}>
         {isLocked ? (
           <LockScreen 
             onUnlock={handleUnlock} 

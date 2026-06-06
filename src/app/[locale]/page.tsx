@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/navbar';
 import { Hero } from '@/components/hero';
 import { Footer } from '@/components/footer';
@@ -8,13 +11,22 @@ const Experience = dynamic(() => import('@/components/experience').then(mod => m
 const Projects = dynamic(() => import('@/components/projects').then(mod => mod.Projects));
 const Articles = dynamic(() => import('@/components/articles').then(mod => mod.Articles));
 
-export const runtime = 'edge';
-
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      setIsLoaded(true);
+    } else {
+      const timer = setTimeout(() => setIsLoaded(true), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <Hero />
+      <Hero isLoaded={isLoaded} />
       <About />
       <Experience />
       <Projects />

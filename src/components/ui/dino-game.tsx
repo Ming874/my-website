@@ -113,13 +113,18 @@ export function DinoGame() {
     };
 
     const resetGame = () => {
+      const scaleFactor = window.innerWidth < 640 ? 0.6 : 1;
+      const physicsScale = 1 / scaleFactor;
+
       dino.y = 0;
       dino.vy = 0;
+      dino.jumpPower = 12 * physicsScale;
+      dino.gravity = 0.6 * physicsScale;
       dino.isJumping = false;
       dino.isDucking = false;
       obstacles = [];
       score = 0;
-      gameSpeed = 0.8;
+      gameSpeed = 0.8 * physicsScale;
       frame = 0;
       nextObstacleFrame = 50; 
       isPlaying = true;
@@ -146,7 +151,8 @@ export function DinoGame() {
       if (!isPlaying || isGameOver) return;
       dino.isDucking = isDown;
       if (isDown && dino.isJumping) {
-        dino.vy += 3; // Fast drop
+        const scaleFactor = window.innerWidth < 640 ? 0.6 : 1;
+        dino.vy += 3 * (1 / scaleFactor); // Fast drop scaled
       }
     };
 
@@ -362,8 +368,11 @@ export function DinoGame() {
       if (isPlaying) {
         frame++;
         
-        gameSpeed += 0.0003; // Slower acceleration
-        score += gameSpeed * 0.015;
+        const scaleFactor = window.innerWidth < 640 ? 0.6 : 1;
+        const physicsScale = 1 / scaleFactor;
+
+        gameSpeed += 0.0003 * physicsScale; // Slower acceleration scaled
+        score += (gameSpeed / physicsScale) * 0.015;
 
         dino.y -= dino.vy;
         dino.vy += dino.gravity;

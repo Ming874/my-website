@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings, Plus, Trash2, CheckCircle2, Shield } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { generateTOTP } from '@/lib/auth/totp';
 import type { DecryptedAccount } from '@/hooks/use-vault';
 import { QRScanner } from './qr-scanner';
@@ -94,8 +95,8 @@ export function VaultScreen({ accounts, onAdd, onDelete }: VaultScreenProps) {
 
   return (
     <div className="flex flex-col w-full h-full md:h-auto md:max-h-[800px] max-w-md mx-auto relative bg-gray-50 dark:bg-[#050505] md:rounded-3xl overflow-hidden shadow-none md:shadow-2xl border-0 md:border border-gray-200 dark:border-gray-800">
-      <header className="flex items-center justify-between p-6 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20 border-b border-gray-200 dark:border-gray-800">
-        <div className="flex items-center gap-3">
+      <header className="flex items-center justify-end p-4 md:p-6 md:justify-between bg-transparent md:bg-white/80 md:dark:bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20 md:border-b border-gray-200 dark:border-gray-800">
+        <div className="hidden md:flex items-center gap-3">
           <div className="flex items-center gap-2">
             <Shield className="w-6 h-6 text-emerald-600 dark:text-emerald-500" />
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">{t('vault')}</h1>

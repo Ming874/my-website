@@ -320,14 +320,15 @@ function initScene(canvas: HTMLCanvasElement): () => void {
 // React component
 // ════════════════════════════════════════════════════════════════════════════
 
-export function HeroParticles() {
+export function HeroParticles({ isLoaded = true }: { isLoaded?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (!isLoaded) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     return initScene(canvas);
-  }, []);
+  }, [isLoaded]);
 
   return (
     <canvas

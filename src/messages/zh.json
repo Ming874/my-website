@@ -245,7 +245,7 @@
     "biometricRequired": "需要使用生物辨識才能存取您的動態密碼。",
     "unlockVault": "解鎖驗證器",
     "verifying": "驗證中...",
-    "vault": "驗證器",
+    "vault": "雙重驗證器",
     "noAccounts": "目前還沒有新增任何帳號。",
     "newAccount": "新增帳號",
     "accountLabel": "帳號名稱",
