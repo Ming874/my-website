@@ -239,5 +239,30 @@
     "title": "Contact Me",
     "desc": "Feel free to reach out via:",
     "madeWith": "Made with Next.js, Tailwind CSS, TypeScript & Love."
+  },
+  "Auth": {
+    "vaultLocked": "Vault Locked",
+    "biometricRequired": "Biometric authentication required to access your tokens.",
+    "unlockVault": "Unlock Vault",
+    "verifying": "Verifying...",
+    "vault": "Vault",
+    "noAccounts": "No accounts added yet.",
+    "newAccount": "New Account",
+    "accountLabel": "Account Label",
+    "secretKey": "Secret Key",
+    "cancel": "Cancel",
+    "save": "Save",
+    "invalidSecret": "Invalid Base32 secret",
+    "deleteConfirm": "Delete {label}?",
+    "errNotSupported": "Biometrics / WebAuthn is not supported in your browser.",
+    "errAuthFailed": "Authentication failed.",
+    "errNotAllowed": "Permission denied or browser blocked. If you are using Brave, please check your Shields settings.",
+    "errSecurity": "Security error. Please ensure you're accessing via HTTPS.",
+    "scanQr": "Scan QR Code",
+    "scanUpload": "Upload QR Image",
+    "cameraPermission": "Requesting camera permission...",
+    "cameraError": "Failed to access camera",
+    "scanHelp": "Align QR Code within the frame",
+    "scanInvalid": "Invalid QR Code format"
   }
 }

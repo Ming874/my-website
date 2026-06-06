@@ -22,7 +22,7 @@
     "articles": "教學文章",
     "contact": "聯絡方式",
     "tools": "實驗小工具",
-    "authenticator": "驗證器",
+    "authenticator": "雙重驗證器",
     "cloud": "私有雲"
   },
   "Share": {
@@ -239,5 +239,30 @@
     "title": "聯絡我",
     "desc": "歡迎透過以下方式與我聯繫：",
     "madeWith": "Made with Next.js, Tailwind CSS, TypeScript & Love."
+  },
+  "Auth": {
+    "vaultLocked": "驗證器已鎖定",
+    "biometricRequired": "需要使用生物辨識才能存取您的動態密碼。",
+    "unlockVault": "解鎖驗證器",
+    "verifying": "驗證中...",
+    "vault": "驗證器",
+    "noAccounts": "目前還沒有新增任何帳號。",
+    "newAccount": "新增帳號",
+    "accountLabel": "帳號名稱",
+    "secretKey": "金鑰 (Secret Key)",
+    "cancel": "取消",
+    "save": "儲存",
+    "invalidSecret": "無效的 Base32 金鑰",
+    "deleteConfirm": "確定要刪除 {label} 嗎？",
+    "errNotSupported": "您的瀏覽器不支援生物辨識或 WebAuthn。",
+    "errAuthFailed": "驗證失敗。",
+    "errNotAllowed": "權限遭拒或被瀏覽器封鎖。若您使用 Brave 瀏覽器，請檢查 Shields 設定。",
+    "errSecurity": "安全性錯誤。請確保您是透過 HTTPS 進行連線。",
+    "scanQr": "掃描 QR Code",
+    "scanUpload": "上傳 QR 圖片",
+    "cameraPermission": "正在請求相機權限...",
+    "cameraError": "無法取得相機權限",
+    "scanHelp": "請將 QR Code 對準框內",
+    "scanInvalid": "無效的 QR Code 格式"
   }
 }

@@ -5,7 +5,8 @@ import { ThemeToggle } from './theme-toggle';
 import { LanguageSwitcher } from './language-switcher';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import NextLink from 'next/link';
+import { Link, usePathname } from '@/i18n/routing';
 import { Menu, X, Share2, Copy, MessageCircle, ChevronRight, MoreHorizontal, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -227,21 +228,20 @@ function ToolsDropdown() {
           >
             <div className="p-2">
               <Link
-                href="https://auth.mingchen.dev"
-                target="_blank"
+                href="/auth"
                 className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-gray-700 dark:text-gray-200"
               >
                 <div className="w-2 h-2 rounded-full bg-blue-500" />
                 {t('authenticator')}
               </Link>
-              <Link
+              <NextLink
                 href="https://cloud.mingchen.dev"
                 target="_blank"
                 className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-gray-700 dark:text-gray-200"
               >
                 <div className="w-2 h-2 rounded-full bg-blue-500" />
                 {t('cloud')}
-              </Link>
+              </NextLink>
             </div>
           </motion.div>
         )}
@@ -252,6 +252,8 @@ function ToolsDropdown() {
 
 export function Navbar() {
   const t = useTranslations('Nav');
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -280,11 +282,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: t('about'), href: '#about' },
-    { name: t('experience'), href: '#experience' },
-    { name: t('projects'), href: '#projects' },
-    { name: t('articles'), href: '#articles' },
-    { name: t('contact'), href: '#contact' },
+    { name: t('about'), href: isHome ? '#about' : '/#about' },
+    { name: t('experience'), href: isHome ? '#experience' : '/#experience' },
+    { name: t('projects'), href: isHome ? '#projects' : '/#projects' },
+    { name: t('articles'), href: isHome ? '#articles' : '/#articles' },
+    { name: t('contact'), href: isHome ? '#contact' : '/#contact' },
   ];
 
   return (
@@ -412,15 +414,14 @@ export function Navbar() {
                       className="pl-4 flex flex-col gap-1 overflow-hidden"
                     >
                       <Link
-                        href="https://auth.mingchen.dev"
-                        target="_blank"
+                        href="/auth"
                         className="px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
                         onClick={() => setIsOpen(false)}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                         {t('authenticator')}
                       </Link>
-                      <Link
+                      <NextLink
                         href="https://cloud.mingchen.dev"
                         target="_blank"
                         className="px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
@@ -428,7 +429,7 @@ export function Navbar() {
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                         {t('cloud')}
-                      </Link>
+                      </NextLink>
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -12,7 +12,7 @@ export function Hero() {
   // but usually t.raw returns `any`.
   const roles = t.raw('roles') as string[]; 
   
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState(roles[0] || '');
   const [isDeleting, setIsDeleting] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(100);
@@ -64,7 +64,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-[clamp(2rem,5vw,6rem)] sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-300 dark:to-white drop-shadow-sm whitespace-nowrap"
+            className="text-[clamp(2rem,5vw,6rem)] sm:text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 py-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-300 dark:to-white drop-shadow-sm whitespace-nowrap"
         >
           {t('greeting')}
         </motion.h1>
@@ -91,7 +91,19 @@ export function Hero() {
             }
             return <span key={index}>{char}</span>;
           })}
-          <span className="animate-pulse ml-1 text-blue-600 dark:text-blue-400">|</span>
+          <motion.span 
+            animate={{ 
+              color: ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#4285F4'],
+              opacity: [1, 0, 1]
+            }}
+            transition={{ 
+              color: { duration: 4, repeat: Infinity, ease: "linear" },
+              opacity: { duration: 0.8, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="ml-1 font-black"
+          >
+            |
+          </motion.span>
         </motion.h2>
 
         <motion.p 

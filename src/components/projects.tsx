@@ -83,14 +83,34 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
     </div>
   );
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: isTablet ? 30 : 15 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+    }
+  };
+
   // Featured Project with Image
   if (isScholarship) {
     return (
       <motion.div
-        initial={isTablet ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
-        whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
-        viewport={{ once: true, margin: "-20px" }}
-        transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={containerVariants}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={`relative w-full py-12 lg:py-24 transition-all duration-500 will-change-transform ${
@@ -101,8 +121,8 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
         {backgroundNumber}
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            <div className={`lg:col-span-7 space-y-8 ${!isEven ? 'lg:order-2 lg:text-right' : ''}`}>
-              <div className={`flex items-center gap-6 ${!isEven ? 'lg:justify-end' : ''}`}>
+            <motion.div variants={itemVariants} className={`lg:col-span-7 space-y-8 ${!isEven ? 'lg:order-2 lg:text-right' : ''}`}>
+              <motion.div variants={itemVariants} className={`flex items-center gap-6 ${!isEven ? 'lg:justify-end' : ''}`}>
                 <span className="text-sm font-mono text-blue-600 dark:text-blue-500 font-bold tracking-widest">PROJECT 0{index + 1}</span>
                 <div className="h-px w-12 bg-blue-600/30 dark:bg-blue-500/30" />
                 <div className="flex gap-3">
@@ -112,13 +132,13 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
                     </span>
                   ))}
                 </div>
-              </div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white leading-[1.1]">
+              </motion.div>
+              <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white leading-[1.1]">
                 {t(`items.${project.key}.title`)}
-              </h3>
+              </motion.h3>
 
               {/* Mobile Image Carousel - Shown only on small screens */}
-              <div className="lg:hidden w-full -mx-6 px-6 sm:mx-0 sm:px-0">
+              <motion.div variants={itemVariants} className="lg:hidden w-full -mx-6 px-6 sm:mx-0 sm:px-0">
                 <div 
                     className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all shadow-xl bg-gray-100 dark:bg-gray-900"
                     onClick={() => handleZoomImage(showcaseImages[activeImg], "Scholarship Platform")}
@@ -142,23 +162,23 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
                         </motion.div>
                     </AnimatePresence>
                 </div>
-              </div>
+              </motion.div>
 
-              <p className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl font-light leading-relaxed ${!isEven ? 'lg:ml-auto' : ''}`}>
+              <motion.p variants={itemVariants} className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl font-light leading-relaxed ${!isEven ? 'lg:ml-auto' : ''}`}>
                 {t(`items.${project.key}.desc`)}
-              </p>
+              </motion.p>
               
               {/* Features List for Scholarship */}
-              <div className={`grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-4 ${!isEven ? 'lg:justify-items-end' : ''}`}>
+              <motion.div variants={itemVariants} className={`grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-4 ${!isEven ? 'lg:justify-items-end' : ''}`}>
                 {(t.raw(`items.${project.key}.features`) as string[]).map((feature, i) => (
                   <div key={i} className={`flex items-center gap-3 text-gray-700 dark:text-gray-300 ${!isEven ? 'lg:flex-row-reverse lg:text-right' : ''}`}>
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
                     <span className="text-sm md:text-base font-medium">{feature}</span>
                   </div>
                 ))}
-              </div>
+              </motion.div>
 
-              <div className={`flex flex-wrap gap-4 pt-6 ${!isEven ? 'lg:justify-end' : ''}`}>
+              <motion.div variants={itemVariants} className={`flex flex-wrap gap-4 pt-6 ${!isEven ? 'lg:justify-end' : ''}`}>
                 {project.link && (
                   <motion.a href={project.link} target="_blank" 
                     whileHover={{ scale: 1.05 }}
@@ -180,9 +200,9 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
                     <span>Source Code</span>
                   </motion.a>
                 )}
-              </div>
-            </div>
-            <div className={`hidden lg:block lg:col-span-5 relative ${!isEven ? 'lg:order-1' : ''}`}>
+              </motion.div>
+            </motion.div>
+            <motion.div variants={itemVariants} className={`hidden lg:block lg:col-span-5 relative ${!isEven ? 'lg:order-1' : ''}`}>
                <div 
                     className="group relative aspect-video rounded-2xl overflow-hidden cursor-zoom-in transition-all bg-gray-100 dark:bg-gray-900"
                     onClick={() => handleZoomImage(showcaseImages[activeImg], "Scholarship Platform")}
@@ -212,7 +232,7 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>
@@ -222,10 +242,10 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
   // Regular Projects without Image
   return (
     <motion.div
-      initial={isTablet ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
-      whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
-      viewport={{ once: true, margin: "-20px" }}
-      transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={containerVariants}
       className={`group relative w-full py-16 lg:py-24 transition-all duration-500 will-change-transform ${
         isEven ? 'bg-white dark:bg-[#050505]' : 'bg-gray-50/60 dark:bg-[#0a0a0a]'
       }`}
@@ -233,14 +253,14 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
     >
       {backgroundNumber}
       <div className="container mx-auto px-6 relative z-10">
-        <div className={`flex flex-col ${!isEven ? 'lg:items-end lg:text-right' : 'lg:items-start'}`}>
-          <h3 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">
+        <motion.div variants={itemVariants} className={`flex flex-col ${!isEven ? 'lg:items-end lg:text-right' : 'lg:items-start'}`}>
+          <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">
             {t(`items.${project.key}.title`)}
-          </h3>
-          <p className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-4xl font-light leading-relaxed mb-10 ${!isEven ? 'lg:ml-auto' : ''}`}>
+          </motion.h3>
+          <motion.p variants={itemVariants} className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-4xl font-light leading-relaxed mb-10 ${!isEven ? 'lg:ml-auto' : ''}`}>
             {t(`items.${project.key}.desc`)}
-          </p>
-          <div className="flex gap-4">
+          </motion.p>
+          <motion.div variants={itemVariants} className="flex gap-4">
             {project.link && (
               <motion.a href={project.link} target="_blank" 
                 whileHover={{ scale: 1.05 }}
@@ -261,8 +281,8 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
                 <span>Source</span>
               </motion.a>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </motion.div>
   );
@@ -286,19 +306,28 @@ export function Projects() {
   return (
     <section id="projects" className="bg-white dark:bg-[#050505] transition-colors duration-300 select-none overflow-hidden">
       <div className="container mx-auto px-6 pt-16 pb-4">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-gray-200 dark:border-gray-800 pb-8">
-          <div className="max-w-2xl space-y-3">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+          }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-gray-200 dark:border-gray-800 pb-8"
+        >
+          <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } } }} className="max-w-2xl space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-600 text-white text-[11px] md:text-xs font-black uppercase tracking-[0.3em] rounded-full">
               <Zap className="w-3 h-3 fill-white" /> Selected Works
             </div>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight">
               {t('title')}<span className="text-blue-600">.</span>
-            </motion.h2>
-          </div>
-          <p className="text-gray-500 dark:text-gray-400 font-mono text-xs md:text-sm max-w-xs md:text-right leading-relaxed">
+            </h2>
+          </motion.div>
+          <motion.p variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } } }} className="text-gray-500 dark:text-gray-400 font-mono text-xs md:text-sm max-w-xs md:text-right leading-relaxed">
             Crafting digital experiences with purpose, precision, and passion.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </div>
       <div className="flex flex-col">
         {projects.map((project, index) => (
