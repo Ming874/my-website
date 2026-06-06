@@ -36,7 +36,9 @@ export function QRScanner({ onScan, onClose }: QRScannerProps) {
         video: {
           facingMode: 'environment',
           width: { ideal: 1920 },
-          height: { ideal: 1080 }
+          height: { ideal: 1080 },
+          // @ts-ignore
+          advanced: [{ exposureMode: 'continuous' }]
         }
       });
       if (videoRef.current) {
@@ -185,7 +187,7 @@ export function QRScanner({ onScan, onClose }: QRScannerProps) {
           <canvas ref={canvasRef} className="hidden" />
           
           {/* Overlay Grid/Frame */}
-          <div className="absolute inset-0 border-[40px] border-black/50">
+          <div className="absolute inset-0 border-[40px] border-black/10">
             <div className="w-full h-full border-2 border-blue-500/50 relative">
               <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-blue-500" />
               <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-blue-500" />

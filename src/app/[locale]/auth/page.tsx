@@ -53,7 +53,7 @@ export default function AuthPage() {
   return (
     <main className="h-[100dvh] bg-background text-foreground flex flex-col overflow-hidden select-none">
       <Navbar />
-      <div className={`flex-1 ${!isLocked ? 'pt-20 md:pt-24 pb-8 px-4 overflow-y-auto' : 'flex flex-col items-center justify-center'}`}>
+      <div className={`flex-1 flex flex-col items-center justify-center w-full ${!isLocked ? 'pt-16 pb-6 px-4' : ''}`}>
         {isLocked ? (
           <LockScreen 
             onUnlock={handleUnlock} 

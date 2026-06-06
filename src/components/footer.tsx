@@ -1,24 +1,18 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Github, Mail, MessageCircle, ArrowUpRight, Code, Terminal } from "lucide-react";
-import { motion } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { Github, Mail, MessageCircle, Code } from "lucide-react";
+import { useState, useEffect } from "react";
+import { DinoGame } from "./ui/dino-game";
 
 export function Footer() {
   const t = useTranslations("Contact");
   const tNav = useTranslations("Nav");
-  const [activeLink, setActiveLink] = useState<string | null>(null);
-  const isManuallyActive = useRef<boolean>(false);
-  const linkRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    setActiveLink(null);
   }, []);
-
-  const isTablet = mounted && window.innerWidth >= 768;
 
   const contacts = [
     {
@@ -26,136 +20,72 @@ export function Footer() {
       value: "@Ming874",
       icon: Github,
       url: "https://github.com/Ming874",
-      className: "hover:text-white hover:bg-gray-700 hover:border-gray-600",
-      activeClassName: "text-white bg-gray-700 border-gray-600",
-      activeTextColor: "text-white",
-      hoverTextColor: "group-hover:text-white",
+      hoverClass: "hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10",
     },
     {
       name: "Email",
       value: "contact@mingchen.dev",
       icon: Mail,
       url: "mailto:contact@mingchen.dev",
-      className: "hover:text-red-500 hover:bg-red-600/20 hover:border-red-600",
-      activeClassName: "text-red-500 bg-red-600/20 border-red-600",
-      activeTextColor: "text-red-500",
-      hoverTextColor: "group-hover:text-red-500",
+      hoverClass: "hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10",
     },
     {
       name: "LINE",
       value: "Ming Chen",
       icon: MessageCircle,
       url: "https://line.me/ti/p/aM_h9C0qjG",
-      className: "hover:text-green-500 hover:bg-green-600/20 hover:border-green-600",
-      activeClassName: "text-green-500 bg-green-600/20 border-green-600",
-      activeTextColor: "text-green-500",
-      hoverTextColor: "group-hover:text-green-500",
+      hoverClass: "hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10",
     },
   ];
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="relative bg-gray-100 dark:bg-black text-gray-900 dark:text-white pt-16 pb-8 overflow-hidden transition-colors duration-300 select-none">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.05),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(50,50,50,0.2),transparent_70%)]" />
-          <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent opacity-50" />
-      </div>
-      
-      {/* Animated Glow Orbs */}
-      <motion.div 
-        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" 
-      />
-      <motion.div 
-        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 dark:bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" 
-      />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-8 mb-12">
-          {/* Left Section: CTA */}
-          <div className="lg:w-1/2">
-            <motion.div
-              initial={isTablet ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
-              whileInView={isTablet ? { opacity: 1, y: 0 } : {}}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <Terminal className="w-10 h-10 text-blue-600 dark:text-blue-500 mb-4 opacity-80" />
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-4 leading-none">
-                Let&apos;s <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-[length:200%_auto] animate-gradient">
-                  Connect.
-                </span>
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed border-l-2 border-gray-200 dark:border-gray-800 pl-4">
-                {t("desc")}
-              </p>
-            </motion.div>
+    <footer id="contact" className="relative bg-white dark:bg-[#050505] text-gray-900 dark:text-gray-300 pt-16 pb-8 overflow-hidden border-t border-gray-100 dark:border-white/5 transition-colors duration-300 select-none">
+      <div className="container mx-auto px-6 lg:px-8 max-w-6xl relative z-10">
+        
+        {/* Compact Professional Layout */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16">
+          
+          <div className="max-w-md">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
+              Let's Connect
+            </h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {t("desc")}
+            </p>
           </div>
 
-          {/* Right Section: Contact Cards */}
-          <div className="lg:w-1/2 flex flex-col justify-center gap-3">
-            {contacts.map((contact, index) => {
-              const isActive = activeLink === 'ALL' || activeLink === contact.name;
-              return (
-                <motion.a
-                  key={contact.name}
-                  ref={(el) => { if (el) linkRefs.current.set(contact.name, el); }}
-                  href={contact.url}
-                  target="_blank"
-                  initial={isTablet ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
-                  whileInView={isTablet ? { opacity: 1, x: 0 } : {}}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => {
-                    setActiveLink(contact.name);
-                    isManuallyActive.current = true;
-                    // Release the manual lock after a delay
-                    setTimeout(() => {
-                      isManuallyActive.current = false;
-                    }, 1500);
-                  }}
-                  className={`group relative flex items-center justify-between p-4 md:p-6 rounded-2xl border transition-all duration-300 overflow-hidden ${
-                    isActive ? contact.activeClassName : "bg-white border-gray-200 dark:bg-white/[0.03] dark:border-white/10 " + contact.className
-                  } ${!isActive && "hover:border-gray-300 dark:hover:border-white/20"}`}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-r from-gray-100/50 to-transparent dark:from-white/[0.05] dark:to-transparent transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-                  
-                  <div className="flex items-center gap-4 relative z-10 w-full overflow-hidden">
-                    <div className={`p-3 rounded-xl transition-all duration-300 flex-shrink-0 ${isActive ? "scale-110 bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-gray-300" : "bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-gray-300 group-hover:scale-110 group-hover:bg-gray-100 dark:group-hover:bg-white/10"}`}>
-                      <contact.icon className="w-5 h-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className={`text-sm font-mono mb-0.5 uppercase tracking-widest transition-colors truncate ${isActive ? contact.activeTextColor + " opacity-80" : `text-gray-500 dark:text-gray-400 ${contact.hoverTextColor} group-hover:opacity-80`}`}>
-                        {contact.name}
-                      </div>
-                      <div className={`text-lg sm:text-xl md:text-2xl font-bold transition-colors truncate ${isActive ? contact.activeTextColor : `text-gray-900 dark:text-gray-200 ${contact.hoverTextColor}`}`}>
-                        {contact.value}
-                      </div>
-                    </div>
-                  </div>
-                  <ArrowUpRight className={`w-5 h-5 flex-shrink-0 transition-all duration-300 ${isActive ? contact.activeTextColor + " translate-x-1 -translate-y-1" : `text-gray-400 dark:text-gray-600 ${contact.hoverTextColor} group-hover:translate-x-1 group-hover:-translate-y-1`}`} />
-                </motion.a>
-              );
-            })}
+          <div className="flex flex-wrap gap-3">
+            {contacts.map((contact) => (
+              <a
+                key={contact.name}
+                href={contact.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-sm font-medium text-gray-600 dark:text-gray-300 transition-all duration-300 ${contact.hoverClass}`}
+              >
+                <contact.icon className="w-4 h-4" />
+                <span>{contact.value}</span>
+              </a>
+            ))}
           </div>
+
         </div>
 
-        {/* Bottom Bar: Copyright & Info */}
-        <div className="pt-8 border-t border-gray-200 dark:border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 overflow-hidden">
-            <div className="flex flex-col gap-2 text-center md:text-left w-full md:w-auto overflow-hidden">
-              <div className="text-[clamp(0.6rem,3vw,1rem)] sm:text-base font-bold tracking-wide text-gray-900 dark:text-white px-2 whitespace-nowrap">
+        {/* Dino Game anchors to this top border */}
+        <div className="relative mt-32">
+          <DinoGame />
+          
+          <div className="pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md px-2">
+            
+            <div className="flex flex-col gap-1.5 text-center md:text-left">
+              <div className="text-sm font-semibold text-gray-900 dark:text-white">
                  © {currentYear} Ming Chen. All rights reserved.
               </div>
-              <div className="flex items-center justify-center md:justify-start gap-2 text-[clamp(0.55rem,2.8vw,0.875rem)] sm:text-sm text-gray-500 font-mono px-2 whitespace-nowrap">
-                 <Code className="w-3 h-3 flex-shrink-0" />
-                 <span>Made with Next.js, Tailwind CSS, TypeScript</span>
+              <div className="flex items-center justify-center md:justify-start gap-1.5 text-xs text-gray-500 dark:text-gray-400 font-mono">
+                 <Code className="w-3.5 h-3.5" />
+                 <span>Built with Next.js & Tailwind</span>
               </div>
             </div>
 
@@ -164,13 +94,13 @@ export function Footer() {
                 <a 
                   key={item}
                   href={`#${item}`} 
-                  className="text-base font-bold text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors relative group"
+                  className="text-sm font-medium tracking-wide text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {tNav(item)}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 dark:bg-blue-500 transition-all group-hover:w-full" />
                 </a>
               ))}
             </nav>
+            
           </div>
         </div>
       </div>

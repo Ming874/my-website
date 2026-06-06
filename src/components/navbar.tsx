@@ -312,7 +312,7 @@ export function Navbar() {
           }}
         >
         <div className="px-6 h-14 md:h-16 flex items-center justify-between">
-          <Link href="#" className="text-xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:opacity-80 transition-opacity">
+          <Link href="/" className="text-xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:opacity-80 transition-opacity">
             Ming Chen
           </Link>
 

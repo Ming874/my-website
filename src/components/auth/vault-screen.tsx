@@ -83,6 +83,7 @@ export function VaultScreen({ accounts, onAdd, onDelete }: VaultScreenProps) {
         const cleanSecret = secretParams.replace(/\s/g, '').toUpperCase();
         if (!/^[A-Z2-7]+=*$/.test(cleanSecret)) throw new Error('Invalid Secret');
         await onAdd(labelStr, cleanSecret);
+        setShowScanner(false);
       } else {
         throw new Error('No secret found');
       }
@@ -92,7 +93,7 @@ export function VaultScreen({ accounts, onAdd, onDelete }: VaultScreenProps) {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-6rem)] w-full max-w-md mx-auto relative bg-gray-50 dark:bg-[#050505] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
+    <div className="flex flex-col h-full max-h-[85vh] md:max-h-[800px] w-full max-w-md mx-auto relative bg-gray-50 dark:bg-[#050505] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
       <header className="flex items-center justify-between p-6 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
