@@ -61,14 +61,18 @@ export function DinoGame() {
       frameOffset: number;
     }[] = [];
 
+    let currentScaleFactor = 1;
+    let currentPhysicsScale = 1;
+
     const resize = () => {
       const parent = canvas.parentElement;
+      const isMobile = window.innerWidth < 640;
+      currentScaleFactor = isMobile ? 0.6 : 1;
+      currentPhysicsScale = 1 / currentScaleFactor;
+      
       if (parent) {
-        const isMobile = window.innerWidth < 640;
-        const scaleFactor = isMobile ? 0.6 : 1; // 60% size on mobile allows seeing 1.6x further
-        
-        canvas.width = parent.clientWidth / scaleFactor;
-        canvas.height = 200 / scaleFactor;
+        canvas.width = parent.clientWidth * currentPhysicsScale;
+        canvas.height = 200 * currentPhysicsScale;
       }
     };
     window.addEventListener("resize", resize);
@@ -113,18 +117,15 @@ export function DinoGame() {
     };
 
     const resetGame = () => {
-      const scaleFactor = window.innerWidth < 640 ? 0.6 : 1;
-      const physicsScale = 1 / scaleFactor;
-
       dino.y = 0;
       dino.vy = 0;
-      dino.jumpPower = 12 * physicsScale;
-      dino.gravity = 0.6 * physicsScale;
+      dino.jumpPower = 12 * currentPhysicsScale;
+      dino.gravity = 0.6 * currentPhysicsScale;
       dino.isJumping = false;
       dino.isDucking = false;
       obstacles = [];
       score = 0;
-      gameSpeed = 0.8 * physicsScale;
+      gameSpeed = 0.8 * currentPhysicsScale;
       frame = 0;
       nextObstacleFrame = 50; 
       isPlaying = true;
@@ -151,8 +152,7 @@ export function DinoGame() {
       if (!isPlaying || isGameOver) return;
       dino.isDucking = isDown;
       if (isDown && dino.isJumping) {
-        const scaleFactor = window.innerWidth < 640 ? 0.6 : 1;
-        dino.vy += 3 * (1 / scaleFactor); // Fast drop scaled
+        dino.vy += 3 * currentPhysicsScale; // Fast drop scaled
       }
     };
 
@@ -312,8 +312,8 @@ export function DinoGame() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Use DOM class to guarantee we match the actual visible theme
-      const isDark = document.documentElement.classList.contains('dark');
+      // We use resolvedTheme instead of DOM property to avoid layout thrashing
+      const isDark = resolvedTheme === 'dark';
       const textColor = isDark ? "#ffffff" : "#111827"; // Use pure white for scoreboard/ground
       
       const GROUND_Y = canvas.height * 0.9;
@@ -367,12 +367,9 @@ export function DinoGame() {
     const update = () => {
       if (isPlaying) {
         frame++;
-        
-        const scaleFactor = window.innerWidth < 640 ? 0.6 : 1;
-        const physicsScale = 1 / scaleFactor;
 
-        gameSpeed += 0.0003 * physicsScale; // Slower acceleration scaled
-        score += (gameSpeed / physicsScale) * 0.015;
+        gameSpeed += 0.0003 * currentPhysicsScale; // Slower acceleration scaled
+        score += (gameSpeed / currentPhysicsScale) * 0.015;
 
         dino.y -= dino.vy;
         dino.vy += dino.gravity;

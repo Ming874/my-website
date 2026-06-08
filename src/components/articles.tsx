@@ -262,9 +262,8 @@ export function Articles() {
                         src={activeArticle.url}
                         className="w-full h-full border-0"
                         title={activeKey}
-                        referrerPolicy="no-referrer"
                         loading="lazy"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        allow="clipboard-read; clipboard-write"
                       />
                     </div>
                   ) : (
