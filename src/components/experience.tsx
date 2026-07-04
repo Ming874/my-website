@@ -120,6 +120,22 @@ const ExperienceItem = ({
         className="space-y-4 will-change-transform"
       >
         <div className="space-y-1">
+          {item.key === "io_software" && (
+            <a 
+              href="https://iosoftware.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block pb-2 mb-1 transition-transform duration-300 hover:scale-105"
+            >
+              <Image 
+                src="/logo_black_rect.svg" 
+                alt="io Software Logo" 
+                width={320} 
+                height={160} 
+                className="h-20 md:h-24 w-auto object-contain rounded-2xl border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-lg transition-all"
+              />
+            </a>
+          )}
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight">
             {t(`items.${item.key}.title`)}
           </h3>

@@ -7,7 +7,7 @@
   "Hero": {
     "greeting": "嗨，我是泰銘",
     "roles": [
-      "io Software 共同創辦人",
+      "io Software 軟體新創 共同創辦人",
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 製播組組員",
       "彰師學生會資訊組組員",
@@ -175,7 +175,7 @@
       "speaker_hsnu": {
         "year": "2026/7",
         "title": "國立臺灣師範大學附屬高級中學 講座講師",
-        "desc": "受邀主講「AI 增能講座」，分享如何運用現代 AI 工具與智慧化工作流程，全面提升專題學習與系統開發效率，引領學子探索人工智慧與軟體開發的實務應用。"
+        "desc": "受邀主講「AI 增能講座」，分享如何運用現代 AI 工具與智慧化工作流程，全面提升專題學習與系統開發效率，引領學生探索人工智慧與軟體開發的實務應用。"
       },
       "sa_digital_minister": {
         "year": "2026/8",
