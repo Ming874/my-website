@@ -80,7 +80,13 @@ export async function generateMetadata({
       images: ["/me.jpg"],
     },
     icons: {
-      icon: "/favicon.ico?v=1",
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" }
+      ],
+      shortcut: ["/favicon.svg"],
+      apple: [
+        { url: "/favicon.svg" }
+      ],
     },
   };
 }

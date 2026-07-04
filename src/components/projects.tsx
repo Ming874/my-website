@@ -254,12 +254,33 @@ const ProjectRow = ({ project, index, t, mounted }: { project: any, index: numbe
       {backgroundNumber}
       <div className="container mx-auto px-6 relative z-10">
         <motion.div variants={itemVariants} className={`flex flex-col ${!isEven ? 'lg:items-end lg:text-right' : 'lg:items-start'}`}>
+          <motion.div variants={itemVariants} className={`flex items-center gap-4 md:gap-6 mb-4 ${!isEven ? 'lg:justify-end' : ''}`}>
+            <span className="text-sm font-mono text-blue-600 dark:text-blue-500 font-bold tracking-widest">PROJECT 0{index + 1}</span>
+            <div className="h-px w-12 bg-blue-600/30 dark:bg-blue-500/30" />
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              {project.tags?.map((tag: string) => (
+                <span key={tag} className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-gray-500">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
           <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">
             {t(`items.${project.key}.title`)}
           </motion.h3>
-          <motion.p variants={itemVariants} className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-4xl font-light leading-relaxed mb-10 ${!isEven ? 'lg:ml-auto' : ''}`}>
+          <motion.p variants={itemVariants} className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-4xl font-light leading-relaxed mb-6 ${!isEven ? 'lg:ml-auto' : ''}`}>
             {t(`items.${project.key}.desc`)}
           </motion.p>
+          {project.hasFeatures && (
+            <motion.div variants={itemVariants} className={`grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 mb-10 ${!isEven ? 'lg:justify-items-end' : ''}`}>
+              {(t.raw(`items.${project.key}.features`) as string[]).map((feature, i) => (
+                <div key={i} className={`flex items-center gap-3 text-gray-700 dark:text-gray-300 ${!isEven ? 'lg:flex-row-reverse lg:text-right' : ''}`}>
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                  <span className="text-sm md:text-base font-medium">{feature}</span>
+                </div>
+              ))}
+            </motion.div>
+          )}
           <motion.div variants={itemVariants} className="flex gap-4">
             {project.link && (
               <motion.a href={project.link} target="_blank" 
@@ -297,10 +318,11 @@ export function Projects() {
   }, []);
 
   const projects = [
-    { key: "scholarship", link: "https://scholarship.ncuesa.org.tw", github: "https://github.com/Ming874/NCUE-Scholarship", tags: ["Next.js", "Supabase", "Gemini"] },
+    { key: "scholarship", link: "https://scholarship.ncuesa.org.tw", github: "https://github.com/Ming874/NCUE-Scholarship", tags: ["Next.js", "Supabase", "Gemini"], hasFeatures: true },
     { key: "vote", link: "https://election.ncuesa.org.tw", github: "https://github.com/GDG-on-campus-NCUE/NCUE-SAVote", tags: ["React", "NestJS", "ZK Proof", "Circom"] },
     { key: "fin_agent", github: "https://github.com/Ming874/FinAgent", tags: ["Python", "Streamlit", "Gemini"] },
-    { key: "meal_voucher", tags: ["GAS", "Google Sheets API", "Google Docs API", "Gmail Service"] }
+    { key: "meal_voucher", tags: ["GAS", "Google Sheets API", "Google Docs API", "Gmail Service"] },
+    { key: "ai_gateway", link: "https://ai-gateway.iosoftware.ai", tags: ["AI Gateway", "Gemini", "Imagen 4.0", "ElevenLabs"], hasFeatures: true }
   ];
 
   return (

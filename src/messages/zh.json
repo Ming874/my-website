@@ -7,6 +7,7 @@
   "Hero": {
     "greeting": "嗨，我是泰銘",
     "roles": [
+      "io Software 共同創辦人",
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 製播組組員",
       "彰師學生會資訊組組員",
@@ -22,8 +23,7 @@
     "articles": "教學文章",
     "contact": "聯絡方式",
     "tools": "實驗小工具",
-    "authenticator": "雙重驗證器",
-    "cloud": "私有雲"
+    "authenticator": "雙重驗證器"
   },
   "Share": {
     "title": "分享網站",
@@ -162,9 +162,24 @@
         "title": "台灣網路維運社群 TWNOG 7 資訊設施組 組員",
         "desc": ""
       },
+      "io_software": {
+        "year": "2026/5",
+        "title": "io Software 共同創辦人 (Co-founder)",
+        "desc": "致力於解決客戶全端系統開發、IoT 工業軟硬體整合與模組化敏捷開發。\n\n官方網站: https://iosoftware.ai"
+      },
+      "nstc_research": {
+        "year": "2026/6",
+        "title": "獲國科會 (NSTC) 大專生研究計畫",
+        "desc": ""
+      },
+      "speaker_hsnu": {
+        "year": "2026/7",
+        "title": "國立臺灣師範大學附屬高級中學 講座講師",
+        "desc": "受邀主講「AI 增能講座」，分享如何運用現代 AI 工具與智慧化工作流程，全面提升專題學習與系統開發效率，引領學子探索人工智慧與軟體開發的實務應用。"
+      },
       "sa_digital_minister": {
         "year": "2026/8",
-        "title": "國立彰化師範大學學生會 數位發展部 部長",
+        "title": "國立彰化師範大學學生會 資訊部 部長",
         "desc": ""
       },
       "it_network": {
@@ -199,6 +214,17 @@
         "meal_voucher": {
             "title": "校園餐券管理系統",
             "desc": "本系統為基於 Google Apps Script 開發的自動化餐券管理解決方案，深度整合 Google Forms、Docs、Sheets 與 Gmail 服務，實現從「學生申請」到「行政核銷」的全自動化工作流；當學生提交表單後，系統即時解析身分並套用對應範本自動生成 PDF 申請書，隨即寄發電子郵件通知申請者，同時將資料同步寫入後端審核表，並透過觸發器（Triggers）自動連動分配表與核銷表，支援批次流水號核銷、狀態同步以及自動產出經費使用與人次統計報表，大幅降低人工資料處理的錯誤率與行政成本。"
+        },
+        "ai_gateway": {
+            "title": "AI Gateway - 企業級 AI API 中繼管理主機",
+            "desc": "為 io Software 自主研發之企業級 AI API 中繼與管理平台（AI Gateway Relay System）。系統支援多種前瞻 AI 模型（包含 Google Gemini、Imagen 4.0 圖像生成與 ElevenLabs 語音合成），提供客戶端專屬 API Key 發行與 TWD 動態扣款計費機制。內建即時遙測（Telemetry）日誌、API 調用時效分佈圖、多維度服務佔比分析與歷史月結報表，打造高安全、高可視化與低延遲的企業 AI 服務基礎架構。",
+            "features": [
+                "企業級 API Key 發行與自動化儲值扣款計費",
+                "支援 Gemini、Imagen 4.0 與 ElevenLabs 等多模型路由",
+                "即時遙測 (Telemetry) 日誌與 API 調用延遲分佈監控",
+                "動態美金對台幣匯率與服務用量佔比分析圖表",
+                "歷史月份用量統計與完整財務扣款報表輸出"
+            ]
         }
     }
   },

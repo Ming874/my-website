@@ -7,6 +7,7 @@
   "Hero": {
     "greeting": "Hi, I'm Ming Chen",
     "roles": [
+      "Co-founder of io Software",
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 Broadcast Team Member",
       "NCUE Student Association IT Section Member",
@@ -22,8 +23,7 @@
     "articles": "Articles",
     "contact": "Contact",
     "tools": "Experimental Tools",
-    "authenticator": "Authenticator",
-    "cloud": "Private Cloud"
+    "authenticator": "Authenticator"
   },
   "Share": {
     "title": "Share Portfolio",
@@ -162,9 +162,24 @@
         "title": "Infrastructure Team Member, TWNOG 7",
         "desc": ""
       },
+      "io_software": {
+        "year": "2026/5",
+        "title": "Co-founder, io Software",
+        "desc": "Dedicated to delivering full-stack system development, IoT industrial software and hardware integration, and modular agile development for clients.\n\nWebsite: https://iosoftware.ai"
+      },
+      "nstc_research": {
+        "year": "2026/6",
+        "title": "Recipient of NSTC (National Science and Technology Council) Undergraduate Research Grant",
+        "desc": ""
+      },
+      "speaker_hsnu": {
+        "year": "2026/7",
+        "title": "Invited Speaker, HSNU (The Affiliated Senior High School of NTNU)",
+        "desc": "Topic: \"AI Empowerment Lecture.\" Shared practical strategies for leveraging modern AI tools and intelligent workflows to enhance project-based learning and software development efficiency, guiding students to explore AI applications."
+      },
       "sa_digital_minister": {
         "year": "2026/8",
-        "title": "Minister of Digital Development, NCUE Student Association",
+        "title": "Minister of IT, NCUE Student Association",
         "desc": ""
       },
       "it_network": {
@@ -199,6 +214,17 @@
         "meal_voucher": {
             "title": "Campus Meal Voucher Management System",
             "desc": "Built on Google Apps Script, this solution seamlessly integrates Google Forms, Docs, Sheets, and Gmail to orchestrate the entire workflow from student application to administrative verification. Key features include identity-based PDF generation with instant email notifications, real-time backend data synchronization via triggers, and batch serial number processing. The system also automatically generates financial and headcount reports, significantly reducing manual errors and administrative overhead."
+        },
+        "ai_gateway": {
+            "title": "AI Gateway - Enterprise AI API Relay System",
+            "desc": "An enterprise-grade AI API relay and management platform independently developed by io Software. The platform supports routing for cutting-edge AI models—including Google Gemini, Imagen 4.0 image generation, and ElevenLabs speech synthesis—while providing client-specific API Key issuance and dynamic TWD balance deduction. Featuring real-time telemetry logs, API latency distribution monitoring, multi-dimensional service analytics, and historical monthly billing reports, it builds a secure, highly visual, and low-latency infrastructure for enterprise AI services.",
+            "features": [
+                "Enterprise API Key Issuance & Automated Balance Deduction",
+                "Multi-Model Routing for Gemini, Imagen 4.0 & ElevenLabs",
+                "Real-Time Telemetry Logs & API Latency Distribution Charts",
+                "Dynamic USD to TWD Conversion & Service Share Analytics",
+                "Historical Monthly Usage Analytics & Financial Export"
+            ]
         }
     }
   },

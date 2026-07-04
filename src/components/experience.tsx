@@ -33,6 +33,9 @@ const itemsData = [
   {key: "it_career", type: "work", date: "2026-02" },
   { key: "sitcon_2026", type: "vol", date: "2026-03" },
   { key: "twnog_7", type: "vol", date: "2026-05" },
+  { key: "io_software", type: "lead", date: "2026-05" },
+  { key: "nstc_research", type: "award", date: "2026-06" },
+  { key: "speaker_hsnu", type: "speak", date: "2026-07" },
   { key: "sa_digital_minister", type: "lead", date: "2026-08" },
   { key: "it_network", type: "work", date: "2026-09" },
   ] as const;
@@ -200,6 +203,7 @@ export function Experience() {
     award_itsa: "/ITSA.webp",
     devfest_2025: "/devfest.webp",
     sitcon_2026: "/SITCON.webp",
+    speaker_hsnu: "/hsnu.webp",
   };
 
   const openImageModal = (imgSrc: string, alt: string) => {

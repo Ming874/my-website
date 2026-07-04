@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { Github, Mail, MessageCircle, Code } from "lucide-react";
 import { useState, useEffect } from "react";
-import { DinoGame } from "./ui/dino-game";
 
 export function Footer() {
   const t = useTranslations("Contact");
@@ -73,10 +72,7 @@ export function Footer() {
 
         </div>
 
-        {/* Dino Game anchors to this top border */}
-        <div className="relative mt-32">
-          <DinoGame />
-          
+        <div className="relative mt-12">
           <div className="pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md px-2">
             
             <div className="flex flex-col gap-1.5 text-center md:text-left">
