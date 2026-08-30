@@ -7,7 +7,6 @@
   "Hero": {
     "greeting": "Hi, I'm Ming Chen",
     "roles": [
-      "Co-founder of io Software (Software Startup)",
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 Broadcast Team Member",
       "NCUE Student Association IT Section Member",
@@ -161,11 +160,6 @@
         "year": "2026/5",
         "title": "Infrastructure Team Member, TWNOG 7",
         "desc": ""
-      },
-      "io_software": {
-        "year": "2026/5",
-        "title": "Co-founder, io Software",
-        "desc": "Dedicated to delivering full-stack system development, IoT industrial software and hardware integration, and modular agile development for clients.\n\nWebsite: https://iosoftware.ai"
       },
       "nstc_research": {
         "year": "2026/6",

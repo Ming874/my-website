@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   Award,
@@ -33,7 +32,6 @@ const itemsData = [
   {key: "it_career", type: "work", date: "2026-02" },
   { key: "sitcon_2026", type: "vol", date: "2026-03" },
   { key: "twnog_7", type: "vol", date: "2026-05" },
-  { key: "io_software", type: "lead", date: "2026-05" },
   { key: "nstc_research", type: "award", date: "2026-06" },
   { key: "speaker_hsnu", type: "speak", date: "2026-07" },
   { key: "sa_digital_minister", type: "lead", date: "2026-08" },
@@ -120,22 +118,6 @@ const ExperienceItem = ({
         className="space-y-4 will-change-transform"
       >
         <div className="space-y-1">
-          {item.key === "io_software" && (
-            <a 
-              href="https://iosoftware.ai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block pb-2 mb-1 transition-transform duration-300 hover:scale-105"
-            >
-              <Image 
-                src="/logo_black_rect.svg" 
-                alt="io Software Logo" 
-                width={320} 
-                height={160} 
-                className="h-20 md:h-24 w-auto object-contain rounded-2xl border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-lg transition-all"
-              />
-            </a>
-          )}
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight">
             {t(`items.${item.key}.title`)}
           </h3>

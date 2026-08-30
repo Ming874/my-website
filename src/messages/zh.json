@@ -7,7 +7,6 @@
   "Hero": {
     "greeting": "嗨，我是泰銘",
     "roles": [
-      "io Software 軟體新創 共同創辦人",
       "Google Developer Group On Campus NCUE Lead",
       "SITCON 2026 製播組組員",
       "彰師學生會資訊組組員",
@@ -161,11 +160,6 @@
         "year": "2026/5",
         "title": "台灣網路維運社群 TWNOG 7 資訊設施組 組員",
         "desc": ""
-      },
-      "io_software": {
-        "year": "2026/5",
-        "title": "io Software 共同創辦人 (Co-founder)",
-        "desc": "致力於解決客戶全端系統開發、IoT 工業軟硬體整合與模組化敏捷開發。\n\n官方網站: https://iosoftware.ai"
       },
       "nstc_research": {
         "year": "2026/6",
